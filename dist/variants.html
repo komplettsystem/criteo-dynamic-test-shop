@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Variants — Fashion Shop</title>
+  <style>
+    body{font-family:system-ui,sans-serif;max-width:1100px;margin:0 auto;padding:1rem}
+    table{width:100%;border-collapse:collapse}
+    th,td{text-align:left;padding:.5rem;border-bottom:1px solid #ddd;font-size:.875rem}
+    th{background:#f5f5f5;font-weight:600}
+    code{background:#f0f0f0;padding:.1rem .3rem;border-radius:3px;font-size:.8rem}
+    a{color:#0066cc}
+  </style>
+</head>
+<body>
+  <h1>Structured-Data Test Variants</h1>
+  <p>Each variant tests a different combination of DataLayer, JSON-LD, and OpenGraph signals.</p>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Label</th><th>DataLayer</th><th>JSON-LD</th><th>OpenGraph</th><th>Pages</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td><strong>c1</strong></td>
+      <td>Full Canonical</td>
+      <td><code>ga4</code></td>
+      <td><code>full</code></td>
+      <td><code>full</code></td>
+      <td>
+        <a href="/c1/">home</a> ·
+        <a href="/c1/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c1/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c2</strong></td>
+      <td>DataLayer Only</td>
+      <td><code>ga4</code></td>
+      <td><code>—</code></td>
+      <td><code>—</code></td>
+      <td>
+        <a href="/c2/">home</a> ·
+        <a href="/c2/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c2/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c3</strong></td>
+      <td>JSON-LD Only</td>
+      <td><code>suppress</code></td>
+      <td><code>full</code></td>
+      <td><code>—</code></td>
+      <td>
+        <a href="/c3/">home</a> ·
+        <a href="/c3/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c3/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c4</strong></td>
+      <td>OpenGraph Only</td>
+      <td><code>suppress</code></td>
+      <td><code>—</code></td>
+      <td><code>full</code></td>
+      <td>
+        <a href="/c4/">home</a> ·
+        <a href="/c4/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c4/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c5</strong></td>
+      <td>DataLayer + JSON-LD</td>
+      <td><code>ga4</code></td>
+      <td><code>full</code></td>
+      <td><code>—</code></td>
+      <td>
+        <a href="/c5/">home</a> ·
+        <a href="/c5/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c5/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c6</strong></td>
+      <td>DataLayer + OpenGraph</td>
+      <td><code>ga4</code></td>
+      <td><code>—</code></td>
+      <td><code>full</code></td>
+      <td>
+        <a href="/c6/">home</a> ·
+        <a href="/c6/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c6/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c7</strong></td>
+      <td>JSON-LD + OG Complementary</td>
+      <td><code>suppress</code></td>
+      <td><code>no-price</code></td>
+      <td><code>price-only</code></td>
+      <td>
+        <a href="/c7/">home</a> ·
+        <a href="/c7/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c7/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c8</strong></td>
+      <td>Non-Standard DataLayer</td>
+      <td><code>nonstandard</code></td>
+      <td><code>—</code></td>
+      <td><code>—</code></td>
+      <td>
+        <a href="/c8/">home</a> ·
+        <a href="/c8/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c8/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c9</strong></td>
+      <td>Sparse / Partial Everywhere</td>
+      <td><code>partial</code></td>
+      <td><code>minimal</code></td>
+      <td><code>minimal</code></td>
+      <td>
+        <a href="/c9/">home</a> ·
+        <a href="/c9/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c9/category/apparel.html">category</a>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>c10</strong></td>
+      <td>CEDDL + JSON-LD + OG</td>
+      <td><code>ceddl</code></td>
+      <td><code>full</code></td>
+      <td><code>full</code></td>
+      <td>
+        <a href="/c10/">home</a> ·
+        <a href="/c10/product/TSHIRT-001-RED-M.html">product</a> ·
+        <a href="/c10/category/apparel.html">category</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <p style="margin-top:2rem;font-size:.8rem;color:#777">
+    Run <code>cd tests && npm test</code> to generate the gap report.
+    Run <code>cd tests && npm run automap</code> to generate JQ mappings.
+  </p>
+</body>
+</html>

@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracking Setup - Fashion Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #f9f9f7;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    .header {
+      background-color: #1a1a1a;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      color: #d4af37;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .page-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+
+    .page-subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .config-card {
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .config-card:hover {
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .config-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .config-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .status-badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-saved {
+      background-color: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .status-empty {
+      background-color: #f5f5f5;
+      color: #999;
+    }
+
+    .config-description {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .saved-value {
+      background: #fafaf8;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      padding: 0.75rem 1rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #333;
+      margin-bottom: 1rem;
+      word-break: break-all;
+      white-space: pre-wrap;
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      background: #fff;
+    }
+
+    .input-field:focus {
+      border-color: #b8962e;
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    }
+
+    textarea.input-field {
+      min-height: 100px;
+      resize: vertical;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+    }
+
+    .input-field::placeholder {
+      color: #bbb;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.6rem 1.25rem;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Lato', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-save {
+      background-color: #d4af37;
+      color: #1a1a1a;
+    }
+
+    .btn-save:hover {
+      background-color: #c4a030;
+    }
+
+    .btn-edit {
+      background-color: #1a1a1a;
+      color: #f9f9f7;
+    }
+
+    .btn-edit:hover {
+      background-color: #333;
+    }
+
+    .btn-remove {
+      background-color: #fff;
+      color: #c0392b;
+      border: 1px solid #c0392b;
+    }
+
+    .btn-remove:hover {
+      background-color: #fdf0ef;
+    }
+
+    .btn-cancel {
+      background-color: #f5f5f5;
+      color: #666;
+    }
+
+    .btn-cancel:hover {
+      background-color: #eee;
+    }
+
+    .btn-enter-shop {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      background-color: #1a1a1a;
+      color: #d4af37;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-enter-shop:hover {
+      background-color: #333;
+    }
+
+    /* Tag blocks */
+    .tag-block {
+      background: #fafaf8;
+      border: 1px solid #e5e5e5;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .tag-block-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag-block-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #1a1a1a;
+    }
+
+    .tag-block-url {
+      font-size: 0.8rem;
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    .tag-block-code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      color: #555;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 80px;
+      overflow-y: auto;
+      background: #f0f0ee;
+      border-radius: 4px;
+      padding: 0.5rem;
+    }
+
+    .btn-small {
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+    }
+
+    .tag-form {
+      border: 1px solid #d4af37;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      background: #fff;
+    }
+
+    .tag-form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #555;
+      margin-bottom: 0.3rem;
+      margin-top: 0.75rem;
+    }
+
+    .tag-form label:first-child {
+      margin-top: 0;
+    }
+
+    .add-tag-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      background: #fff;
+      border: 1px dashed #d4af37;
+      border-radius: 6px;
+      color: #d4af37;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .add-tag-btn:hover {
+      background: #faf6eb;
+    }
+
+    .url-mode-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-top: 0.3rem;
+    }
+
+    .url-mode-row label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-weight: 400;
+      margin-top: 0;
+      cursor: pointer;
+    }
+
+    .url-mode-row input[type="radio"] {
+      accent-color: #d4af37;
+    }
+
+    .specific-url-input {
+      margin-top: 0.5rem;
+    }
+
+    .hidden { display: none; }
+
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1a1a1a;
+      color: #d4af37;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>Fashion Shop</h1>
+  </div>
+
+  <div class="container">
+    <h2 class="page-title">Tracking Setup</h2>
+    <p class="page-subtitle">Configure your tracking integrations. Saved configurations persist across sessions.</p>
+
+    <!-- GTM Configuration -->
+    <div class="config-card" id="gtm-card">
+      <div class="config-header">
+        <span class="config-title">Google Tag Manager</span>
+        <span class="status-badge" id="gtm-status"></span>
+      </div>
+      <p class="config-description">Enter your GTM Container ID to load Google Tag Manager on the shop.</p>
+
+      <!-- Saved view -->
+      <div id="gtm-saved-view" class="hidden">
+        <div class="saved-value" id="gtm-saved-value"></div>
+        <div class="button-row">
+          <button class="btn btn-edit" onclick="editGtm()">Edit</button>
+          <button class="btn btn-remove" onclick="removeGtm()">Remove</button>
+        </div>
+      </div>
+
+      <!-- Edit view -->
+      <div id="gtm-edit-view" class="hidden">
+        <input type="text" class="input-field" id="gtm-input" placeholder="GTM-XXXXXXX">
+        <div class="button-row">
+          <button class="btn btn-save" onclick="saveGtm()">Save</button>
+          <button class="btn btn-cancel" onclick="renderGtm()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Empty view -->
+      <div id="gtm-empty-view" class="hidden">
+        <input type="text" class="input-field" id="gtm-input-new" placeholder="GTM-XXXXXXX">
+        <div class="button-row">
+          <button class="btn btn-save" onclick="saveGtm()">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Custom Tags -->
+    <div class="config-card" id="tags-card">
+      <div class="config-header">
+        <span class="config-title">Custom Tags</span>
+        <span class="status-badge" id="tags-status"></span>
+      </div>
+      <p class="config-description">Add custom tracking tags. Each tag has a name, code snippet, and URL targeting (all pages or a specific page).</p>
+
+      <div id="tags-list"></div>
+
+      <div id="tag-add-form" class="hidden">
+        <div class="tag-form">
+          <label>Tag Name</label>
+          <input type="text" class="input-field" id="tag-new-name" placeholder="e.g. Facebook Pixel, Criteo Loader...">
+          <label>Code</label>
+          <textarea class="input-field" id="tag-new-code" placeholder="Paste your tag code here (script tags, pixels, etc.)"></textarea>
+          <label>URL Targeting</label>
+          <div class="url-mode-row">
+            <label><input type="radio" name="tag-new-urlmode" value="all" checked onchange="toggleNewUrlInput()"> All pages</label>
+            <label><input type="radio" name="tag-new-urlmode" value="specific" onchange="toggleNewUrlInput()"> Specific page</label>
+          </div>
+          <div id="tag-new-specific-url" class="specific-url-input hidden">
+            <input type="text" class="input-field" id="tag-new-url" placeholder="/cart, /thank-you, etc.">
+          </div>
+          <div class="button-row">
+            <button class="btn btn-save" onclick="saveNewTag()">Save Tag</button>
+            <button class="btn btn-cancel" onclick="cancelNewTag()">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 0.75rem;">
+        <button class="add-tag-btn" onclick="showAddTag()">+ Add Custom Tag</button>
+      </div>
+    </div>
+
+    <!-- Enter Shop -->
+    <button class="btn-enter-shop" onclick="enterShop()">Enter Shop</button>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ========== Utility ==========
+
+    var GTM_KEY = 'tracking_persist_gtm_id';
+    var TAGS_KEY = 'custom_tags';
+
+    function showToast(msg) {
+      var toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 2000);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function escapeAttr(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function truncate(str, len) {
+      if (!str) return '';
+      return str.length > len ? str.substring(0, len) + '...' : str;
+    }
+
+    function syncToSession() {
+      var val = localStorage.getItem(GTM_KEY);
+      if (val !== null) {
+        sessionStorage.setItem('gtm_id', val);
+      } else {
+        sessionStorage.removeItem('gtm_id');
+      }
+    }
+
+    // ========== GTM ==========
+
+    function renderGtm() {
+      var value = localStorage.getItem(GTM_KEY);
+      var savedView = document.getElementById('gtm-saved-view');
+      var editView = document.getElementById('gtm-edit-view');
+      var emptyView = document.getElementById('gtm-empty-view');
+      var statusBadge = document.getElementById('gtm-status');
+      var savedValueEl = document.getElementById('gtm-saved-value');
+
+      savedView.classList.add('hidden');
+      editView.classList.add('hidden');
+      emptyView.classList.add('hidden');
+
+      if (value && value.trim()) {
+        savedView.classList.remove('hidden');
+        savedValueEl.textContent = value;
+        statusBadge.textContent = 'Saved';
+        statusBadge.className = 'status-badge status-saved';
+      } else {
+        emptyView.classList.remove('hidden');
+        statusBadge.textContent = 'Not configured';
+        statusBadge.className = 'status-badge status-empty';
+      }
+    }
+
+    function editGtm() {
+      var value = localStorage.getItem(GTM_KEY);
+      document.getElementById('gtm-saved-view').classList.add('hidden');
+      document.getElementById('gtm-edit-view').classList.remove('hidden');
+      var input = document.getElementById('gtm-input');
+      input.value = value || '';
+      input.focus();
+    }
+
+    function saveGtm() {
+      var editInput = document.getElementById('gtm-input');
+      var newInput = document.getElementById('gtm-input-new');
+      var val = '';
+
+      if (editInput && !editInput.closest('.hidden')) {
+        val = editInput.value.trim();
+      } else if (newInput && !newInput.closest('.hidden')) {
+        val = newInput.value.trim();
+      }
+
+      if (!val) {
+        showToast('Please enter a GTM ID before saving.');
+        return;
+      }
+
+      localStorage.setItem(GTM_KEY, val);
+      syncToSession();
+      renderGtm();
+      showToast('GTM ID saved!');
+    }
+
+    function removeGtm() {
+      localStorage.removeItem(GTM_KEY);
+      syncToSession();
+      renderGtm();
+      document.getElementById('gtm-input').value = '';
+      document.getElementById('gtm-input-new').value = '';
+      showToast('GTM ID removed.');
+    }
+
+    // ========== Custom Tags ==========
+
+    function getTags() {
+      var raw = localStorage.getItem(TAGS_KEY);
+      if (!raw) return [];
+      try { return JSON.parse(raw); } catch (e) { return []; }
+    }
+
+    function saveTags(tags) {
+      localStorage.setItem(TAGS_KEY, JSON.stringify(tags));
+    }
+
+    function renderTags() {
+      var tags = getTags();
+      var list = document.getElementById('tags-list');
+      var statusBadge = document.getElementById('tags-status');
+
+      list.innerHTML = '';
+
+      if (tags.length === 0) {
+        statusBadge.textContent = 'No tags';
+        statusBadge.className = 'status-badge status-empty';
+        return;
+      }
+
+      statusBadge.textContent = tags.length + ' tag' + (tags.length > 1 ? 's' : '');
+      statusBadge.className = 'status-badge status-saved';
+
+      tags.forEach(function(tag, idx) {
+        var urlLabel = tag.urlMode === 'all' ? 'All pages' : 'Page: ' + escapeHtml(tag.url);
+        var block = document.createElement('div');
+        block.className = 'tag-block';
+        block.id = 'tag-block-' + idx;
+        block.innerHTML =
+          '<div class="tag-block-header">' +
+            '<span class="tag-block-name">' + escapeHtml(tag.name) + '</span>' +
+            '<div style="display:flex;gap:0.5rem;">' +
+              '<button class="btn btn-edit btn-small" onclick="editTag(' + idx + ')">Edit</button>' +
+              '<button class="btn btn-remove btn-small" onclick="removeTag(' + idx + ')">Remove</button>' +
+            '</div>' +
+          '</div>' +
+          '<div class="tag-block-url">' + urlLabel + '</div>' +
+          '<div class="tag-block-code">' + escapeHtml(truncate(tag.code, 200)) + '</div>';
+        list.appendChild(block);
+      });
+    }
+
+    function editTag(idx) {
+      var tags = getTags();
+      var tag = tags[idx];
+      if (!tag) return;
+
+      var allChecked = tag.urlMode === 'all' ? 'checked' : '';
+      var specificChecked = tag.urlMode === 'specific' ? 'checked' : '';
+      var urlHidden = tag.urlMode === 'all' ? 'hidden' : '';
+
+      var block = document.getElementById('tag-block-' + idx);
+      block.innerHTML =
+        '<div class="tag-form" style="border:none;padding:0;margin:0;">' +
+          '<label>Tag Name</label>' +
+          '<input type="text" class="input-field" id="tag-edit-name-' + idx + '" value="' + escapeAttr(tag.name) + '">' +
+          '<label>Code</label>' +
+          '<textarea class="input-field" id="tag-edit-code-' + idx + '">' + escapeHtml(tag.code) + '</textarea>' +
+          '<label>URL Targeting</label>' +
+          '<div class="url-mode-row">' +
+            '<label><input type="radio" name="tag-edit-urlmode-' + idx + '" value="all" ' + allChecked + ' onchange="toggleEditUrlInput(' + idx + ')"> All pages</label>' +
+            '<label><input type="radio" name="tag-edit-urlmode-' + idx + '" value="specific" ' + specificChecked + ' onchange="toggleEditUrlInput(' + idx + ')"> Specific page</label>' +
+          '</div>' +
+          '<div id="tag-edit-specific-url-' + idx + '" class="specific-url-input ' + urlHidden + '">' +
+            '<input type="text" class="input-field" id="tag-edit-url-' + idx + '" value="' + escapeAttr(tag.url || '') + '" placeholder="/cart, /thank-you, etc.">' +
+          '</div>' +
+          '<div class="button-row">' +
+            '<button class="btn btn-save" onclick="saveEditTag(' + idx + ')">Save</button>' +
+            '<button class="btn btn-cancel" onclick="renderTags()">Cancel</button>' +
+          '</div>' +
+        '</div>';
+    }
+
+    function toggleEditUrlInput(idx) {
+      var radios = document.querySelectorAll('input[name="tag-edit-urlmode-' + idx + '"]');
+      var specificDiv = document.getElementById('tag-edit-specific-url-' + idx);
+      var mode = 'all';
+      radios.forEach(function(r) { if (r.checked) mode = r.value; });
+      if (mode === 'specific') {
+        specificDiv.classList.remove('hidden');
+      } else {
+        specificDiv.classList.add('hidden');
+      }
+    }
+
+    function saveEditTag(idx) {
+      var name = document.getElementById('tag-edit-name-' + idx).value.trim();
+      var code = document.getElementById('tag-edit-code-' + idx).value.trim();
+      var radios = document.querySelectorAll('input[name="tag-edit-urlmode-' + idx + '"]');
+      var urlMode = 'all';
+      radios.forEach(function(r) { if (r.checked) urlMode = r.value; });
+      var url = document.getElementById('tag-edit-url-' + idx).value.trim();
+
+      if (!name) {
+        showToast('Please enter a tag name.');
+        return;
+      }
+      if (!code) {
+        showToast('Please enter the tag code.');
+        return;
+      }
+      if (urlMode === 'specific' && !url) {
+        showToast('Please enter a URL for the specific page.');
+        return;
+      }
+
+      var tags = getTags();
+      tags[idx] = { name: name, code: code, urlMode: urlMode, url: urlMode === 'specific' ? url : '' };
+      saveTags(tags);
+      renderTags();
+      showToast('Tag "' + name + '" updated!');
+    }
+
+    function removeTag(idx) {
+      var tags = getTags();
+      var name = tags[idx].name;
+      tags.splice(idx, 1);
+      saveTags(tags);
+      renderTags();
+      showToast('Tag "' + name + '" removed.');
+    }
+
+    function showAddTag() {
+      document.getElementById('tag-add-form').classList.remove('hidden');
+      document.getElementById('tag-new-name').value = '';
+      document.getElementById('tag-new-code').value = '';
+      document.getElementById('tag-new-url').value = '';
+      var radios = document.querySelectorAll('input[name="tag-new-urlmode"]');
+      radios[0].checked = true;
+      document.getElementById('tag-new-specific-url').classList.add('hidden');
+      document.getElementById('tag-new-name').focus();
+    }
+
+    function cancelNewTag() {
+      document.getElementById('tag-add-form').classList.add('hidden');
+    }
+
+    function toggleNewUrlInput() {
+      var radios = document.querySelectorAll('input[name="tag-new-urlmode"]');
+      var specificDiv = document.getElementById('tag-new-specific-url');
+      var mode = 'all';
+      radios.forEach(function(r) { if (r.checked) mode = r.value; });
+      if (mode === 'specific') {
+        specificDiv.classList.remove('hidden');
+      } else {
+        specificDiv.classList.add('hidden');
+      }
+    }
+
+    function saveNewTag() {
+      var name = document.getElementById('tag-new-name').value.trim();
+      var code = document.getElementById('tag-new-code').value.trim();
+      var radios = document.querySelectorAll('input[name="tag-new-urlmode"]');
+      var urlMode = 'all';
+      radios.forEach(function(r) { if (r.checked) urlMode = r.value; });
+      var url = document.getElementById('tag-new-url').value.trim();
+
+      if (!name) {
+        showToast('Please enter a tag name.');
+        return;
+      }
+      if (!code) {
+        showToast('Please enter the tag code.');
+        return;
+      }
+      if (urlMode === 'specific' && !url) {
+        showToast('Please enter a URL for the specific page.');
+        return;
+      }
+
+      var tags = getTags();
+      tags.push({ name: name, code: code, urlMode: urlMode, url: urlMode === 'specific' ? url : '' });
+      saveTags(tags);
+      renderTags();
+      cancelNewTag();
+      showToast('Tag "' + name + '" added!');
+    }
+
+    // ========== Enter Shop ==========
+
+    function enterShop() {
+      syncToSession();
+      window.location.href = '/';
+    }
+
+    // ========== Initialization ==========
+
+    function migrateFromSession() {
+      var sessionVal = sessionStorage.getItem('gtm_id');
+      var persistVal = localStorage.getItem(GTM_KEY);
+      if (sessionVal && !persistVal) {
+        localStorage.setItem(GTM_KEY, sessionVal);
+      }
+    }
+
+    function init() {
+      migrateFromSession();
+      renderGtm();
+      renderTags();
+    }
+
+    init();
+  </script>
+
+</body>
+</html>

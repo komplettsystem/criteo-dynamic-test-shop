@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fashion Shop — Apparel, Footwear & Accessories</title>
+
+  <!-- Static SEO/social fallbacks (for crawlers that don't run JS). -->
+  <!-- The dynamic injector below replaces these per-route once JS executes. -->
+  <meta name="description" data-rich="static" content="Curated apparel, footwear and accessories from leading brands." />
+  <link rel="canonical" data-rich="static" href="https://fashion-ga4standard-test.netlify.app/" />
+  <meta property="og:type" data-rich="static" content="website" />
+  <meta property="og:title" data-rich="static" content="Fashion Shop — Apparel, Footwear & Accessories" />
+  <meta property="og:description" data-rich="static" content="Curated apparel, footwear and accessories from leading brands." />
+  <meta property="og:image" data-rich="static" content="https://fashion-ga4standard-test.netlify.app/images/hero-banner.png" />
+  <meta property="og:url" data-rich="static" content="https://fashion-ga4standard-test.netlify.app/" />
+  <meta property="og:site_name" data-rich="static" content="Fashion Shop" />
+  <meta property="og:locale" data-rich="static" content="en_US" />
+  <meta name="twitter:card" data-rich="static" content="summary_large_image" />
+  <meta name="twitter:title" data-rich="static" content="Fashion Shop — Apparel, Footwear & Accessories" />
+  <meta name="twitter:description" data-rich="static" content="Curated apparel, footwear and accessories from leading brands." />
+  <meta name="twitter:image" data-rich="static" content="https://fashion-ga4standard-test.netlify.app/images/hero-banner.png" />
+
+  <script type="application/ld+json" data-rich="static">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Fashion Shop",
+    "url": "https://fashion-ga4standard-test.netlify.app",
+    "logo": "https://fashion-ga4standard-test.netlify.app/images/hero-banner.png",
+    "description": "Curated apparel, footwear and accessories from leading brands.",
+    "sameAs": []
+  }
+  </script>
+  <script type="application/ld+json" data-rich="static">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Fashion Shop",
+    "url": "https://fashion-ga4standard-test.netlify.app",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://fashion-ga4standard-test.netlify.app/category/{search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="module" crossorigin src="/assets/index-byuxcQkD.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DQeX2NTo.css">
+
+  <!-- CSV-driven schema.org / OpenGraph / Twitter Card injector. -->
+  <!-- Reads /catalog.csv on load and on every SPA navigation, then -->
+  <!-- replaces head tags marked data-rich with per-route metadata. -->
+  <script>
+    (function () {
+      var SITE = {
+        name: "Fashion Shop",
+        url: "https://fashion-ga4standard-test.netlify.app",
+        tagline: "Curated apparel, footwear and accessories from leading brands.",
+        logo: "/images/hero-banner.png",
+        locale: "en_US",
+        currency: "EUR",
+        sameAs: []
+      };
+
+      function abs(p) {
+        if (!p) return SITE.url;
+        if (/^https?:\/\//i.test(p)) return p;
+        return SITE.url + (p.charAt(0) === "/" ? p : "/" + p);
+      }
+
+      function parseLine(line) {
+        var out = [], cur = "", q = false;
+        for (var i = 0; i < line.length; i++) {
+          var c = line.charAt(i);
+          if (q) {
+            if (c === '"' && line.charAt(i + 1) === '"') { cur += '"'; i++; }
+            else if (c === '"') { q = false; }
+            else { cur += c; }
+          } else {
+            if (c === ",") { out.push(cur); cur = ""; }
+            else if (c === '"') { q = true; }
+            else { cur += c; }
+          }
+        }
+        out.push(cur);
+        return out;
+      }
+
+      function parseCSV(txt) {
+        var lines = txt.replace(/\r/g, "").split("\n").filter(function (l) { return l.length > 0; });
+        if (!lines.length) return [];
+        var headers = parseLine(lines[0]);
+        return lines.slice(1).map(function (line) {
+          var vals = parseLine(line);
+          var row = {};
+          for (var i = 0; i < headers.length; i++) row[headers[i]] = vals[i] !== undefined ? vals[i] : "";
+          return row;
+        });
+      }
+
+      var catalogP = null;
+      function fetchCatalog() {
+        if (!catalogP) {
+          catalogP = fetch("/catalog.csv").then(function (r) { return r.text(); }).then(parseCSV).catch(function () { return []; });
+        }
+        return catalogP;
+      }
+
+      function clearRich() {
+        var nodes = document.querySelectorAll("[data-rich]");
+        for (var i = 0; i < nodes.length; i++) nodes[i].parentNode.removeChild(nodes[i]);
+      }
+
+      function meta(attr, key, val) {
+        if (val === undefined || val === null || val === "") return;
+        var m = document.createElement("meta");
+        m.setAttribute(attr, key);
+        m.setAttribute("content", String(val));
+        m.setAttribute("data-rich", "dynamic");
+        document.head.appendChild(m);
+      }
+
+      function jsonld(obj) {
+        var s = document.createElement("script");
+        s.type = "application/ld+json";
+        s.setAttribute("data-rich", "dynamic");
+        s.textContent = JSON.stringify(obj);
+        document.head.appendChild(s);
+      }
+
+      function linkTag(rel, href) {
+        var l = document.createElement("link");
+        l.rel = rel;
+        l.href = href;
+        l.setAttribute("data-rich", "dynamic");
+        document.head.appendChild(l);
+      }
+
+      function availability(q) {
+        var n = Number(q);
+        if (!n || n <= 0) return "OutOfStock";
+        if (n < 5) return "LimitedAvailability";
+        return "InStock";
+      }
+
+      function gtinKey(g) {
+        var s = String(g || "").trim();
+        if (s.length === 8) return "gtin8";
+        if (s.length === 12) return "gtin12";
+        if (s.length === 13) return "gtin13";
+        if (s.length === 14) return "gtin14";
+        return "gtin";
+      }
+
+      function organization() {
+        return {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": SITE.name,
+          "url": SITE.url,
+          "logo": abs(SITE.logo),
+          "description": SITE.tagline,
+          "sameAs": SITE.sameAs
+        };
+      }
+
+      function website() {
+        return {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": SITE.name,
+          "url": SITE.url,
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": SITE.url + "/category/{search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        };
+      }
+
+      function breadcrumb(items) {
+        return {
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": items.map(function (it, i) {
+            return {
+              "@type": "ListItem",
+              "position": i + 1,
+              "name": it.name,
+              "item": abs(it.url)
+            };
+          })
+        };
+      }
+
+      function productSchema(p) {
+        var url = SITE.url + "/product/" + encodeURIComponent(p.sku);
+        var validUntil = new Date(Date.now() + 365 * 86400000).toISOString().slice(0, 10);
+        var o = {
+          "@context": "https://schema.org",
+          "@type": "Product",
+          "@id": url + "#product",
+          "name": p.name,
+          "sku": p.sku,
+          "url": url,
+          "image": [abs(p.image)],
+          "brand": { "@type": "Brand", "name": p.brand },
+          "category": [p.category_1, p.category_2].filter(Boolean).join(" > "),
+          "offers": {
+            "@type": "Offer",
+            "url": url,
+            "priceCurrency": SITE.currency,
+            "price": Number(p.price).toFixed(2),
+            "priceValidUntil": validUntil,
+            "availability": "https://schema.org/" + availability(p.quantity),
+            "itemCondition": "https://schema.org/NewCondition",
+            "seller": { "@type": "Organization", "name": SITE.name }
+          }
+        };
+        if (p.description) o.description = p.description;
+        if (p.gtin) o[gtinKey(p.gtin)] = String(p.gtin);
+        if (p.mpn) o.mpn = p.mpn;
+        if (p.color) o.color = p.color;
+        if (p.size) o.size = p.size;
+        if (p.material) o.material = p.material;
+        if (p.id) {
+          o.isVariantOf = {
+            "@type": "ProductGroup",
+            "productGroupID": p.id,
+            "variesBy": ["color", "size"]
+          };
+        }
+        if (p.gender) {
+          o.audience = { "@type": "PeopleAudience", "suggestedGender": p.gender };
+        }
+        if (p.rating_value && p.rating_count) {
+          o.aggregateRating = {
+            "@type": "AggregateRating",
+            "ratingValue": String(p.rating_value),
+            "reviewCount": String(p.rating_count),
+            "bestRating": "5",
+            "worstRating": "1"
+          };
+        }
+        return o;
+      }
+
+      function itemList(products, name) {
+        return {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "name": name,
+          "numberOfItems": products.length,
+          "itemListElement": products.slice(0, 50).map(function (p, i) {
+            return {
+              "@type": "ListItem",
+              "position": i + 1,
+              "url": SITE.url + "/product/" + encodeURIComponent(p.sku),
+              "item": {
+                "@type": "Product",
+                "name": p.name,
+                "image": abs(p.image),
+                "sku": p.sku,
+                "brand": { "@type": "Brand", "name": p.brand },
+                "offers": {
+                  "@type": "Offer",
+                  "priceCurrency": SITE.currency,
+                  "price": Number(p.price).toFixed(2),
+                  "availability": "https://schema.org/" + availability(p.quantity)
+                }
+              }
+            };
+          })
+        };
+      }
+
+      function pageMeta(title, description, image, url, type) {
+        meta("name", "description", description);
+        linkTag("canonical", url);
+        meta("property", "og:title", title);
+        meta("property", "og:description", description);
+        meta("property", "og:image", abs(image));
+        meta("property", "og:url", url);
+        meta("property", "og:type", type);
+        meta("property", "og:site_name", SITE.name);
+        meta("property", "og:locale", SITE.locale);
+        meta("name", "twitter:card", "summary_large_image");
+        meta("name", "twitter:title", title);
+        meta("name", "twitter:description", description);
+        meta("name", "twitter:image", abs(image));
+      }
+
+      var token = 0;
+      function render() {
+        var my = ++token;
+        return fetchCatalog().then(function (products) {
+          if (my !== token) return;
+          clearRich();
+          jsonld(organization());
+          jsonld(website());
+
+          var path = (window.location.pathname || "/").replace(/\/+$/, "") || "/";
+
+          if (path === "/") {
+            var hUrl = SITE.url + "/";
+            pageMeta(SITE.name + " — Fashion essentials", SITE.tagline, SITE.logo, hUrl, "website");
+            jsonld(itemList(products, SITE.name + " — All products"));
+            return;
+          }
+
+          if (path.indexOf("/product/") === 0) {
+            var sku = decodeURIComponent(path.replace("/product/", ""));
+            var p = products.find(function (x) { return x.sku === sku; });
+            if (p) {
+              var pUrl = SITE.url + "/product/" + encodeURIComponent(p.sku);
+              var pDesc = p.description || (p.name + " by " + p.brand + " — " + p.category_1 + " / " + p.category_2 + ".");
+              pageMeta(p.name + " — " + p.brand, pDesc, p.image, pUrl, "product");
+              meta("property", "product:price:amount", Number(p.price).toFixed(2));
+              meta("property", "product:price:currency", SITE.currency);
+              meta("property", "product:availability", Number(p.quantity) > 0 ? "in stock" : "out of stock");
+              meta("property", "product:condition", "new");
+              meta("property", "product:brand", p.brand);
+              meta("property", "product:retailer_item_id", p.sku);
+              meta("property", "product:item_group_id", p.id);
+              meta("property", "product:color", p.color);
+              meta("property", "product:size", p.size);
+              meta("property", "product:gender", p.gender);
+              jsonld(productSchema(p));
+              jsonld(breadcrumb([
+                { name: "Home", url: "/" },
+                { name: p.category_1, url: "/category/" + encodeURIComponent(p.category_1.toLowerCase()) },
+                { name: p.name, url: "/product/" + encodeURIComponent(p.sku) }
+              ]));
+            } else {
+              pageMeta(SITE.name, SITE.tagline, SITE.logo, SITE.url + path, "website");
+            }
+            return;
+          }
+
+          if (path.indexOf("/category/") === 0) {
+            var cat = decodeURIComponent(path.replace("/category/", ""));
+            var filtered = products.filter(function (x) { return (x.category_1 || "").toLowerCase() === cat.toLowerCase(); });
+            var catTitle = cat.charAt(0).toUpperCase() + cat.slice(1);
+            var cUrl = SITE.url + path;
+            var cDesc = "Shop our " + catTitle + " collection — " + filtered.length + " items from leading brands.";
+            var cImg = (filtered[0] && filtered[0].image) || SITE.logo;
+            pageMeta(catTitle + " — " + SITE.name, cDesc, cImg, cUrl, "website");
+            jsonld(itemList(filtered, catTitle));
+            jsonld(breadcrumb([
+              { name: "Home", url: "/" },
+              { name: catTitle, url: path }
+            ]));
+            return;
+          }
+
+          var titles = {
+            "/cart": "Cart",
+            "/setup": "Tracking Setup",
+            "/debug-layer": "DataLayer Debugger",
+            "/newsletter": "Newsletter",
+            "/thank-you": "Order Confirmation"
+          };
+          var t = titles[path] || SITE.name;
+          pageMeta(t + " — " + SITE.name, SITE.tagline, SITE.logo, SITE.url + path, "website");
+        });
+      }
+
+      var _push = history.pushState;
+      var _replace = history.replaceState;
+      history.pushState = function () { _push.apply(this, arguments); setTimeout(render, 0); };
+      history.replaceState = function () { _replace.apply(this, arguments); setTimeout(render, 0); };
+      window.addEventListener("popstate", function () { setTimeout(render, 0); });
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", render);
+      } else {
+        render();
+      }
+    })();
+  </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WGSN27CW');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGSN27CW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <script>
+    // Sync persisted tracking configs from localStorage into sessionStorage
+    // so the React app (which reads from sessionStorage) picks them up.
+    (function() {
+      var prefix = 'tracking_persist_';
+      var keys = ['gtm_id'];
+      keys.forEach(function(key) {
+        var val = localStorage.getItem(prefix + key);
+        if (val !== null) {
+          sessionStorage.setItem(key, val);
+        }
+      });
+
+      // Inject custom tags based on current page URL
+      try {
+        var tagsRaw = localStorage.getItem('custom_tags');
+        if (tagsRaw) {
+          var tags = JSON.parse(tagsRaw);
+          var currentPath = window.location.pathname;
+          tags.forEach(function(tag) {
+            var shouldInject = false;
+            if (tag.urlMode === 'all') {
+              shouldInject = true;
+            } else if (tag.urlMode === 'specific' && tag.url) {
+              shouldInject = currentPath === tag.url || currentPath === tag.url.replace(/\/$/, '');
+            }
+            if (shouldInject && tag.code) {
+              var el = document.createElement('div');
+              el.innerHTML = tag.code;
+              var scripts = el.querySelectorAll('script');
+              if (scripts.length > 0) {
+                scripts.forEach(function(script) {
+                  var s = document.createElement('script');
+                  if (script.src) { s.src = script.src; }
+                  else { s.textContent = script.textContent; }
+                  for (var i = 0; i < script.attributes.length; i++) {
+                    var attr = script.attributes[i];
+                    if (attr.name !== 'src') { s.setAttribute(attr.name, attr.value); }
+                  }
+                  document.head.appendChild(s);
+                });
+              } else {
+                // If the code has no <script> tags, wrap it as inline script
+                var s = document.createElement('script');
+                s.textContent = tag.code;
+                document.head.appendChild(s);
+              }
+            }
+          });
+        }
+      } catch(e) { /* ignore parse errors */ }
+    })();
+  </script>
+  <div id="root"></div>
+</body>
+
+</html>
