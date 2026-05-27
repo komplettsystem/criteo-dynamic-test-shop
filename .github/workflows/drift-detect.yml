@@ -35,7 +35,7 @@ jobs:
       - name: Run test matrix
         working-directory: tests
         env:
-          BASE_URL: ${{ github.event.inputs.base_url || 'https://peaceful-seahorse-9b0bb9.netlify.app' }}
+          BASE_URL: ${{ github.event.inputs.base_url || 'http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com' }}
         run: npm test
 
       - name: Run automapper (drift mode)

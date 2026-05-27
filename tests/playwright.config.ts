@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test';
 
-const BASE_URL = process.env.BASE_URL || 'https://peaceful-seahorse-9b0bb9.netlify.app';
+const BASE_URL = process.env.BASE_URL || 'http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com';
 
 export default defineConfig({
   testDir: './e2e',

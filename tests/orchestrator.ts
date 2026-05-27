@@ -5,7 +5,7 @@
  * Runs the c1→c10 structured-data test sequence.
  *
  * For each config:
- *   1. Runs the Playwright test matrix for that config (fires events on the Netlify site)
+ *   1. Runs the Playwright test matrix for that config (fires events on the S3 site)
  *   2. Waits for TEMO to receive events (polls /event-types)
  *   3. Calls automap.ts (in criteo-config-generator) to generate + push JQ for unmapped events
  *   4. Writes a per-config report

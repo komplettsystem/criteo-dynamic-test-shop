@@ -1191,6 +1191,131 @@
   </div>
   
   <script>
+    function handleAddToCartClick() {
+      const mode = window.__resolvedConfig.dataLayer;
+      if (mode === 'suppress') {
+        alert('DataLayer is suppressed under active configuration.');
+        return;
+      }
+      
+      const product = window.__productData;
+      
+      if (mode === 'ga4') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ ecommerce: null });
+        window.dataLayer.push({
+          event: 'add_to_cart',
+          ecommerce: {
+            currency: 'EUR',
+            value: Number(product.price),
+            items: [{
+              item_id: product.sku,
+              item_name: product.name,
+              item_brand: product.brand,
+              item_category: product.category_1,
+              item_category2: product.category_2,
+              item_variant: product.variant,
+              price: Number(product.price),
+              quantity: 1,
+              index: 1
+            }]
+          }
+        });
+        alert('Event "add_to_cart" pushed to dataLayer!');
+      }
+      
+      if (mode === 'nonstandard') {
+        window.dataLayer = window.dataLayer || [];
+        const em = window.__nonstandardFieldMap.events;
+        const ef = window.__nonstandardFieldMap.ecommerceFields;
+        const std = {
+          item_id: product.sku,
+          item_name: product.name,
+          item_brand: product.brand,
+          item_category: product.category_1,
+          item_category2: product.category_2,
+          item_variant: product.variant,
+          price: Number(product.price),
+          quantity: 1,
+          index: 1
+        };
+        const mappedItem = {};
+        const map = window.__nonstandardFieldMap.itemFields;
+        for (const [k, v] of Object.entries(std)) {
+          const mapped = map[k] || k;
+          mappedItem[mapped] = v;
+        }
+        window.dataLayer.push({
+          event: em.add_to_cart,
+          commerce: {
+            [ef.currency]: 'EUR',
+            [ef.value]: Number(product.price),
+            [ef.items]: [mappedItem]
+          }
+        });
+        alert('Event "' + em.add_to_cart + '" pushed to dataLayer!');
+      }
+      
+      if (mode === 'partial') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ ecommerce: null });
+        window.dataLayer.push({
+          event: 'add_to_cart',
+          ecommerce: {
+            items: [{
+              item_id: product.sku,
+              item_name: product.name,
+              price: Number(product.price),
+              quantity: 1
+            }]
+          }
+        });
+        alert('Partial event "add_to_cart" pushed to dataLayer!');
+      }
+      
+      if (mode === 'ceddl') {
+        window.digitalData = window.digitalData || {};
+        window.digitalData.cart = window.digitalData.cart || { item: [] };
+        
+        const ceddlProduct = (p) => ({
+          productInfo: {
+            productID: p.sku,
+            productName: p.name,
+            manufacturer: p.brand,
+            sku: p.sku
+          },
+          category: {
+            primaryCategory: p.category_1,
+            subCategory1: p.category_2
+          },
+          attributes: {
+            variant: p.variant,
+            color: p.color,
+            size: p.size,
+            gender: p.gender
+          },
+          price: {
+            basePrice: Number(p.price),
+            currency: 'EUR'
+          }
+        });
+        
+        window.digitalData.cart.item.push({
+          productInfo: ceddlProduct(product).productInfo,
+          quantity: 1,
+          price: ceddlProduct(product).price
+        });
+        
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'cart_add', page_type: 'product' });
+        alert('Event "cart_add" pushed to dataLayer & CEDDL digitalData.cart updated!');
+      }
+      
+      if (typeof updateInspectorViews === 'function') {
+        updateInspectorViews();
+      }
+    }
+
     function toggleInspectorPanel() {
       const p = document.getElementById('tag-inspector-panel');
       p.classList.toggle('open');
