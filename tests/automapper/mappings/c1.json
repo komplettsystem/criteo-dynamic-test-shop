@@ -1,0 +1,87 @@
+{
+  "variant": "c1",
+  "generatedAt": "2026-05-14T09:19:28.585Z",
+  "activeSources": [
+    "dataLayer:ga4",
+    "jsonLd:full",
+    "openGraph:full"
+  ],
+  "mappings": [
+    {
+      "field": "productId",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_id // empty"
+    },
+    {
+      "field": "productName",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_name // empty"
+    },
+    {
+      "field": "brand",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_brand // empty"
+    },
+    {
+      "field": "price",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].price // empty"
+    },
+    {
+      "field": "category",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_category // empty"
+    },
+    {
+      "field": "color",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_variant // empty"
+    },
+    {
+      "field": "currency",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.currency // empty"
+    },
+    {
+      "field": "description",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .description // empty"
+    },
+    {
+      "field": "image",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .image[0] // .image // empty"
+    },
+    {
+      "field": "size",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .size // empty"
+    },
+    {
+      "field": "gender",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .audience.suggestedGender // empty"
+    },
+    {
+      "field": "gtin",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | (.gtin13 // .gtin14 // .gtin12 // .gtin8 // .gtin) // empty"
+    },
+    {
+      "field": "rating",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .aggregateRating.ratingValue // empty"
+    },
+    {
+      "field": "ratingCount",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .aggregateRating.reviewCount // empty"
+    },
+    {
+      "field": "availability",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .offers.availability | ltrimstr(\"https://schema.org/\") // empty"
+    }
+  ],
+  "unmappableFields": []
+}

@@ -1,0 +1,18 @@
+{
+  "name": "fashion-test-suite",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "automap": "ts-node automapper/run.ts",
+    "drift": "ts-node automapper/run.ts --drift",
+    "orchestrate": "ts-node orchestrator.ts",
+    "orchestrate:prod": "ts-node orchestrator.ts --prod"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.0"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "variant": "c10",
+  "generatedAt": "2026-05-14T09:19:28.588Z",
+  "activeSources": [
+    "dataLayer:ceddl",
+    "jsonLd:full",
+    "openGraph:full"
+  ],
+  "mappings": [
+    {
+      "field": "productId",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].productInfo.productID // empty"
+    },
+    {
+      "field": "productName",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].productInfo.productName // empty"
+    },
+    {
+      "field": "brand",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].productInfo.manufacturer // empty"
+    },
+    {
+      "field": "price",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].price.basePrice // empty"
+    },
+    {
+      "field": "currency",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].price.currency // empty"
+    },
+    {
+      "field": "category",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].category.primaryCategory // empty"
+    },
+    {
+      "field": "color",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].attributes.color // empty"
+    },
+    {
+      "field": "size",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].attributes.size // empty"
+    },
+    {
+      "field": "gender",
+      "source": "ceddl",
+      "jq": ".digitalData.product[0].attributes.gender // empty"
+    },
+    {
+      "field": "description",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .description // empty"
+    },
+    {
+      "field": "image",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .image[0] // .image // empty"
+    },
+    {
+      "field": "gtin",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | (.gtin13 // .gtin14 // .gtin12 // .gtin8 // .gtin) // empty"
+    },
+    {
+      "field": "rating",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .aggregateRating.ratingValue // empty"
+    },
+    {
+      "field": "ratingCount",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .aggregateRating.reviewCount // empty"
+    },
+    {
+      "field": "availability",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .offers.availability | ltrimstr(\"https://schema.org/\") // empty"
+    }
+  ],
+  "unmappableFields": []
+}

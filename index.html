@@ -49,14 +49,18 @@
   }
   </script>
 
-  <script type="module" crossorigin src="/assets/index-byuxcQkD.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-DQeX2NTo.css">
+  <script type="module" crossorigin src="/assets/index-byuxcqkd.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-dqex2nto.css">
 
   <!-- CSV-driven schema.org / OpenGraph / Twitter Card injector. -->
   <!-- Reads /catalog.csv on load and on every SPA navigation, then -->
   <!-- replaces head tags marked data-rich with per-route metadata. -->
   <script>
     (function () {
+      if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
+        window.location.replace('/');
+        return;
+      }
       var SITE = {
         name: "Fashion Shop",
         url: "https://fashion-ga4standard-test.netlify.app",
@@ -372,9 +376,29 @@
 
       var _push = history.pushState;
       var _replace = history.replaceState;
-      history.pushState = function () { _push.apply(this, arguments); setTimeout(render, 0); };
-      history.replaceState = function () { _replace.apply(this, arguments); setTimeout(render, 0); };
-      window.addEventListener("popstate", function () { setTimeout(render, 0); });
+      history.pushState = function () { 
+        _push.apply(this, arguments); 
+        if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
+          window.location.replace('/');
+        } else {
+          setTimeout(render, 0); 
+        }
+      };
+      history.replaceState = function () { 
+        _replace.apply(this, arguments); 
+        if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
+          window.location.replace('/');
+        } else {
+          setTimeout(render, 0); 
+        }
+      };
+      window.addEventListener("popstate", function () { 
+        if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
+          window.location.replace('/');
+        } else {
+          setTimeout(render, 0); 
+        }
+      });
 
       if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", render);
@@ -383,9 +407,23 @@
       }
     })();
   </script>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-WGSN27CW');</script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGSN27CW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div style="background: linear-gradient(90deg, #d4af37, #b5952f); color: #111; text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 700; border-bottom: 2px solid #997c23; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; gap: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+    <span>⚠️</span> <strong>TESTING PLATFORM:</strong> This is a synthetic, mock e-commerce sandbox for automated tag and schema verification. No real products, payments, or deliveries are offered or processed.
+  </div>
   <script>
     // Sync persisted tracking configs from localStorage into sessionStorage
     // so the React app (which reads from sessionStorage) picks them up.

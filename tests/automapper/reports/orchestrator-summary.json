@@ -1,0 +1,32 @@
+{
+  "runId": "run-2026-05-14T17-17-35",
+  "generatedAt": "2026-05-14T17:22:16.871Z",
+  "configs": [
+    "c1",
+    "c2",
+    "c3",
+    "c4",
+    "c5",
+    "c6",
+    "c7",
+    "c8",
+    "c9",
+    "c10"
+  ],
+  "rows": [
+    "✓ c1   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c2   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c3   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c4   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c5   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c6   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c7   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c8   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c9   pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4",
+    "✓ c10  pw=pass  temo=[add_to_cart,page_view,purchase,view_item,view_item_list]  new=0 carry=4"
+  ],
+  "prestoVerification": {
+    "note": "Use eventWindow.start/end from per-config reports to isolate events per config in Presto:",
+    "query": "SELECT eventname, integration_context.has_been_mapped AS mapped, COUNT(*)\nFROM glup_parquet.advertiser_event\nWHERE partnerid = 126639 AND day = 'YYYY-MM-DD'\n  AND user_timestamp BETWEEN {eventWindow.start} AND {eventWindow.end}\nGROUP BY 1, 2"
+  }
+}

@@ -1,0 +1,13 @@
+[build]
+  command = "bash build.sh"
+  publish = "dist"
+
+[[redirects]]
+  from = "/setup"
+  to   = "/setup/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200

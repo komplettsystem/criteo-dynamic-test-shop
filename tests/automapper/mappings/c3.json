@@ -1,0 +1,85 @@
+{
+  "variant": "c3",
+  "generatedAt": "2026-05-14T09:19:28.586Z",
+  "activeSources": [
+    "jsonLd:full"
+  ],
+  "mappings": [
+    {
+      "field": "productId",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .sku // empty"
+    },
+    {
+      "field": "productName",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .name // empty"
+    },
+    {
+      "field": "brand",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .brand.name // .brand // empty"
+    },
+    {
+      "field": "category",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .category // empty"
+    },
+    {
+      "field": "description",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .description // empty"
+    },
+    {
+      "field": "image",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .image[0] // .image // empty"
+    },
+    {
+      "field": "color",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .color // empty"
+    },
+    {
+      "field": "size",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .size // empty"
+    },
+    {
+      "field": "gender",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .audience.suggestedGender // empty"
+    },
+    {
+      "field": "gtin",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | (.gtin13 // .gtin14 // .gtin12 // .gtin8 // .gtin) // empty"
+    },
+    {
+      "field": "rating",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .aggregateRating.ratingValue // empty"
+    },
+    {
+      "field": "ratingCount",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .aggregateRating.reviewCount // empty"
+    },
+    {
+      "field": "price",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .offers.price // empty"
+    },
+    {
+      "field": "currency",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .offers.priceCurrency // empty"
+    },
+    {
+      "field": "availability",
+      "source": "jsonLd",
+      "jq": ".jsonLd // [] | map(select(.\"@type\" == \"Product\")) | first | .offers.availability | ltrimstr(\"https://schema.org/\") // empty"
+    }
+  ],
+  "unmappableFields": []
+}

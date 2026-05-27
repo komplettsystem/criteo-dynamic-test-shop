@@ -1,0 +1,1304 @@
+[
+  {
+    "variant": "c1",
+    "pageType": "product",
+    "url": "http://localhost:9090/c1/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 29.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Apparel"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "Red / M"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "M"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890123"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.6"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "312"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ga4",
+      "jsonLd:full",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c1",
+    "pageType": "product",
+    "url": "http://localhost:9090/c1/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 89.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Footwear"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "White / 42"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "42"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890128"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.7"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "892"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ga4",
+      "jsonLd:full",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c2",
+    "pageType": "product",
+    "url": "http://localhost:9090/c2/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 29.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Apparel"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "Red / M"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      }
+    },
+    "missingFields": [
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:ga4"
+    ]
+  },
+  {
+    "variant": "c2",
+    "pageType": "product",
+    "url": "http://localhost:9090/c2/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 89.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Footwear"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "White / 42"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      }
+    },
+    "missingFields": [
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:ga4"
+    ]
+  },
+  {
+    "variant": "c3",
+    "pageType": "product",
+    "url": "http://localhost:9090/c3/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "jsonLd",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "jsonLd",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "jsonLd",
+        "value": "Adidas"
+      },
+      "category": {
+        "source": "jsonLd",
+        "value": "Apparel > T-Shirts"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "color": {
+        "source": "jsonLd",
+        "value": "Red"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "M"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890123"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.6"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "312"
+      },
+      "price": {
+        "source": "jsonLd",
+        "value": "29.99"
+      },
+      "currency": {
+        "source": "jsonLd",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "jsonLd:full"
+    ]
+  },
+  {
+    "variant": "c3",
+    "pageType": "product",
+    "url": "http://localhost:9090/c3/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "jsonLd",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "jsonLd",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "jsonLd",
+        "value": "Nike"
+      },
+      "category": {
+        "source": "jsonLd",
+        "value": "Footwear > Shoes"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "color": {
+        "source": "jsonLd",
+        "value": "White"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "42"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890128"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.7"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "892"
+      },
+      "price": {
+        "source": "jsonLd",
+        "value": "89.99"
+      },
+      "currency": {
+        "source": "jsonLd",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "jsonLd:full"
+    ]
+  },
+  {
+    "variant": "c4",
+    "pageType": "product",
+    "url": "http://localhost:9090/c4/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "openGraph",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "openGraph",
+        "value": "Vintage Logo T-Shirt — Adidas"
+      },
+      "brand": {
+        "source": "openGraph",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "openGraph",
+        "value": "29.99"
+      },
+      "currency": {
+        "source": "openGraph",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "openGraph",
+        "value": "in stock"
+      },
+      "image": {
+        "source": "openGraph",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "description": {
+        "source": "openGraph",
+        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+      },
+      "color": {
+        "source": "openGraph",
+        "value": "Red"
+      },
+      "size": {
+        "source": "openGraph",
+        "value": "M"
+      },
+      "gender": {
+        "source": "openGraph",
+        "value": "unisex"
+      }
+    },
+    "missingFields": [
+      "category",
+      "gtin",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c4",
+    "pageType": "product",
+    "url": "http://localhost:9090/c4/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "openGraph",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "openGraph",
+        "value": "Urban Sneakers — Nike"
+      },
+      "brand": {
+        "source": "openGraph",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "openGraph",
+        "value": "89.99"
+      },
+      "currency": {
+        "source": "openGraph",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "openGraph",
+        "value": "in stock"
+      },
+      "image": {
+        "source": "openGraph",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "description": {
+        "source": "openGraph",
+        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+      },
+      "color": {
+        "source": "openGraph",
+        "value": "White"
+      },
+      "size": {
+        "source": "openGraph",
+        "value": "42"
+      },
+      "gender": {
+        "source": "openGraph",
+        "value": "unisex"
+      }
+    },
+    "missingFields": [
+      "category",
+      "gtin",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c5",
+    "pageType": "product",
+    "url": "http://localhost:9090/c5/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 29.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Apparel"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "Red / M"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "M"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890123"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.6"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "312"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ga4",
+      "jsonLd:full"
+    ]
+  },
+  {
+    "variant": "c5",
+    "pageType": "product",
+    "url": "http://localhost:9090/c5/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 89.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Footwear"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "White / 42"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "42"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890128"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.7"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "892"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ga4",
+      "jsonLd:full"
+    ]
+  },
+  {
+    "variant": "c6",
+    "pageType": "product",
+    "url": "http://localhost:9090/c6/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 29.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Apparel"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "Red / M"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "openGraph",
+        "value": "in stock"
+      },
+      "image": {
+        "source": "openGraph",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "description": {
+        "source": "openGraph",
+        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+      },
+      "size": {
+        "source": "openGraph",
+        "value": "M"
+      },
+      "gender": {
+        "source": "openGraph",
+        "value": "unisex"
+      }
+    },
+    "missingFields": [
+      "gtin",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:ga4",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c6",
+    "pageType": "product",
+    "url": "http://localhost:9090/c6/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 89.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Footwear"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "White / 42"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "openGraph",
+        "value": "in stock"
+      },
+      "image": {
+        "source": "openGraph",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "description": {
+        "source": "openGraph",
+        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+      },
+      "size": {
+        "source": "openGraph",
+        "value": "42"
+      },
+      "gender": {
+        "source": "openGraph",
+        "value": "unisex"
+      }
+    },
+    "missingFields": [
+      "gtin",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:ga4",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c7",
+    "pageType": "product",
+    "url": "http://localhost:9090/c7/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "jsonLd",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "jsonLd",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "jsonLd",
+        "value": "Adidas"
+      },
+      "category": {
+        "source": "jsonLd",
+        "value": "Apparel > T-Shirts"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "color": {
+        "source": "jsonLd",
+        "value": "Red"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "M"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890123"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.6"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "312"
+      },
+      "price": {
+        "source": "openGraph",
+        "value": "29.99"
+      },
+      "currency": {
+        "source": "openGraph",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "openGraph",
+        "value": "in stock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "jsonLd:no-price",
+      "openGraph:price-only"
+    ]
+  },
+  {
+    "variant": "c7",
+    "pageType": "product",
+    "url": "http://localhost:9090/c7/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "jsonLd",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "jsonLd",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "jsonLd",
+        "value": "Nike"
+      },
+      "category": {
+        "source": "jsonLd",
+        "value": "Footwear > Shoes"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "color": {
+        "source": "jsonLd",
+        "value": "White"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "42"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890128"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.7"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "892"
+      },
+      "price": {
+        "source": "openGraph",
+        "value": "89.99"
+      },
+      "currency": {
+        "source": "openGraph",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "openGraph",
+        "value": "in stock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "jsonLd:no-price",
+      "openGraph:price-only"
+    ]
+  },
+  {
+    "variant": "c8",
+    "pageType": "product",
+    "url": "http://localhost:9090/c8/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer(nonstandard)",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer(nonstandard)",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "dataLayer(nonstandard)",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "dataLayer(nonstandard)",
+        "value": 29.99
+      },
+      "category": {
+        "source": "dataLayer(nonstandard)",
+        "value": "Apparel"
+      },
+      "currency": {
+        "source": "dataLayer(nonstandard)",
+        "value": "EUR"
+      }
+    },
+    "missingFields": [
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "color",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:nonstandard"
+    ]
+  },
+  {
+    "variant": "c8",
+    "pageType": "product",
+    "url": "http://localhost:9090/c8/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer(nonstandard)",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer(nonstandard)",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "dataLayer(nonstandard)",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "dataLayer(nonstandard)",
+        "value": 89.99
+      },
+      "category": {
+        "source": "dataLayer(nonstandard)",
+        "value": "Footwear"
+      },
+      "currency": {
+        "source": "dataLayer(nonstandard)",
+        "value": "EUR"
+      }
+    },
+    "missingFields": [
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "color",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:nonstandard"
+    ]
+  },
+  {
+    "variant": "c9",
+    "pageType": "product",
+    "url": "http://localhost:9090/c9/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 29.99
+      },
+      "category": {
+        "source": "jsonLd"
+      },
+      "description": {
+        "source": "jsonLd"
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "color": {
+        "source": "jsonLd"
+      },
+      "size": {
+        "source": "jsonLd"
+      }
+    },
+    "missingFields": [
+      "brand",
+      "currency",
+      "availability",
+      "gtin",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:partial",
+      "jsonLd:minimal",
+      "openGraph:minimal"
+    ]
+  },
+  {
+    "variant": "c9",
+    "pageType": "product",
+    "url": "http://localhost:9090/c9/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Urban Sneakers"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 89.99
+      },
+      "category": {
+        "source": "jsonLd"
+      },
+      "description": {
+        "source": "jsonLd"
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "color": {
+        "source": "jsonLd"
+      },
+      "size": {
+        "source": "jsonLd"
+      }
+    },
+    "missingFields": [
+      "brand",
+      "currency",
+      "availability",
+      "gtin",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:partial",
+      "jsonLd:minimal",
+      "openGraph:minimal"
+    ]
+  },
+  {
+    "variant": "c10",
+    "pageType": "product",
+    "url": "http://localhost:9090/c10/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "ceddl",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "ceddl",
+        "value": "Vintage Logo T-Shirt"
+      },
+      "brand": {
+        "source": "ceddl",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "ceddl",
+        "value": 29.99
+      },
+      "currency": {
+        "source": "ceddl",
+        "value": "EUR"
+      },
+      "category": {
+        "source": "ceddl",
+        "value": "Apparel"
+      },
+      "color": {
+        "source": "ceddl",
+        "value": "Red"
+      },
+      "size": {
+        "source": "ceddl",
+        "value": "M"
+      },
+      "gender": {
+        "source": "ceddl",
+        "value": "unisex"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890123"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.6"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "312"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ceddl",
+      "jsonLd:full",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c10",
+    "pageType": "product",
+    "url": "http://localhost:9090/c10/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "ceddl",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "ceddl",
+        "value": "Urban Sneakers"
+      },
+      "brand": {
+        "source": "ceddl",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "ceddl",
+        "value": 89.99
+      },
+      "currency": {
+        "source": "ceddl",
+        "value": "EUR"
+      },
+      "category": {
+        "source": "ceddl",
+        "value": "Footwear"
+      },
+      "color": {
+        "source": "ceddl",
+        "value": "White"
+      },
+      "size": {
+        "source": "ceddl",
+        "value": "42"
+      },
+      "gender": {
+        "source": "ceddl",
+        "value": "unisex"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890128"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.7"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "892"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ceddl",
+      "jsonLd:full",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c11",
+    "pageType": "product",
+    "url": "http://localhost:9090/c11/product/TSHIRT-001-RED-M.html",
+    "presentFields": {},
+    "missingFields": [
+      "productId",
+      "productName",
+      "brand",
+      "price",
+      "currency",
+      "category",
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "color",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": []
+  },
+  {
+    "variant": "c11",
+    "pageType": "product",
+    "url": "http://localhost:9090/c11/product/SHOE-003-WHT-42.html",
+    "presentFields": {},
+    "missingFields": [
+      "productId",
+      "productName",
+      "brand",
+      "price",
+      "currency",
+      "category",
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "color",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": []
+  }
+]

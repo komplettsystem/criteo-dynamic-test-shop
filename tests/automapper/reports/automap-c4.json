@@ -1,0 +1,102 @@
+{
+  "appId": "criteo.generic_gtm.126639",
+  "configLabel": "c4",
+  "generatedAt": "2026-05-14T17:19:30.791Z",
+  "temoEnv": "production",
+  "results": [
+    {
+      "eventType": "add_to_cart",
+      "criteoEvent": "addToCart",
+      "status": "already_mapped",
+      "jqLines": 111,
+      "confirmedByConfigs": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10"
+      ],
+      "universal": true
+    },
+    {
+      "eventType": "page_view",
+      "criteoEvent": "?",
+      "status": "manual_review",
+      "confirmedByConfigs": [],
+      "universal": false,
+      "error": "\"page_view\" fires on every page type — page-type inference from URL/structured_data is risky"
+    },
+    {
+      "eventType": "purchase",
+      "criteoEvent": "trackTransaction",
+      "status": "already_mapped",
+      "jqLines": 65,
+      "confirmedByConfigs": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10"
+      ],
+      "universal": true
+    },
+    {
+      "eventType": "view_item",
+      "criteoEvent": "viewProduct",
+      "status": "already_mapped",
+      "jqLines": 62,
+      "confirmedByConfigs": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10"
+      ],
+      "universal": true
+    },
+    {
+      "eventType": "view_item_list",
+      "criteoEvent": "viewList",
+      "status": "already_mapped",
+      "jqLines": 53,
+      "confirmedByConfigs": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10"
+      ],
+      "universal": true
+    }
+  ],
+  "summary": {
+    "total": 5,
+    "alreadyMapped": 4,
+    "newlyMapped": 0,
+    "noSamples": 0,
+    "manualReview": 1,
+    "failed": 0,
+    "universal": 4
+  },
+  "manualReviewFile": "/Users/k.rieke/Documents/antigravity/event-mapper-configurations/coverage/manual-review.126639.json"
+}

@@ -1,0 +1,84 @@
+{
+  "variant": "c6",
+  "generatedAt": "2026-05-14T09:19:28.587Z",
+  "activeSources": [
+    "dataLayer:ga4",
+    "openGraph:full"
+  ],
+  "mappings": [
+    {
+      "field": "productId",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_id // empty"
+    },
+    {
+      "field": "productName",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_name // empty"
+    },
+    {
+      "field": "brand",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_brand // empty"
+    },
+    {
+      "field": "price",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].price // empty"
+    },
+    {
+      "field": "category",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_category // empty"
+    },
+    {
+      "field": "color",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_variant // empty"
+    },
+    {
+      "field": "currency",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.currency // empty"
+    },
+    {
+      "field": "availability",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:availability\"] // empty"
+    },
+    {
+      "field": "image",
+      "source": "openGraph",
+      "jq": ".openGraph[\"og:image\"] // empty"
+    },
+    {
+      "field": "description",
+      "source": "openGraph",
+      "jq": ".openGraph[\"og:description\"] // empty"
+    },
+    {
+      "field": "size",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:size\"] // empty"
+    },
+    {
+      "field": "gender",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:gender\"] // empty"
+    }
+  ],
+  "unmappableFields": [
+    {
+      "field": "gtin",
+      "reason": "Only available via JSON-LD gtin* fields — add JSON-LD Product schema to include this field"
+    },
+    {
+      "field": "rating",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    },
+    {
+      "field": "ratingCount",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    }
+  ]
+}

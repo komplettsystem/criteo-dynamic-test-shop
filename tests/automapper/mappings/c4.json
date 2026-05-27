@@ -1,0 +1,82 @@
+{
+  "variant": "c4",
+  "generatedAt": "2026-05-14T09:19:28.586Z",
+  "activeSources": [
+    "openGraph:full"
+  ],
+  "mappings": [
+    {
+      "field": "productId",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:retailer_item_id\"] // empty"
+    },
+    {
+      "field": "productName",
+      "source": "openGraph",
+      "jq": ".openGraph[\"og:title\"] // empty"
+    },
+    {
+      "field": "brand",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:brand\"] // empty"
+    },
+    {
+      "field": "price",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:price:amount\"] // empty"
+    },
+    {
+      "field": "currency",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:price:currency\"] // empty"
+    },
+    {
+      "field": "availability",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:availability\"] // empty"
+    },
+    {
+      "field": "image",
+      "source": "openGraph",
+      "jq": ".openGraph[\"og:image\"] // empty"
+    },
+    {
+      "field": "description",
+      "source": "openGraph",
+      "jq": ".openGraph[\"og:description\"] // empty"
+    },
+    {
+      "field": "color",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:color\"] // empty"
+    },
+    {
+      "field": "size",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:size\"] // empty"
+    },
+    {
+      "field": "gender",
+      "source": "openGraph",
+      "jq": ".openGraph[\"product:gender\"] // empty"
+    }
+  ],
+  "unmappableFields": [
+    {
+      "field": "category",
+      "reason": "Field not present in any active source (openGraph:full) for this variant"
+    },
+    {
+      "field": "gtin",
+      "reason": "Only available via JSON-LD gtin* fields — add JSON-LD Product schema to include this field"
+    },
+    {
+      "field": "rating",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    },
+    {
+      "field": "ratingCount",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    }
+  ]
+}

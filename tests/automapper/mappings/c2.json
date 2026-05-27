@@ -1,0 +1,78 @@
+{
+  "variant": "c2",
+  "generatedAt": "2026-05-14T09:19:28.586Z",
+  "activeSources": [
+    "dataLayer:ga4"
+  ],
+  "mappings": [
+    {
+      "field": "productId",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_id // empty"
+    },
+    {
+      "field": "productName",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_name // empty"
+    },
+    {
+      "field": "brand",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_brand // empty"
+    },
+    {
+      "field": "price",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].price // empty"
+    },
+    {
+      "field": "category",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_category // empty"
+    },
+    {
+      "field": "color",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.items[0].item_variant // empty"
+    },
+    {
+      "field": "currency",
+      "source": "dataLayer",
+      "jq": ".dataLayer // [] | map(select(.event == \"view_item\")) | first | .ecommerce.currency // empty"
+    }
+  ],
+  "unmappableFields": [
+    {
+      "field": "availability",
+      "reason": "Field not present in any active source (dataLayer:ga4) for this variant"
+    },
+    {
+      "field": "image",
+      "reason": "Field not present in any active source (dataLayer:ga4) for this variant"
+    },
+    {
+      "field": "description",
+      "reason": "Field not present in any active source (dataLayer:ga4) for this variant"
+    },
+    {
+      "field": "gtin",
+      "reason": "Only available via JSON-LD gtin* fields — add JSON-LD Product schema to include this field"
+    },
+    {
+      "field": "size",
+      "reason": "Field not present in any active source (dataLayer:ga4) for this variant"
+    },
+    {
+      "field": "gender",
+      "reason": "Field not present in any active source (dataLayer:ga4) for this variant"
+    },
+    {
+      "field": "rating",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    },
+    {
+      "field": "ratingCount",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    }
+  ]
+}

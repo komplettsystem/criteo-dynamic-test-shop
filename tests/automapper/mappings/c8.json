@@ -1,0 +1,77 @@
+{
+  "variant": "c8",
+  "generatedAt": "2026-05-14T09:19:28.587Z",
+  "activeSources": [
+    "dataLayer:nonstandard"
+  ],
+  "mappings": [
+    {
+      "field": "productId",
+      "source": "dataLayer(nonstandard)",
+      "jq": ".dataLayer // [] | map(select(.eventName == \"productDetailView\")) | first | .commerce.products[0].productId // empty"
+    },
+    {
+      "field": "productName",
+      "source": "dataLayer(nonstandard)",
+      "jq": ".dataLayer // [] | map(select(.eventName == \"productDetailView\")) | first | .commerce.products[0].productName // empty"
+    },
+    {
+      "field": "brand",
+      "source": "dataLayer(nonstandard)",
+      "jq": ".dataLayer // [] | map(select(.eventName == \"productDetailView\")) | first | .commerce.products[0].brand // empty"
+    },
+    {
+      "field": "price",
+      "source": "dataLayer(nonstandard)",
+      "jq": ".dataLayer // [] | map(select(.eventName == \"productDetailView\")) | first | .commerce.products[0].unitPrice // empty"
+    },
+    {
+      "field": "category",
+      "source": "dataLayer(nonstandard)",
+      "jq": ".dataLayer // [] | map(select(.eventName == \"productDetailView\")) | first | .commerce.products[0].category // empty"
+    },
+    {
+      "field": "currency",
+      "source": "dataLayer(nonstandard)",
+      "jq": ".dataLayer // [] | map(select(.eventName == \"productDetailView\")) | first | .commerce.currencyCode // empty"
+    }
+  ],
+  "unmappableFields": [
+    {
+      "field": "availability",
+      "reason": "Field not present in any active source (dataLayer:nonstandard) for this variant"
+    },
+    {
+      "field": "image",
+      "reason": "Field not present in any active source (dataLayer:nonstandard) for this variant"
+    },
+    {
+      "field": "description",
+      "reason": "Field not present in any active source (dataLayer:nonstandard) for this variant"
+    },
+    {
+      "field": "gtin",
+      "reason": "Only available via JSON-LD gtin* fields — add JSON-LD Product schema to include this field"
+    },
+    {
+      "field": "color",
+      "reason": "Field not present in any active source (dataLayer:nonstandard) for this variant"
+    },
+    {
+      "field": "size",
+      "reason": "Field not present in any active source (dataLayer:nonstandard) for this variant"
+    },
+    {
+      "field": "gender",
+      "reason": "Field not present in any active source (dataLayer:nonstandard) for this variant"
+    },
+    {
+      "field": "rating",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    },
+    {
+      "field": "ratingCount",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    }
+  ]
+}
