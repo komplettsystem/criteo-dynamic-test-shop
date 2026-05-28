@@ -1,6 +1,6 @@
 import { defineConfig } from '@playwright/test';
 
-const BASE_URL = process.env.BASE_URL || 'http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com';
+const BASE_URL = process.env.BASE_URL || 'https://komplettsystem.github.io/criteo-dynamic-test-shop';
 
 export default defineConfig({
   testDir: './e2e',
