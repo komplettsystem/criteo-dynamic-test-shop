@@ -132,3 +132,25 @@ Use this matrix to understand what signals are present in each predefined varian
 | **`c9`** | `partial` | `minimal` | `minimal` | **Sparse Quality:** High data degradation. Tests basic field scraping. |
 | **`c10`**| `ceddl` (Full) | `full` (Complete) | `full` (Complete) | **CEDDL standard:** Tests digitalData collection alongside standard specs. |
 | **`c11`**| `suppress` | `false` | `false` | **Absolute Zero:** No events, no schema scripts, no OG. Complete void. |
+
+---
+
+## 🌐 Deployment & Subpath-Routing Architecture
+
+To maximize simplicity and eliminate redundant configuration overhead, the testing platform operates on a **unified client-side routing and simulation engine** running inside a single, root `index.html` page (Option B). 
+
+Because there are no longer 78 physically pre-compiled static HTML files in the repository, direct entries to virtual paths (such as `/c1/` or `/c3/product/SHOE-003-WHT-42.html`) must be routed to the central `index.html` page using the fallback mechanisms of your hosting platform:
+
+### 1. AWS S3 Static Website Hosting
+AWS S3 handles client-side virtual routing through its **Error Document** redirection configuration:
+* **The Config:** S3 is configured to use `index.html` as both the `Index Document` and the `Error Document` (see [deploy-s3.sh](file:///Users/k.rieke/Documents/antigravity/criteo-dynamic-test-shop/deploy-s3.sh#L60-L64)).
+* **The Flow:** When a user or testing bot navigates directly to `/c1/`, S3 cannot find a physical folder. Instead of returning a standard hard error, it serves the root `index.html` directly, allowing our Javascript IIFE to run and dynamically compile the correct storefront view.
+
+### 2. GitHub Pages (Subpath Hosting Fallback)
+Unlike AWS S3, GitHub Pages does not support custom error document configurations and serves projects on a repository subpath (e.g., `https://<username>.github.io/criteo-dynamic-test-shop/`).
+* **The `404.html` Fallback:** GitHub Pages has a hardcoded rule: if a file named `404.html` exists in the repository root, it will serve it on any missing file path.
+* **The Implementation:** Our [build.sh](file:///Users/k.rieke/Documents/antigravity/criteo-dynamic-test-shop/build.sh#L10) workflow automatically copies `index.html` to `dist/404.html` during the build process. When GitHub Pages encounters a virtual routing directory (like `/c1/`), it automatically falls back to `404.html`, loading our router engine seamlessly.
+* **Dynamic `basePrefix` Resolution:** To ensure the simulator works out-of-the-box on both root hostnames (like AWS S3) and subpath URLs (like GitHub Pages), the routing script dynamically searches the pathname for the `/c\d+` variant segment:
+  * It extracts the `basePrefix` (e.g. `/criteo-dynamic-test-shop`) dynamically.
+  * It prefixes all dynamic script loads, stylesheet links, catalog fetches, and storefront link anchors with this prefix, ensuring the site is 100% portable and subpath-agnostic.
+
