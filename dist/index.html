@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,18 +48,35 @@
   }
   </script>
 
-  <script type="module" crossorigin src="/assets/index-byuxcqkd.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-dqex2nto.css">
-
-  <!-- CSV-driven schema.org / OpenGraph / Twitter Card injector. -->
-  <!-- Reads /catalog.csv on load and on every SPA navigation, then -->
-  <!-- replaces head tags marked data-rich with per-route metadata. -->
+  <!-- Purely Dynamic Path-Based Simulation & Test Oracle Router -->
   <script>
     (function () {
+      // 1. Instantly redirect legacy /home path to root /
       if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
         window.location.replace('/');
         return;
       }
+
+      var VARIANTS = [
+        { id: 'c1', label: 'Full Canonical', description: 'DataLayer (GA4) + JSON-LD (full) + OpenGraph (full)', dataLayer: 'ga4', jsonLd: 'full', openGraph: 'full' },
+        { id: 'c2', label: 'DataLayer Only', description: 'GA4 ecommerce events; no JSON-LD; no OG tags', dataLayer: 'ga4', jsonLd: false, openGraph: false },
+        { id: 'c3', label: 'JSON-LD Only', description: 'Full Product schema; no dataLayer events; no OG tags', dataLayer: 'suppress', jsonLd: 'full', openGraph: false },
+        { id: 'c4', label: 'OpenGraph Only', description: 'Full OG + product: tags; no dataLayer; no JSON-LD', dataLayer: 'suppress', jsonLd: false, openGraph: 'full' },
+        { id: 'c5', label: 'DataLayer + JSON-LD', description: 'GA4 events + full Product schema; no OG', dataLayer: 'ga4', jsonLd: 'full', openGraph: false },
+        { id: 'c6', label: 'DataLayer + OpenGraph', description: 'GA4 events + full OG tags; no JSON-LD', dataLayer: 'ga4', jsonLd: false, openGraph: 'full' },
+        { id: 'c7', label: 'JSON-LD + OG Complementary', description: "JSON-LD has brand/sku/rating but NO price; OG has price/availability but NOT brand/sku", dataLayer: 'suppress', jsonLd: 'no-price', openGraph: 'price-only' },
+        { id: 'c8', label: 'Non-Standard DataLayer', description: 'Custom event names (productDetailView) and field names (productId, unitPrice)', dataLayer: 'nonstandard', jsonLd: false, openGraph: false },
+        { id: 'c9', label: 'Sparse / Partial Everywhere', description: 'All three sources present but each missing critical fields', dataLayer: 'partial', jsonLd: 'minimal', openGraph: 'minimal' },
+        { id: 'c10', label: 'CEDDL + JSON-LD + OG', description: 'digitalData CEDDL object + full JSON-LD + full OG', dataLayer: 'ceddl', jsonLd: 'full', openGraph: 'full' },
+        { id: 'c11', label: 'Absolute Zero', description: 'Stripped clean — no dataLayer ecommerce events, no JSON-LD schemas, and no OpenGraph tags.', dataLayer: 'suppress', jsonLd: false, openGraph: false }
+      ];
+
+      var NONSTANDARD_FIELD_MAP = {
+        events: { view_item: 'productDetailView', view_item_list: 'productListView', add_to_cart: 'basketAdd', purchase: 'orderComplete', page_view: 'pageView' },
+        itemFields: { item_id: 'productId', item_name: 'productName', item_brand: 'brand', item_category: 'category', item_category2: 'subcategory', item_variant: 'variant', price: 'unitPrice', quantity: 'qty', index: 'position' },
+        ecommerceFields: { currency: 'currencyCode', value: 'revenue', transaction_id: 'orderId', items: 'products' }
+      };
+
       var SITE = {
         name: "Fashion Shop",
         url: "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com",
@@ -71,6 +87,75 @@
         sameAs: []
       };
 
+      // 2. Identify if this is a path-based variant request (e.g. /c1/, /c3/product/SKU.html)
+      var rawPath = window.location.pathname || "/";
+      var pathClean = rawPath.replace(/\/+$/, "") || "/";
+      var varMatch = pathClean.match(/^\/(c\d+)(?:\/|$)/);
+      var isVariantPath = !!varMatch;
+      var activeVariantId = isVariantPath ? varMatch[1] : null;
+
+      // React SPA conditional dynamic loader
+      if (isVariantPath) {
+        window.__isVariantSimulation = true;
+        document.addEventListener("DOMContentLoaded", function() {
+          var rootEl = document.getElementById("root");
+          if (rootEl) rootEl.parentNode.removeChild(rootEl);
+        });
+      } else {
+        var reactScript = document.createElement('script');
+        reactScript.type = 'module';
+        reactScript.crossOrigin = 'anonymous';
+        reactScript.src = '/assets/index-byuxcqkd.js';
+        reactScript.id = 'react-bundle-script';
+        document.head.appendChild(reactScript);
+
+        var reactStyle = document.createElement('link');
+        reactStyle.rel = 'stylesheet';
+        reactStyle.crossOrigin = 'anonymous';
+        reactStyle.href = '/assets/index-dqex2nto.css';
+        reactStyle.id = 'react-bundle-style';
+        document.head.appendChild(reactStyle);
+      }
+
+      // Sync overrides & storage options
+      function getQueryParam(name) {
+        var params = new URLSearchParams(window.location.search);
+        return params.get(name);
+      }
+
+      function getActiveConfig() {
+        var sessionOverride = sessionStorage.getItem('active_test_variant');
+        var queryOverride = getQueryParam('variant');
+        var activeId = queryOverride || sessionOverride || activeVariantId || 'c1';
+        
+        var cfg = VARIANTS.find(function(v) { return v.id === activeId; });
+        if (!cfg) cfg = VARIANTS[0];
+        
+        var finalCfg = Object.assign({}, cfg);
+        
+        var dlOverride = getQueryParam('dataLayer') || sessionStorage.getItem('override_dataLayer');
+        if (dlOverride) finalCfg.dataLayer = dlOverride === 'false' ? false : dlOverride;
+        
+        var jldOverride = getQueryParam('jsonLd') || sessionStorage.getItem('override_jsonLd');
+        if (jldOverride) finalCfg.jsonLd = jldOverride === 'false' ? false : jldOverride;
+        
+        var ogOverride = getQueryParam('openGraph') || sessionStorage.getItem('override_openGraph');
+        if (ogOverride) finalCfg.openGraph = ogOverride === 'false' ? false : ogOverride;
+        
+        return finalCfg;
+      }
+
+      var activeCfg = getActiveConfig();
+      window.__resolvedConfig = activeCfg;
+      window.__activeVariantId = activeCfg.id;
+      window.__variants = VARIANTS;
+      window.__nonstandardFieldMap = NONSTANDARD_FIELD_MAP;
+
+      var hasOverrides = getQueryParam('variant') || getQueryParam('dataLayer') || getQueryParam('jsonLd') || getQueryParam('openGraph') ||
+                            sessionStorage.getItem('active_test_variant') || sessionStorage.getItem('override_dataLayer') ||
+                            sessionStorage.getItem('override_jsonLd') || sessionStorage.getItem('override_openGraph');
+
+      // Parsers & Formatters
       function abs(p) {
         if (!p) return SITE.url;
         if (/^https?:\/\//i.test(p)) return p;
@@ -107,6 +192,25 @@
         });
       }
 
+      var catalogSyncData = null;
+      function fetchCatalogSync() {
+        if (!catalogSyncData) {
+          try {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/catalog.csv', false); // Sync call!
+            xhr.send(null);
+            if (xhr.status === 200) {
+              catalogSyncData = parseCSV(xhr.responseText);
+            } else {
+              catalogSyncData = [];
+            }
+          } catch (e) {
+            catalogSyncData = [];
+          }
+        }
+        return catalogSyncData;
+      }
+
       var catalogP = null;
       function fetchCatalog() {
         if (!catalogP) {
@@ -115,34 +219,9 @@
         return catalogP;
       }
 
-      function clearRich() {
-        var nodes = document.querySelectorAll("[data-rich]");
-        for (var i = 0; i < nodes.length; i++) nodes[i].parentNode.removeChild(nodes[i]);
-      }
-
-      function meta(attr, key, val) {
-        if (val === undefined || val === null || val === "") return;
-        var m = document.createElement("meta");
-        m.setAttribute(attr, key);
-        m.setAttribute("content", String(val));
-        m.setAttribute("data-rich", "dynamic");
-        document.head.appendChild(m);
-      }
-
-      function jsonld(obj) {
-        var s = document.createElement("script");
-        s.type = "application/ld+json";
-        s.setAttribute("data-rich", "dynamic");
-        s.textContent = JSON.stringify(obj);
-        document.head.appendChild(s);
-      }
-
-      function linkTag(rel, href) {
-        var l = document.createElement("link");
-        l.rel = rel;
-        l.href = href;
-        l.setAttribute("data-rich", "dynamic");
-        document.head.appendChild(l);
+      function clearStaticTags() {
+        var els = document.querySelectorAll('[data-rich="static"], [data-dynamic-tag="true"]');
+        for (var i = 0; i < els.length; i++) els[i].parentNode.removeChild(els[i]);
       }
 
       function availability(q) {
@@ -161,7 +240,16 @@
         return "gtin";
       }
 
-      function organization() {
+      function esc(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      // JSON-LD Generators
+      function organizationJsonLd() {
         return {
           "@context": "https://schema.org",
           "@type": "Organization",
@@ -173,7 +261,7 @@
         };
       }
 
-      function website() {
+      function websiteJsonLd() {
         return {
           "@context": "https://schema.org",
           "@type": "WebSite",
@@ -187,7 +275,7 @@
         };
       }
 
-      function breadcrumb(items) {
+      function breadcrumbJsonLd(items) {
         return {
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
@@ -202,8 +290,8 @@
         };
       }
 
-      function productSchema(p) {
-        var url = SITE.url + "/product/" + encodeURIComponent(p.sku);
+      function productJsonLd(p, mode) {
+        var url = SITE.url + "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html";
         var validUntil = new Date(Date.now() + 365 * 86400000).toISOString().slice(0, 10);
         var o = {
           "@context": "https://schema.org",
@@ -214,8 +302,20 @@
           "url": url,
           "image": [abs(p.image)],
           "brand": { "@type": "Brand", "name": p.brand },
-          "category": [p.category_1, p.category_2].filter(Boolean).join(" > "),
-          "offers": {
+          "category": [p.category_1, p.category_2].filter(Boolean).join(" > ")
+        };
+        
+        if (mode === 'minimal') {
+          return {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": p.name,
+            "url": url
+          };
+        }
+        
+        if (mode !== 'no-price') {
+          o.offers = {
             "@type": "Offer",
             "url": url,
             "priceCurrency": SITE.currency,
@@ -224,8 +324,9 @@
             "availability": "https://schema.org/" + availability(p.quantity),
             "itemCondition": "https://schema.org/NewCondition",
             "seller": { "@type": "Organization", "name": SITE.name }
-          }
-        };
+          };
+        }
+        
         if (p.description) o.description = p.description;
         if (p.gtin) o[gtinKey(p.gtin)] = String(p.gtin);
         if (p.mpn) o.mpn = p.mpn;
@@ -254,7 +355,7 @@
         return o;
       }
 
-      function itemList(products, name) {
+      function itemListJsonLd(products, name) {
         return {
           "@context": "https://schema.org",
           "@type": "ItemList",
@@ -264,7 +365,7 @@
             return {
               "@type": "ListItem",
               "position": i + 1,
-              "url": SITE.url + "/product/" + encodeURIComponent(p.sku),
+              "url": SITE.url + "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html",
               "item": {
                 "@type": "Product",
                 "name": p.name,
@@ -283,37 +384,507 @@
         };
       }
 
-      function pageMeta(title, description, image, url, type) {
-        meta("name", "description", description);
-        linkTag("canonical", url);
-        meta("property", "og:title", title);
-        meta("property", "og:description", description);
-        meta("property", "og:image", abs(image));
-        meta("property", "og:url", url);
-        meta("property", "og:type", type);
-        meta("property", "og:site_name", SITE.name);
-        meta("property", "og:locale", SITE.locale);
-        meta("name", "twitter:card", "summary_large_image");
-        meta("name", "twitter:title", title);
-        meta("name", "twitter:description", description);
-        meta("name", "twitter:image", abs(image));
+      function injectJsonLd(mode, pageType, product, listProducts) {
+        if (!mode) return;
+        var blocks = [];
+        var listMode = (mode === 'no-price') ? 'full' : mode;
+        
+        if (pageType === 'homepage') {
+          if (listMode === 'full') {
+            blocks.push(organizationJsonLd());
+            blocks.push(itemListJsonLd(listProducts, 'Fashion Shop — All Products'));
+          }
+        } else if (pageType === 'category') {
+          if (listMode === 'full') {
+            blocks.push(itemListJsonLd(listProducts, product.category_1));
+            blocks.push(breadcrumbJsonLd([
+              { name: "Home", url: "/" + activeCfg.id + "/" },
+              { name: product.category_1, url: "/" + activeCfg.id + "/category/" + encodeURIComponent(product.category_1.toLowerCase()) + ".html" }
+            ]));
+          }
+        } else if (pageType === 'product') {
+          blocks.push(productJsonLd(product, mode));
+          if (listMode === 'full') {
+            blocks.push(breadcrumbJsonLd([
+              { name: "Home", url: "/" + activeCfg.id + "/" },
+              { name: product.category_1, url: "/" + activeCfg.id + "/category/" + encodeURIComponent(product.category_1.toLowerCase()) + ".html" },
+              { name: product.name, url: "/" + activeCfg.id + "/product/" + encodeURIComponent(product.sku) + ".html" }
+            ]));
+          }
+        }
+        
+        blocks.forEach(function (b) {
+          var s = document.createElement('script');
+          s.type = 'application/ld+json';
+          s.setAttribute('data-dynamic-tag', 'true');
+          s.textContent = JSON.stringify(b, null, 2);
+          document.head.appendChild(s);
+        });
       }
 
-      var token = 0;
-      function render() {
-        var my = ++token;
-        return fetchCatalog().then(function (products) {
-          if (my !== token) return;
-          clearRich();
-          jsonld(organization());
-          jsonld(website());
+      // OpenGraph Generators
+      function injectOpenGraph(mode, pageType, product) {
+        if (!mode) return;
+        
+        var productUrl = pageType === 'product'
+          ? SITE.url + '/' + activeCfg.id + '/product/' + encodeURIComponent(product.sku) + '.html'
+          : SITE.url + '/' + activeCfg.id + '/';
+          
+        var meta = function (prop, val) {
+          if (!val && val !== 0) return;
+          var m = document.createElement('meta');
+          m.setAttribute('property', prop);
+          m.setAttribute('content', String(val));
+          m.setAttribute('data-dynamic-tag', 'true');
+          document.head.appendChild(m);
+        };
+        
+        if (mode === 'price-only') {
+          meta('og:title', product.name || 'Fashion Shop');
+          if (pageType === 'product') {
+            meta('product:price:amount', Number(product.price).toFixed(2));
+            meta('product:price:currency', 'EUR');
+            meta('product:availability', Number(product.quantity) > 0 ? 'in stock' : 'out of stock');
+          }
+          return;
+        }
+        
+        if (mode === 'minimal') {
+          meta('og:title', pageType === 'product' ? product.name + ' — ' + product.brand : 'Fashion Shop');
+          meta('og:description', (product && product.description) || 'Curated apparel, footwear and accessories.');
+          meta('og:url', productUrl);
+          return;
+        }
+        
+        var title = pageType === 'product' ? product.name + ' — ' + product.brand : 'Fashion Shop';
+        var desc = pageType === 'product'
+          ? (product.description || product.name + ' by ' + product.brand)
+          : 'Curated apparel, footwear and accessories from leading brands.';
+        var image = abs((product && product.image) || '/images/hero-banner.png');
+        
+        meta('og:type', pageType === 'product' ? 'product' : 'website');
+        meta('og:title', title);
+        meta('og:description', desc);
+        meta('og:image', image);
+        meta('og:url', productUrl);
+        meta('og:site_name', 'Fashion Shop');
+        meta('og:locale', 'en_US');
+        
+        var tw = function (name, val) {
+          var m = document.createElement('meta');
+          m.setAttribute('name', name);
+          m.setAttribute('content', String(val));
+          m.setAttribute('data-dynamic-tag', 'true');
+          document.head.appendChild(m);
+        };
+        tw('twitter:card', 'summary_large_image');
+        tw('twitter:title', title);
+        tw('twitter:description', desc);
+        tw('twitter:image', image);
+        
+        if (pageType === 'product') {
+          meta('product:price:amount', Number(product.price).toFixed(2));
+          meta('product:price:currency', 'EUR');
+          meta('product:availability', Number(product.quantity) > 0 ? 'in stock' : 'out of stock');
+          meta('product:condition', 'new');
+          meta('product:brand', product.brand);
+          meta('product:retailer_item_id', product.sku);
+          meta('product:item_group_id', product.id);
+          meta('product:color', product.color);
+          meta('product:size', product.size);
+          meta('product:gender', product.gender);
+        }
+      }
+
+      // DataLayer formatters
+      function ga4Item(p, index) {
+        return {
+          item_id: p.sku,
+          item_name: p.name,
+          item_brand: p.brand,
+          item_category: p.category_1,
+          item_category2: p.category_2,
+          item_variant: p.variant,
+          price: Number(p.price),
+          quantity: 1,
+          index: index
+        };
+      }
+      
+      function nonstandardItem(p, index) {
+        var std = ga4Item(p, index);
+        var out = {};
+        var map = NONSTANDARD_FIELD_MAP.itemFields;
+        for (var k in std) {
+          var mapped = map[k] || k;
+          out[mapped] = std[k];
+        }
+        return out;
+      }
+      
+      function partialItem(p) {
+        return {
+          item_id: p.sku,
+          item_name: p.name,
+          price: Number(p.price),
+          quantity: 1
+        };
+      }
+      
+      function ceddlProduct(p) {
+        return {
+          productInfo: {
+            productID: p.sku,
+            productName: p.name,
+            manufacturer: p.brand,
+            productURL: SITE.url + '/' + activeCfg.id + '/product/' + encodeURIComponent(p.sku) + '.html',
+            sku: p.sku,
+            gtin: p.gtin,
+            mpn: p.mpn
+          },
+          category: {
+            primaryCategory: p.category_1,
+            subCategory1: p.category_2
+          },
+          attributes: {
+            variant: p.variant,
+            color: p.color,
+            size: p.size,
+            material: p.material,
+            gender: p.gender
+          },
+          price: {
+            basePrice: Number(p.price),
+            currency: 'EUR'
+          },
+          linkedProduct: []
+        };
+      }
+
+      function injectDataLayer(mode, pageType, product, listProducts) {
+        window.dataLayer = window.dataLayer || [];
+        if (mode === 'suppress') return;
+        
+        if (mode === 'ga4') {
+          window.dataLayer.push({ event: 'page_view', page_type: pageType });
+          if (pageType === 'product') {
+            window.dataLayer.push({
+              event: 'view_item',
+              ecommerce: {
+                currency: 'EUR',
+                value: Number(product.price),
+                items: [ga4Item(product, 1)]
+              }
+            });
+          } else if (pageType === 'category' || pageType === 'homepage') {
+            var items = listProducts.slice(0, 8).map(function(p, i) { return ga4Item(p, i + 1); });
+            window.dataLayer.push({
+              event: 'view_item_list',
+              ecommerce: {
+                item_list_name: pageType === 'homepage' ? 'Featured Products' : product.category_1,
+                item_list_id: pageType === 'homepage' ? 'homepage' : product.category_1.toLowerCase(),
+                items: items
+              }
+            });
+          }
+        }
+        
+        if (mode === 'nonstandard') {
+          var em = NONSTANDARD_FIELD_MAP.events;
+          var ef = NONSTANDARD_FIELD_MAP.ecommerceFields;
+          window.dataLayer.push({ eventName: em.page_view, pageType: pageType });
+          if (pageType === 'product') {
+            window.dataLayer.push({
+              eventName: em.view_item,
+              commerce: {
+                [ef.currency]: 'EUR',
+                [ef.value]: Number(product.price),
+                [ef.items]: [nonstandardItem(product, 1)]
+              }
+            });
+          } else if (pageType === 'category' || pageType === 'homepage') {
+            var items = listProducts.slice(0, 8).map(function(p, i) { return nonstandardItem(p, i + 1); });
+            window.dataLayer.push({
+              eventName: em.view_item_list,
+              commerce: {
+                listName: pageType === 'homepage' ? 'Featured' : product.category_1,
+                [ef.items]: items
+              }
+            });
+          }
+        }
+        
+        if (mode === 'partial') {
+          window.dataLayer.push({ event: 'page_view', page_type: pageType });
+          if (pageType === 'product') {
+            window.dataLayer.push({
+              event: 'view_item',
+              ecommerce: {
+                items: [partialItem(product)]
+              }
+            });
+          } else if (pageType === 'category' || pageType === 'homepage') {
+            var items = listProducts.slice(0, 4).map(function(p) { return partialItem(p); });
+            window.dataLayer.push({
+              event: 'view_item_list',
+              ecommerce: {
+                items: items
+              }
+            });
+          }
+        }
+        
+        if (mode === 'ceddl') {
+          var digitalData = {
+            pageInstanceID: pageType + '-' + (product.sku || 'home'),
+            page: {
+              pageInfo: { pageID: pageType, pageName: pageType === 'product' ? product.name : product.category_1 },
+              category: { primaryCategory: pageType }
+            },
+            product: pageType === 'product' ? [ceddlProduct(product)] : [],
+            cart: {},
+            transaction: {},
+            user: []
+          };
+          window.digitalData = digitalData;
+          window.dataLayer.push({ event: 'page_view', page_type: pageType });
+        }
+      }
+
+      function publishExpectedSignals(pageType, product) {
+        if (pageType !== 'product') {
+          window.__expectedSignals = { pageType: pageType, activeConfig: activeCfg };
+          return;
+        }
+        
+        var canonical = {
+          productId: product.sku,
+          productName: product.name,
+          brand: product.brand,
+          price: String(product.price),
+          currency: 'EUR',
+          category: product.category_1,
+          availability: Number(product.quantity) > 0 ? 'InStock' : 'OutOfStock',
+          image: abs(product.image),
+          description: product.description,
+          gtin: product.gtin,
+          color: product.color,
+          size: product.size,
+          gender: product.gender,
+          rating: product.rating_value,
+          ratingCount: product.rating_count
+        };
+        
+        var expectedFields = [];
+        
+        if (activeCfg.dataLayer === 'ga4' || activeCfg.dataLayer === 'partial') {
+          expectedFields.push('productId', 'productName', 'price');
+          if (activeCfg.dataLayer === 'ga4') {
+            expectedFields.push('brand', 'category', 'color');
+          }
+        } else if (activeCfg.dataLayer === 'nonstandard') {
+          expectedFields.push('productId', 'productName', 'price', 'brand', 'category');
+        } else if (activeCfg.dataLayer === 'ceddl') {
+          expectedFields.push('productId', 'productName', 'brand', 'price', 'currency', 'category', 'color', 'size', 'gender');
+        }
+        
+        if (activeCfg.jsonLd === 'full' || activeCfg.jsonLd === 'no-price' || activeCfg.jsonLd === 'minimal') {
+          expectedFields.push('productId', 'productName');
+          if (activeCfg.jsonLd !== 'minimal') {
+            expectedFields.push('brand', 'category', 'description', 'image', 'color', 'size', 'gender', 'rating', 'ratingCount');
+            if (activeCfg.jsonLd === 'full') {
+              expectedFields.push('price', 'currency', 'availability');
+            }
+          }
+        }
+        
+        if (activeCfg.openGraph === 'full' || activeCfg.openGraph === 'price-only' || activeCfg.openGraph === 'minimal') {
+          expectedFields.push('productName');
+          if (activeCfg.openGraph === 'price-only') {
+            expectedFields.push('price', 'currency', 'availability');
+          } else if (activeCfg.openGraph === 'minimal') {
+            expectedFields.push('description');
+          } else if (activeCfg.openGraph === 'full') {
+            expectedFields.push('productId', 'brand', 'price', 'currency', 'availability', 'image', 'description', 'color', 'size', 'gender');
+          }
+        }
+        
+        var uniqueFields = [];
+        expectedFields.forEach(function (f) {
+          if (canonical[f] !== undefined && canonical[f] !== '' && uniqueFields.indexOf(f) === -1) {
+            uniqueFields.push(f);
+          }
+        });
+        
+        window.__expectedSignals = {
+          pageType: pageType,
+          activeConfig: activeCfg,
+          canonical: canonical,
+          expectedFields: uniqueFields
+        };
+      }
+
+      // Interceptor DOM generator
+      function compileStorefrontHtml(pageType, product, listProducts) {
+        var body = '';
+        var warnStyle = "background: linear-gradient(90deg, #d4af37, #b5952f); color: #111; text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 700; border-bottom: 2px solid #997c23; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; gap: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;";
+        
+        var disclaimer = '<div style="' + warnStyle + '">' +
+          '<span>⚠️</span> <strong>TESTING PLATFORM:</strong> This is a synthetic, mock e-commerce sandbox for automated tag and schema verification. No real products, payments, or deliveries are offered or processed.' +
+          '</div>';
+
+        var navHtml = '<header style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:.5rem;margin-bottom:1rem;font-family:system-ui,sans-serif;">' +
+          '<a href="/' + activeCfg.id + '/" style="color:#0066cc;text-decoration:none;font-weight:bold;">← ' + activeCfg.id.toUpperCase() + ' Home</a>' +
+          '<span style="background:#f0f0f0;border:1px solid #ccc;border-radius:4px;padding:.25rem .5rem;font-size:.75rem;font-family:monospace;">' + activeCfg.id.toUpperCase() + ': ' + activeCfg.label + '</span>' +
+          '</header>';
+
+        var footerHtml = '<footer style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:.75rem;color:#777;font-family:system-ui,sans-serif;">' +
+          '<p><strong>Active Test Variant:</strong> ' + activeCfg.description + '</p>' +
+          '</footer>';
+
+        if (pageType === 'product') {
+          body = '<article class="product" itemscope itemtype="https://schema.org/Product" style="font-family:system-ui,sans-serif;color:#222;max-width:600px;">' +
+            '<img src="' + esc(abs(product.image)) + '" alt="' + esc(product.name) + '" width="300" height="300" style="border-radius:8px;max-width:300px;" />' +
+            '<h1 itemprop="name" style="margin:.5rem 0;">' + esc(product.name) + '</h1>' +
+            '<p class="brand" itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="color:#666;margin:0;">' +
+            '<span itemprop="name">' + esc(product.brand) + '</span>' +
+            '</p>' +
+            '<p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="font-size:1.5rem;font-weight:bold;margin:.5rem 0;">' +
+            '<span itemprop="priceCurrency" content="EUR">€</span><span itemprop="price" content="' + esc(product.price) + '">' + esc(product.price) + '</span>' +
+            '</p>' +
+            '<div style="margin:18px 0;">' +
+            '<button id="pdp-add-to-cart" class="btn" style="background:#111;color:#fff;padding:12px 24px;border:none;font-weight:bold;border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background=\'#333\'" onmouseout="this.style.background=\'#111\'" onclick="handleAddToCartClick()">' +
+            '🛒 Add to Cart' +
+            '</button>' +
+            '</div>' +
+            '<p style="color:#555;">' + esc(product.category_1) + ' / ' + esc(product.category_2) + '</p>' +
+            '<p itemprop="description" style="line-height:1.5;margin-bottom:1.5rem;">' + esc(product.description) + '</p>' +
+            '<dl style="display:grid;grid-template-columns:auto 1fr;gap:.25rem .75rem;font-size:.875rem;">' +
+            '<dt style="font-weight:600;color:#555;">SKU</dt><dd itemprop="sku">' + esc(product.sku) + '</dd>' +
+            '<dt style="font-weight:600;color:#555;">Color</dt><dd>' + esc(product.color) + '</dd>' +
+            '<dt style="font-weight:600;color:#555;">Size</dt><dd>' + esc(product.size) + '</dd>' +
+            '<dt style="font-weight:600;color:#555;">Material</dt><dd>' + esc(product.material) + '</dd>' +
+            '<dt style="font-weight:600;color:#555;">Gender</dt><dd>' + esc(product.gender) + '</dd>' +
+            '<dt style="font-weight:600;color:#555;">Rating</dt><dd itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">' +
+            '<span itemprop="ratingValue">' + esc(product.rating_value) + '</span> / 5 (' + esc(product.rating_count) + ' reviews)</dd>' +
+            '<dt style="font-weight:600;color:#555;">GTIN</dt><dd>' + esc(product.gtin) + '</dd>' +
+            '<dt style="font-weight:600;color:#555;">MPN</dt><dd>' + esc(product.mpn) + '</dd>' +
+            '</dl>' +
+            '</article>';
+        } else {
+          var itemsHtml = listProducts.slice(0, 12).map(function(p) {
+            var pUrl = "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html";
+            return '<li style="background:#fafafa;border:1px solid #eee;border-radius:8px;padding:1rem;list-style:none;text-align:center;">' +
+              '<a href="' + pUrl + '" style="text-decoration:none;color:inherit;display:block;">' +
+              '<img src="' + esc(abs(p.image)) + '" alt="' + esc(p.name) + '" width="150" style="max-width:100%;border-radius:4px;margin-bottom:8px;" />' +
+              '<h3 style="font-size:13px;margin:4px 0;font-weight:700;text-transform:uppercase;">' + esc(p.name) + '</h3>' +
+              '<p style="color:#666;font-size:11px;margin:2px 0;">' + esc(p.brand) + '</p>' +
+              '<p style="font-weight:bold;font-size:14px;margin:4px 0;">€' + esc(p.price) + '</p>' +
+              '</a>' +
+              '</li>';
+          }).join('');
+          
+          body = '<div style="font-family:system-ui,sans-serif;color:#222;">' +
+            '<h1 style="font-size:1.8rem;margin-bottom:1.5rem;">' + esc(pageType === 'category' ? product.category_1 : 'Featured Products') + '</h1>' +
+            '<ul style="padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;">' +
+            itemsHtml +
+            '</ul>' +
+            '</div>';
+        }
+
+        var fullHtml = disclaimer +
+          '<div style="max-width:1000px;margin:0 auto;padding:1rem;font-family:system-ui,sans-serif;">' +
+          navHtml +
+          '<main>' + body + '</main>' +
+          footerHtml +
+          '</div>';
+
+        document.body.innerHTML = fullHtml;
+      }
+
+      // Initial execution
+      if (isVariantPath) {
+        var products = fetchCatalogSync();
+        clearStaticTags();
+        
+        var pageType = 'homepage';
+        var product = null;
+        
+        if (pathClean.indexOf('/product/') !== -1) {
+          pageType = 'product';
+          var sku = decodeURIComponent(pathClean.substring(pathClean.indexOf('/product/') + 9).replace('.html', ''));
+          product = products.find(function(p) { return p.sku === sku; });
+        } else if (pathClean.indexOf('/category/') !== -1) {
+          pageType = 'category';
+          var cat = decodeURIComponent(pathClean.substring(pathClean.indexOf('/category/') + 10).replace('.html', ''));
+          product = products.find(function(p) { return p.category_1.toLowerCase() === cat.toLowerCase(); });
+        }
+        
+        var listProducts = pageType === 'category'
+          ? products.filter(function(p) { return p.category_1.toLowerCase() === product.category_1.toLowerCase(); })
+          : products;
+          
+        window.__productData = product;
+        window.__listProducts = listProducts;
+        window.__pageType = pageType;
+
+        // Set document title synchronously
+        if (pageType === 'product' && product) {
+          document.title = product.name + ' — ' + product.brand;
+        } else if (pageType === 'category' && product) {
+          var catTitle = product.category_1.charAt(0).toUpperCase() + product.category_1.slice(1);
+          document.title = catTitle + ' — ' + SITE.name;
+        } else {
+          document.title = SITE.name + ' — Fashion essentials';
+        }
+
+        // 3. Inject signals synchronously in head
+        injectJsonLd(activeCfg.jsonLd, pageType, product, listProducts);
+        injectOpenGraph(activeCfg.openGraph, pageType, product);
+        injectDataLayer(activeCfg.dataLayer, pageType, product, listProducts);
+        publishExpectedSignals(pageType, product);
+
+        // 4. Append GTM script dynamically in head
+        var gtmScript = document.createElement('script');
+        gtmScript.id = 'gtm-script';
+        gtmScript.textContent = "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':" +
+          "new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0]," +
+          "j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=" +
+          "'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);" +
+          "})(window,document,'script','dataLayer','');";
+        document.head.appendChild(gtmScript);
+
+        // 5. Defer body modifications & UI rendering until DOMContentLoaded
+        document.addEventListener("DOMContentLoaded", function () {
+          if (!product && pageType !== 'homepage') {
+            document.body.innerHTML = '<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h2>Page not found</h2><a href="/' + activeCfg.id + '/">Back to Variant Home</a></div>';
+            return;
+          }
+
+          // Render storefront markup
+          compileStorefrontHtml(pageType, product, listProducts);
+
+          // Append GTM noscript in body
+          var gtmNoscript = document.createElement('noscript');
+          gtmNoscript.innerHTML = '<iframe src="https://www.googletagmanager.com/ns.html?id=" height="0" width="0" style="display:none;visibility:hidden"></iframe>';
+          document.body.appendChild(gtmNoscript);
+
+          // Append Tag & Schema Inspector floating console UI
+          injectTagInspectorConsole();
+        });
+      } else {
+        // Standard React SPA baseline load
+        fetchCatalog().then(function (products) {
+          clearStaticTags();
+          jsonld(organizationJsonLd());
+          jsonld(websiteJsonLd());
 
           var path = (window.location.pathname || "/").replace(/\/+$/, "") || "/";
 
           if (path === "/") {
             var hUrl = SITE.url + "/";
             pageMeta(SITE.name + " — Fashion essentials", SITE.tagline, SITE.logo, hUrl, "website");
-            jsonld(itemList(products, SITE.name + " — All products"));
+            jsonld(itemListJsonLd(products, SITE.name + " — All products"));
             return;
           }
 
@@ -334,8 +905,8 @@
               meta("property", "product:color", p.color);
               meta("property", "product:size", p.size);
               meta("property", "product:gender", p.gender);
-              jsonld(productSchema(p));
-              jsonld(breadcrumb([
+              jsonld(productJsonLd(p, 'full'));
+              jsonld(breadcrumbJsonLd([
                 { name: "Home", url: "/" },
                 { name: p.category_1, url: "/category/" + encodeURIComponent(p.category_1.toLowerCase()) },
                 { name: p.name, url: "/product/" + encodeURIComponent(p.sku) }
@@ -354,8 +925,8 @@
             var cDesc = "Shop our " + catTitle + " collection — " + filtered.length + " items from leading brands.";
             var cImg = (filtered[0] && filtered[0].image) || SITE.logo;
             pageMeta(catTitle + " — " + SITE.name, cDesc, cImg, cUrl, "website");
-            jsonld(itemList(filtered, catTitle));
-            jsonld(breadcrumb([
+            jsonld(itemListJsonLd(filtered, catTitle));
+            jsonld(breadcrumbJsonLd([
               { name: "Home", url: "/" },
               { name: catTitle, url: path }
             ]));
@@ -374,6 +945,50 @@
         });
       }
 
+      // Static tag injectors for React SPA mode
+      function meta(attr, key, val) {
+        if (val === undefined || val === null || val === "") return;
+        var m = document.createElement("meta");
+        m.setAttribute(attr, key);
+        m.setAttribute("content", String(val));
+        m.setAttribute("data-rich", "dynamic");
+        document.head.appendChild(m);
+      }
+
+      function jsonld(obj) {
+        var s = document.createElement("script");
+        s.type = "application/ld+json";
+        s.setAttribute("data-rich", "dynamic");
+        s.textContent = JSON.stringify(obj);
+        document.head.appendChild(s);
+      }
+
+      function linkTag(rel, href) {
+        var l = document.createElement("link");
+        l.rel = rel;
+        l.href = href;
+        l.setAttribute("data-rich", "dynamic");
+        document.head.appendChild(l);
+      }
+
+      function pageMeta(title, description, image, url, type) {
+        meta("name", "description", description);
+        linkTag("canonical", url);
+        meta("property", "og:title", title);
+        meta("property", "og:description", description);
+        meta("property", "og:image", abs(image));
+        meta("property", "og:url", url);
+        meta("property", "og:type", type);
+        meta("property", "og:site_name", SITE.name);
+        meta("property", "og:locale", SITE.locale);
+        meta("name", "twitter:card", "summary_large_image");
+        meta("name", "twitter:title", title);
+        meta("name", "twitter:description", description);
+        meta("name", "twitter:image", abs(image));
+      }
+
+      // GTM dynamic placeholder sync for React SPA
+      var token = 0;
       var _push = history.pushState;
       var _replace = history.replaceState;
       history.pushState = function () { 
@@ -381,7 +996,7 @@
         if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
           window.location.replace('/');
         } else {
-          setTimeout(render, 0); 
+          setTimeout(renderReactSPA, 0); 
         }
       };
       history.replaceState = function () { 
@@ -389,21 +1004,275 @@
         if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
           window.location.replace('/');
         } else {
-          setTimeout(render, 0); 
+          setTimeout(renderReactSPA, 0); 
         }
       };
       window.addEventListener("popstate", function () { 
         if (window.location.pathname === '/home' || window.location.pathname === '/home/') {
           window.location.replace('/');
         } else {
-          setTimeout(render, 0); 
+          setTimeout(renderReactSPA, 0); 
         }
       });
 
-      if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", render);
-      } else {
-        render();
+      function renderReactSPA() {
+        var my = ++token;
+        return fetchCatalog().then(function (products) {
+          if (my !== token) return;
+          clearStaticTags();
+          jsonld(organizationJsonLd());
+          jsonld(websiteJsonLd());
+
+          var path = (window.location.pathname || "/").replace(/\/+$/, "") || "/";
+          if (path === "/") {
+            pageMeta(SITE.name + " — Fashion essentials", SITE.tagline, SITE.logo, SITE.url + "/", "website");
+            jsonld(itemListJsonLd(products, SITE.name + " — All products"));
+            return;
+          }
+          if (path.indexOf("/product/") === 0) {
+            var sku = decodeURIComponent(path.replace("/product/", ""));
+            var p = products.find(function (x) { return x.sku === sku; });
+            if (p) {
+              var pUrl = SITE.url + "/product/" + encodeURIComponent(p.sku);
+              var pDesc = p.description || (p.name + " by " + p.brand + " — " + p.category_1 + " / " + p.category_2 + ".");
+              pageMeta(p.name + " — " + p.brand, pDesc, p.image, pUrl, "product");
+              jsonld(productJsonLd(p, 'full'));
+            }
+          }
+        });
+      }
+
+      // Appending interactive Tag & Schema Inspector inside intercepted pages
+      function injectTagInspectorConsole() {
+        var style = document.createElement('style');
+        style.textContent = '#tag-inspector-fab{position:fixed;bottom:20px;right:20px;width:50px;height:50px;border-radius:50%;background:#1a1a1a;border:1.5px solid #d4af37;box-shadow:0 4px 16px rgba(0,0,0,0.3);cursor:pointer;z-index:999999;display:flex;align-items:center;justify-content:center;color:#d4af37;font-size:22px;transition:all 0.25s cubic-bezier(0.4,0,0.2,1);}' +
+          '#tag-inspector-fab:hover{transform:scale(1.08) rotate(15deg);box-shadow:0 6px 20px rgba(212,175,55,0.4);}' +
+          '#tag-inspector-panel{position:fixed;bottom:85px;right:20px;width:380px;max-height:80vh;border-radius:12px;background:rgba(20,20,20,0.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(212,175,55,0.25);box-shadow:0 10px 30px rgba(0,0,0,0.6);z-index:999999;color:#e2e2e2;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;display:none;flex-direction:column;overflow:hidden;opacity:0;transform:translateY(15px) scale(0.97);transition:all 0.25s cubic-bezier(0.4,0,0.2,1);}' +
+          '#tag-inspector-panel.open{display:flex;opacity:1;transform:translateY(0) scale(1);}' +
+          '.ti-header{background:rgba(0,0,0,0.4);padding:10px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.08);}' +
+          '.ti-header h3{margin:0;font-size:13px;text-transform:uppercase;letter-spacing:0.8px;color:#d4af37;font-weight:700;}' +
+          '.ti-close{background:none;border:none;color:#999;font-size:16px;cursor:pointer;transition:color 0.2s;}' +
+          '.ti-close:hover{color:#fff;}' +
+          '.ti-content{padding:14px;overflow-y:auto;flex:1;font-size:12px;}' +
+          '.ti-section{margin-bottom:12px;}' +
+          '.ti-label{display:block;font-size:10px;text-transform:uppercase;color:#999;margin-bottom:4px;letter-spacing:0.5px;}' +
+          '.ti-select{width:100%;background:#252525;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:6px 8px;border-radius:6px;font-size:12px;outline:none;cursor:pointer;transition:border-color 0.2s;}' +
+          '.ti-select:focus{border-color:#d4af37;}' +
+          '.ti-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.2);margin:0 -14px 10px -14px;}' +
+          '.ti-tab{flex:1;text-align:center;padding:8px 0;cursor:pointer;border-bottom:2px solid transparent;color:#999;font-weight:600;font-size:11px;transition:all 0.2s;}' +
+          '.ti-tab.active{color:#d4af37;border-color:#d4af37;background:rgba(212,175,55,0.05);}' +
+          '.ti-pane{display:none;}' +
+          '.ti-pane.active{display:block;}' +
+          '.ti-code-block{background:#0d0d0d;border:1px solid rgba(255,255,255,0.04);border-radius:6px;padding:8px;font-family:monospace;font-size:10.5px;color:#4af626;overflow-x:auto;max-height:160px;white-space:pre-wrap;word-break:break-all;}' +
+          '.ti-btn-row{display:flex;gap:6px;margin-top:8px;}' +
+          '.ti-btn{flex:1;padding:6px;border:none;border-radius:6px;cursor:pointer;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;transition:all 0.2s;}' +
+          '.ti-btn-save{background:#d4af37;color:#111;}' +
+          '.ti-btn-save:hover{background:#bca035;}' +
+          '.ti-btn-reset{background:rgba(255,255,255,0.1);color:#fff;}' +
+          '.ti-btn-reset:hover{background:rgba(255,255,255,0.15);}' +
+          '.ti-badge-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;}' +
+          '.ti-badge{display:flex;align-items:center;gap:5px;padding:3px 6px;background:rgba(255,255,255,0.04);border-radius:4px;font-size:10.5px;}' +
+          '.ti-dot{width:5px;height:5px;border-radius:50%;}' +
+          '.ti-dot-green{background:#00ff66;box-shadow:0 0 6px #00ff66;}' +
+          '.ti-dot-red{background:#ff3333;box-shadow:0 0 6px #ff3333;}';
+        document.head.appendChild(style);
+
+        var fab = document.createElement('div');
+        fab.id = 'tag-inspector-fab';
+        fab.textContent = '🏷️';
+        fab.onclick = function() {
+          var p = document.getElementById('tag-inspector-panel');
+          p.classList.toggle('open');
+          if (p.classList.contains('open')) {
+            updateInspectorViews();
+          }
+        };
+        document.body.appendChild(fab);
+
+        var panel = document.createElement('div');
+        panel.id = 'tag-inspector-panel';
+        panel.innerHTML = '<div class="ti-header"><h3>🛡️ Tag & Schema Inspector</h3><button class="ti-close" onclick="document.getElementById(\'tag-inspector-panel\').classList.remove(\'open\')">✕</button></div>' +
+          '<div class="ti-content">' +
+          '<div class="ti-section">' +
+          '<label class="ti-label">Active Variant Template</label>' +
+          '<select class="ti-select" id="ti-variant-select" onchange="sessionStorage.setItem(\'active_test_variant\', this.value); window.location.reload();"></select>' +
+          '</div>' +
+          '<div class="ti-section" style="border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;">' +
+          '<span class="ti-label">Core Signal Overrides</span>' +
+          '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">' +
+          '<div><span class="ti-label" style="font-size:8px;">dataLayer</span>' +
+          '<select class="ti-select" id="ti-override-dl" style="padding:4px;font-size:10px;"><option value="">Baseline</option><option value="ga4">GA4</option><option value="nonstandard">Custom</option><option value="partial">Partial</option><option value="ceddl">CEDDL</option><option value="suppress">Suppress</option></select>' +
+          '</div>' +
+          '<div><span class="ti-label" style="font-size:8px;">jsonLd</span>' +
+          '<select class="ti-select" id="ti-override-jld" style="padding:4px;font-size:10px;"><option value="">Baseline</option><option value="full">Full</option><option value="no-price">No Price</option><option value="minimal">Minimal</option><option value="false">Suppress</option></select>' +
+          '</div>' +
+          '<div><span class="ti-label" style="font-size:8px;">openGraph</span>' +
+          '<select class="ti-select" id="ti-override-og" style="padding:4px;font-size:10px;"><option value="">Baseline</option><option value="full">Full</option><option value="price-only">Price Only</option><option value="minimal">Minimal</option><option value="false">Suppress</option></select>' +
+          '</div>' +
+          '</div>' +
+          '<div class="ti-btn-row">' +
+          '<button class="ti-btn ti-btn-save" onclick="applyInspectorOverrides()">Apply</button>' +
+          '<button class="ti-btn ti-btn-reset" onclick="resetInspectorOverrides()">Reset</button>' +
+          '</div>' +
+          '</div>' +
+          '<div class="ti-tabs">' +
+          '<div class="ti-tab active" onclick="switchInspectorTab(0)">dataLayer</div>' +
+          '<div class="ti-tab" onclick="switchInspectorTab(1)">JSON-LD</div>' +
+          '<div class="ti-tab" onclick="switchInspectorTab(2)">OpenGraph</div>' +
+          '<div class="ti-tab" onclick="switchInspectorTab(3)">Oracle</div>' +
+          '</div>' +
+          '<div class="ti-pane active" id="ti-pane-dl"><pre class="ti-code-block" id="ti-code-dl"></pre></div>' +
+          '<div class="ti-pane" id="ti-pane-jld"><pre class="ti-code-block" id="ti-code-jld"></pre></div>' +
+          '<div class="ti-pane" id="ti-pane-og"><pre class="ti-code-block" id="ti-code-og"></pre></div>' +
+          '<div class="ti-pane" id="ti-pane-oracle"><div class="ti-section" style="margin-bottom:6px;"><span class="ti-label">Expected Scrape Checklist:</span><div class="ti-badge-grid" id="ti-oracle-badges"></div></div></div>' +
+          '</div>';
+        document.body.appendChild(panel);
+
+        // Dropdown populator
+        var sel = document.getElementById('ti-variant-select');
+        VARIANTS.forEach(function(v) {
+          var opt = document.createElement('option');
+          opt.value = v.id;
+          opt.textContent = v.id.toUpperCase() + ': ' + v.label;
+          opt.selected = v.id === activeCfg.id;
+          sel.appendChild(opt);
+        });
+
+        // Set overrides selected values
+        document.getElementById('ti-override-dl').value = sessionStorage.getItem('override_dataLayer') || '';
+        document.getElementById('ti-override-jld').value = sessionStorage.getItem('override_jsonLd') || '';
+        document.getElementById('ti-override-og').value = sessionStorage.getItem('override_openGraph') || '';
+
+        // Wire up tab switches
+        window.switchInspectorTab = function(idx) {
+          var tabs = document.querySelectorAll('.ti-tab');
+          var panes = document.querySelectorAll('.ti-pane');
+          tabs.forEach(function(t, i) { t.classList.toggle('active', i === idx); });
+          panes.forEach(function(p, i) { p.classList.toggle('active', i === idx); });
+        };
+
+        window.applyInspectorOverrides = function() {
+          var dl = document.getElementById('ti-override-dl').value;
+          var jld = document.getElementById('ti-override-jld').value;
+          var og = document.getElementById('ti-override-og').value;
+          if (dl) sessionStorage.setItem('override_dataLayer', dl); else sessionStorage.removeItem('override_dataLayer');
+          if (jld) sessionStorage.setItem('override_jsonLd', jld); else sessionStorage.removeItem('override_jsonLd');
+          if (og) sessionStorage.setItem('override_openGraph', og); else sessionStorage.removeItem('override_openGraph');
+          window.location.reload();
+        };
+
+        window.resetInspectorOverrides = function() {
+          sessionStorage.removeItem('active_test_variant');
+          sessionStorage.removeItem('override_dataLayer');
+          sessionStorage.removeItem('override_jsonLd');
+          sessionStorage.removeItem('override_openGraph');
+          window.location.reload();
+        };
+
+        window.updateInspectorViews = function() {
+          var dlCode = document.getElementById('ti-code-dl');
+          dlCode.textContent = window.dataLayer && window.dataLayer.length ? JSON.stringify(window.dataLayer, null, 2) : '// No dataLayer events found.';
+          
+          var jldCode = document.getElementById('ti-code-jld');
+          var scripts = document.querySelectorAll('script[type="application/ld+json"]');
+          var jldList = [];
+          scripts.forEach(function (s) { try { jldList.push(JSON.parse(s.textContent)); } catch(e) {} });
+          jldCode.textContent = jldList.length ? JSON.stringify(jldList, null, 2) : '// No active JSON-LD found.';
+          
+          var ogCode = document.getElementById('ti-code-og');
+          var ogMap = {};
+          document.querySelectorAll('meta[property^="og:"], meta[property^="product:"], meta[name^="twitter:"]').forEach(function (m) {
+            var prop = m.getAttribute('property') || m.getAttribute('name');
+            ogMap[prop] = m.getAttribute('content');
+          });
+          ogCode.textContent = Object.keys(ogMap).length ? JSON.stringify(ogMap, null, 2) : '// No active OpenGraph found.';
+
+          var badgeContainer = document.getElementById('ti-oracle-badges');
+          badgeContainer.innerHTML = '';
+          if (window.__expectedSignals && window.__expectedSignals.canonical) {
+            var oracle = window.__expectedSignals;
+            var allFields = ['productId', 'productName', 'brand', 'price', 'currency', 'category', 'availability', 'image', 'description'];
+            allFields.forEach(function (f) {
+              var isExpected = oracle.expectedFields.indexOf(f) !== -1;
+              var badge = document.createElement('div');
+              badge.className = 'ti-badge';
+              var dot = document.createElement('span');
+              dot.className = 'ti-dot ' + (isExpected ? 'ti-dot-green' : 'ti-dot-red');
+              badge.appendChild(dot);
+              badge.appendChild(document.createTextNode(f));
+              badgeContainer.appendChild(badge);
+            });
+          } else {
+            badgeContainer.innerHTML = '<span style="color:#888;">Test Oracle only active on product pages.</span>';
+          }
+        };
+
+        window.handleAddToCartClick = function() {
+          var mode = window.__resolvedConfig.dataLayer;
+          if (mode === 'suppress') {
+            alert('DataLayer is suppressed under active configuration.');
+            return;
+          }
+          
+          var product = window.__productData;
+          if (mode === 'ga4') {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ ecommerce: null });
+            window.dataLayer.push({
+              event: 'add_to_cart',
+              ecommerce: {
+                currency: 'EUR',
+                value: Number(product.price),
+                items: [ga4Item(product, 1)]
+              }
+            });
+            alert('Event "add_to_cart" pushed to dataLayer!');
+          }
+          
+          if (mode === 'nonstandard') {
+            window.dataLayer = window.dataLayer || [];
+            var em = NONSTANDARD_FIELD_MAP.events;
+            var ef = NONSTANDARD_FIELD_MAP.ecommerceFields;
+            window.dataLayer.push({
+              event: em.add_to_cart,
+              commerce: {
+                [ef.currency]: 'EUR',
+                [ef.value]: Number(product.price),
+                [ef.items]: [nonstandardItem(product, 1)]
+              }
+            });
+            alert('Event "' + em.add_to_cart + '" pushed to dataLayer!');
+          }
+          
+          if (mode === 'partial') {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ ecommerce: null });
+            window.dataLayer.push({
+              event: 'add_to_cart',
+              ecommerce: {
+                items: [partialItem(product)]
+              }
+            });
+            alert('Partial event "add_to_cart" pushed to dataLayer!');
+          }
+          
+          if (mode === 'ceddl') {
+            window.digitalData = window.digitalData || {};
+            window.digitalData.cart = window.digitalData.cart || { item: [] };
+            window.digitalData.cart.item.push({
+              productInfo: ceddlProduct(product).productInfo,
+              quantity: 1,
+              price: ceddlProduct(product).price
+            });
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'cart_add', page_type: 'product' });
+            alert('Event "cart_add" pushed to dataLayer & CEDDL digitalData.cart updated!');
+          }
+          
+          if (typeof updateInspectorViews === 'function') {
+            updateInspectorViews();
+          }
+        };
       }
     })();
   </script>

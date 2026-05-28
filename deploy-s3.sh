@@ -44,10 +44,10 @@ echo "📍 Target SITE_URL : ${SITE_URL}"
 echo "=============================================================================="
 
 # --- 2. Dynamic Compilation ---
-echo "⚙️  1. Compiling static variant pages with target SITE_URL..."
+echo "⚙️  1. Rebuilding dynamic shop assets with target SITE_URL..."
 export SITE_URL="$SITE_URL"
 bash build.sh
-echo "✓ Variant pages compiled."
+echo "✓ Assets rebuilt."
 
 # --- 3. S3 Synchronization ---
 echo "🚀 2. Synchronizing dist/ folder to S3 bucket..."

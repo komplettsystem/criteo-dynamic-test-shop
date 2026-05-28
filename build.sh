@@ -10,10 +10,7 @@ cp -r assets images catalog.csv robots.txt vite.svg dist/
 cp index.html dist/
 cp -r setup dist/
 
-# 3. Generate variant pages (c1–c10) into dist/
-node scripts/build-variants.js
+# 3. Substitute GTM container ID in all HTML files (Option B single index.html)
+find dist -name "*.html" -exec perl -pi -e "s/GTM_CONTAINER_ID/\$GTM_ID/g" {} +
 
-# 4. Substitute GTM container ID in all HTML files
-find dist -name "*.html" -exec perl -pi -e 's/GTM_CONTAINER_ID/$ENV{GTM_ID}/g' {} +
-
-echo "Build complete. $(find dist -name '*.html' | wc -l | tr -d ' ') HTML files in dist/"
+echo "Build complete. Dynamic single root page index.html updated in dist/."

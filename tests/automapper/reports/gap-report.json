@@ -2,7 +2,7 @@
   {
     "variant": "c1",
     "pageType": "product",
-    "url": "http://localhost:9090/c1/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c1/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -38,7 +38,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
       },
       "size": {
         "source": "jsonLd",
@@ -75,7 +75,7 @@
   {
     "variant": "c1",
     "pageType": "product",
-    "url": "http://localhost:9090/c1/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c1/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -111,7 +111,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
       },
       "size": {
         "source": "jsonLd",
@@ -148,7 +148,7 @@
   {
     "variant": "c2",
     "pageType": "product",
-    "url": "http://localhost:9090/c2/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c2/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -196,7 +196,7 @@
   {
     "variant": "c2",
     "pageType": "product",
-    "url": "http://localhost:9090/c2/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c2/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -244,7 +244,7 @@
   {
     "variant": "c3",
     "pageType": "product",
-    "url": "http://localhost:9090/c3/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c3/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -268,7 +268,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
       },
       "color": {
         "source": "jsonLd",
@@ -315,7 +315,7 @@
   {
     "variant": "c3",
     "pageType": "product",
-    "url": "http://localhost:9090/c3/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c3/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -339,7 +339,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
       },
       "color": {
         "source": "jsonLd",
@@ -386,7 +386,7 @@
   {
     "variant": "c4",
     "pageType": "product",
-    "url": "http://localhost:9090/c4/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c4/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "openGraph",
@@ -414,7 +414,7 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
       },
       "description": {
         "source": "openGraph",
@@ -446,7 +446,7 @@
   {
     "variant": "c4",
     "pageType": "product",
-    "url": "http://localhost:9090/c4/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c4/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "openGraph",
@@ -474,7 +474,7 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
       },
       "description": {
         "source": "openGraph",
@@ -506,7 +506,7 @@
   {
     "variant": "c5",
     "pageType": "product",
-    "url": "http://localhost:9090/c5/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c5/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -542,7 +542,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
       },
       "size": {
         "source": "jsonLd",
@@ -578,7 +578,7 @@
   {
     "variant": "c5",
     "pageType": "product",
-    "url": "http://localhost:9090/c5/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c5/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -614,7 +614,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
       },
       "size": {
         "source": "jsonLd",
@@ -650,7 +650,7 @@
   {
     "variant": "c6",
     "pageType": "product",
-    "url": "http://localhost:9090/c6/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c6/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -686,7 +686,7 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
       },
       "description": {
         "source": "openGraph",
@@ -714,7 +714,7 @@
   {
     "variant": "c6",
     "pageType": "product",
-    "url": "http://localhost:9090/c6/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c6/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -750,7 +750,7 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
       },
       "description": {
         "source": "openGraph",
@@ -778,7 +778,7 @@
   {
     "variant": "c7",
     "pageType": "product",
-    "url": "http://localhost:9090/c7/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c7/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -802,7 +802,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
       },
       "color": {
         "source": "jsonLd",
@@ -850,7 +850,7 @@
   {
     "variant": "c7",
     "pageType": "product",
-    "url": "http://localhost:9090/c7/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c7/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -874,7 +874,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
       },
       "color": {
         "source": "jsonLd",
@@ -922,7 +922,7 @@
   {
     "variant": "c8",
     "pageType": "product",
-    "url": "http://localhost:9090/c8/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c8/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "dataLayer(nonstandard)",
@@ -967,7 +967,7 @@
   {
     "variant": "c8",
     "pageType": "product",
-    "url": "http://localhost:9090/c8/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c8/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "dataLayer(nonstandard)",
@@ -1012,7 +1012,7 @@
   {
     "variant": "c9",
     "pageType": "product",
-    "url": "http://localhost:9090/c9/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c9/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -1033,8 +1033,7 @@
         "source": "jsonLd"
       },
       "image": {
-        "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "source": "jsonLd"
       },
       "color": {
         "source": "jsonLd"
@@ -1061,7 +1060,7 @@
   {
     "variant": "c9",
     "pageType": "product",
-    "url": "http://localhost:9090/c9/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c9/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -1082,8 +1081,7 @@
         "source": "jsonLd"
       },
       "image": {
-        "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "source": "jsonLd"
       },
       "color": {
         "source": "jsonLd"
@@ -1110,7 +1108,7 @@
   {
     "variant": "c10",
     "pageType": "product",
-    "url": "http://localhost:9090/c10/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c10/product/TSHIRT-001-RED-M",
     "presentFields": {
       "productId": {
         "source": "ceddl",
@@ -1154,7 +1152,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/tshirt-vintage.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
       },
       "gtin": {
         "source": "jsonLd",
@@ -1183,7 +1181,7 @@
   {
     "variant": "c10",
     "pageType": "product",
-    "url": "http://localhost:9090/c10/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c10/product/SHOE-003-WHT-42",
     "presentFields": {
       "productId": {
         "source": "ceddl",
@@ -1227,7 +1225,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://peaceful-seahorse-9b0bb9.netlify.app/images/sneakers-urban.png"
+        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
       },
       "gtin": {
         "source": "jsonLd",
@@ -1256,7 +1254,7 @@
   {
     "variant": "c11",
     "pageType": "product",
-    "url": "http://localhost:9090/c11/product/TSHIRT-001-RED-M.html",
+    "url": "http://localhost:8000/c11/product/TSHIRT-001-RED-M",
     "presentFields": {},
     "missingFields": [
       "productId",
@@ -1280,7 +1278,7 @@
   {
     "variant": "c11",
     "pageType": "product",
-    "url": "http://localhost:9090/c11/product/SHOE-003-WHT-42.html",
+    "url": "http://localhost:8000/c11/product/SHOE-003-WHT-42",
     "presentFields": {},
     "missingFields": [
       "productId",
