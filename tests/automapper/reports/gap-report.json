@@ -34,11 +34,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Features a relaxed structured fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-red.jpg"
       },
       "size": {
         "source": "jsonLd",
@@ -107,11 +107,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+        "value": "Minimalist low-profile street sneakers featuring a full-grain leather upper, mesh lining, cushioned EVA midsole, and high-grip rubber outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-white.jpg"
       },
       "size": {
         "source": "jsonLd",
@@ -123,7 +123,7 @@
       },
       "gtin": {
         "source": "jsonLd",
-        "value": "01234567890128"
+        "value": "01234567890140"
       },
       "rating": {
         "source": "jsonLd",
@@ -264,11 +264,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Features a relaxed structured fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-red.jpg"
       },
       "color": {
         "source": "jsonLd",
@@ -335,11 +335,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+        "value": "Minimalist low-profile street sneakers featuring a full-grain leather upper, mesh lining, cushioned EVA midsole, and high-grip rubber outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-white.jpg"
       },
       "color": {
         "source": "jsonLd",
@@ -355,7 +355,7 @@
       },
       "gtin": {
         "source": "jsonLd",
-        "value": "01234567890128"
+        "value": "01234567890140"
       },
       "rating": {
         "source": "jsonLd",
@@ -414,11 +414,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-red.jpg"
       },
       "description": {
         "source": "openGraph",
-        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Features a relaxed structured fit with soft retro ribbing."
       },
       "color": {
         "source": "openGraph",
@@ -474,11 +474,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-white.jpg"
       },
       "description": {
         "source": "openGraph",
-        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+        "value": "Minimalist low-profile street sneakers featuring a full-grain leather upper, mesh lining, cushioned EVA midsole, and high-grip rubber outsole."
       },
       "color": {
         "source": "openGraph",
@@ -538,11 +538,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Features a relaxed structured fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-red.jpg"
       },
       "size": {
         "source": "jsonLd",
@@ -610,11 +610,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+        "value": "Minimalist low-profile street sneakers featuring a full-grain leather upper, mesh lining, cushioned EVA midsole, and high-grip rubber outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-white.jpg"
       },
       "size": {
         "source": "jsonLd",
@@ -626,7 +626,7 @@
       },
       "gtin": {
         "source": "jsonLd",
-        "value": "01234567890128"
+        "value": "01234567890140"
       },
       "rating": {
         "source": "jsonLd",
@@ -686,11 +686,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-red.jpg"
       },
       "description": {
         "source": "openGraph",
-        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Features a relaxed structured fit with soft retro ribbing."
       },
       "size": {
         "source": "openGraph",
@@ -750,11 +750,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-white.jpg"
       },
       "description": {
         "source": "openGraph",
-        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+        "value": "Minimalist low-profile street sneakers featuring a full-grain leather upper, mesh lining, cushioned EVA midsole, and high-grip rubber outsole."
       },
       "size": {
         "source": "openGraph",
@@ -798,11 +798,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Features a relaxed structured fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-red.jpg"
       },
       "color": {
         "source": "jsonLd",
@@ -870,11 +870,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+        "value": "Minimalist low-profile street sneakers featuring a full-grain leather upper, mesh lining, cushioned EVA midsole, and high-grip rubber outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-white.jpg"
       },
       "color": {
         "source": "jsonLd",
@@ -890,7 +890,7 @@
       },
       "gtin": {
         "source": "jsonLd",
-        "value": "01234567890128"
+        "value": "01234567890140"
       },
       "rating": {
         "source": "jsonLd",
@@ -1148,11 +1148,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Features a relaxed structured fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-red.jpg"
       },
       "gtin": {
         "source": "jsonLd",
@@ -1221,15 +1221,15 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+        "value": "Minimalist low-profile street sneakers featuring a full-grain leather upper, mesh lining, cushioned EVA midsole, and high-grip rubber outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-white.jpg"
       },
       "gtin": {
         "source": "jsonLd",
-        "value": "01234567890128"
+        "value": "01234567890140"
       },
       "rating": {
         "source": "jsonLd",
