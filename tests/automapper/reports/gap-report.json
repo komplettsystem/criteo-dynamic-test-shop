@@ -34,11 +34,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
       },
       "size": {
         "source": "jsonLd",
@@ -111,7 +111,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
       },
       "size": {
         "source": "jsonLd",
@@ -264,11 +264,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
       },
       "color": {
         "source": "jsonLd",
@@ -339,7 +339,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
       },
       "color": {
         "source": "jsonLd",
@@ -414,11 +414,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
       },
       "description": {
         "source": "openGraph",
-        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
       },
       "color": {
         "source": "openGraph",
@@ -474,7 +474,7 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
       },
       "description": {
         "source": "openGraph",
@@ -538,11 +538,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
       },
       "size": {
         "source": "jsonLd",
@@ -614,7 +614,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
       },
       "size": {
         "source": "jsonLd",
@@ -686,11 +686,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
       },
       "description": {
         "source": "openGraph",
-        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
       },
       "size": {
         "source": "openGraph",
@@ -750,7 +750,7 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
       },
       "description": {
         "source": "openGraph",
@@ -798,11 +798,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
       },
       "color": {
         "source": "jsonLd",
@@ -874,7 +874,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
       },
       "color": {
         "source": "jsonLd",
@@ -1148,11 +1148,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+        "value": "Washed vintage crewneck t-shirt in premium heavy organic cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/tshirt-vintage.png"
       },
       "gtin": {
         "source": "jsonLd",
@@ -1225,7 +1225,7 @@
       },
       "image": {
         "source": "jsonLd",
-        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+        "value": "https://komplettsystem.github.io/criteo-dynamic-test-shop/images/sneakers-urban.png"
       },
       "gtin": {
         "source": "jsonLd",
