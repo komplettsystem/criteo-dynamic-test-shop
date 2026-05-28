@@ -790,6 +790,15 @@
             '</dl>' +
             '</article>';
         } else {
+          var heroHtml = '';
+          if (pageType === 'homepage') {
+            heroHtml = '<div style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); padding: 40px 30px; border-radius: 12px; margin-bottom: 30px; text-align: center; color: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border: 1.5px solid rgba(212,175,55,0.2);">' +
+              '<h2 style="font-size: 2.2rem; font-weight: 900; margin: 0 0 10px 0; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; font-family: system-ui, -apple-system, sans-serif;">FASHION<span style="color:#fff;">.</span></h2>' +
+              '<p style="font-size: 1rem; color: #aaa; margin: 0 auto; max-width: 500px; font-weight: 300; line-height: 1.5;">' + esc(SITE.tagline) + '</p>' +
+              '<span style="display:inline-block; margin-top: 18px; background: rgba(212,175,55,0.1); border: 1px solid #d4af37; color: #d4af37; padding: 4px 14px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Variant Mode: ' + activeCfg.id.toUpperCase() + '</span>' +
+              '</div>';
+          }
+
           var itemsHtml = listProducts.slice(0, 12).map(function(p) {
             var pUrl = basePrefix + "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html";
             return '<li style="background:#fafafa;border:1px solid #eee;border-radius:8px;padding:1rem;list-style:none;text-align:center;">' +
@@ -803,7 +812,8 @@
           }).join('');
           
           body = '<div style="font-family:system-ui,sans-serif;color:#222;">' +
-            '<h1 style="font-size:1.8rem;margin-bottom:1.5rem;">' + esc(pageType === 'category' ? product.category_1 : 'Featured Products') + '</h1>' +
+            heroHtml +
+            '<h1 style="font-size:1.6rem;margin-bottom:1.5rem;font-weight:700;">' + esc(pageType === 'category' ? product.category_1 : 'Featured Products') + '</h1>' +
             '<ul style="padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;">' +
             itemsHtml +
             '</ul>' +
