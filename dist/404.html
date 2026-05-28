@@ -715,7 +715,15 @@
       // Interactive Dynamic Cart Management & Checkout Session Cache
       function getCart() {
         var c = sessionStorage.getItem('sf_cart');
-        try { return c ? JSON.parse(c) : []; } catch(e) { return []; }
+        try {
+          var arr = c ? JSON.parse(c) : [];
+          if (!Array.isArray(arr)) return [];
+          return arr.filter(function(item) {
+            return item && typeof item === 'object' && item.sku && item.price !== undefined;
+          });
+        } catch(e) {
+          return [];
+        }
       }
 
       function saveCart(cart) {
@@ -744,7 +752,11 @@
           });
         }
         saveCart(cart);
-        triggerAddToCartDataLayer(product, qty || 1);
+        try {
+          triggerAddToCartDataLayer(product, qty || 1);
+        } catch (telemetryError) {
+          console.warn('Telemetry error on add_to_cart:', telemetryError);
+        }
         showToast(product.name + ' added to cart!');
       }
 
@@ -761,150 +773,177 @@
       }
 
       function triggerAddToCartDataLayer(product, qty) {
-        var mode = activeCfg.dataLayer;
-        if (mode === 'suppress') return;
-        
-        window.dataLayer = window.dataLayer || [];
-        
-        if (mode === 'ga4') {
-          window.dataLayer.push({ ecommerce: null });
-          window.dataLayer.push({
-            event: 'add_to_cart',
-            ecommerce: {
-              currency: 'EUR',
-              value: Number(product.price) * qty,
-              items: [Object.assign(ga4Item(product, 1), { quantity: qty })]
-            }
-          });
-        }
-        
-        if (mode === 'nonstandard') {
-          var em = NONSTANDARD_FIELD_MAP.events;
-          var ef = NONSTANDARD_FIELD_MAP.ecommerceFields;
-          window.dataLayer.push({
-            eventName: em.add_to_cart,
-            commerce: {
-              [ef.currency]: 'EUR',
-              [ef.value]: Number(product.price) * qty,
-              [ef.items]: [Object.assign(nonstandardItem(product, 1), { qty: qty })]
-            }
-          });
-        }
-        
-        if (mode === 'partial') {
-          window.dataLayer.push({ ecommerce: null });
-          window.dataLayer.push({
-            event: 'add_to_cart',
-            ecommerce: {
-              items: [Object.assign(partialItem(product), { quantity: qty })]
-            }
-          });
-        }
-        
-        if (mode === 'ceddl') {
-          window.digitalData = window.digitalData || {};
-          window.digitalData.cart = window.digitalData.cart || { item: [] };
-          var itemIdx = window.digitalData.cart.item.findIndex(function(i) { return i.productInfo.productID === product.sku; });
-          if (itemIdx !== -1) {
-            window.digitalData.cart.item[itemIdx].quantity += qty;
-          } else {
-            window.digitalData.cart.item.push({
-              productInfo: ceddlProduct(product).productInfo,
-              quantity: qty,
-              price: ceddlProduct(product).price
+        try {
+          var mode = activeCfg.dataLayer;
+          if (mode === 'suppress') return;
+          
+          window.dataLayer = window.dataLayer || [];
+          
+          if (mode === 'ga4') {
+            var gItem = ga4Item(product, 1);
+            gItem.quantity = qty;
+            
+            window.dataLayer.push({ ecommerce: null });
+            window.dataLayer.push({
+              event: 'add_to_cart',
+              ecommerce: {
+                currency: 'EUR',
+                value: Number(product.price) * qty,
+                items: [gItem]
+              }
             });
           }
-          window.dataLayer.push({ event: 'cart_add', page_type: 'product' });
-        }
+          
+          if (mode === 'nonstandard') {
+            var em = NONSTANDARD_FIELD_MAP.events;
+            var ef = NONSTANDARD_FIELD_MAP.ecommerceFields;
+            var nsItem = nonstandardItem(product, 1);
+            nsItem.qty = qty;
+            
+            var commerceObj = {};
+            commerceObj[ef.currency] = 'EUR';
+            commerceObj[ef.value] = Number(product.price) * qty;
+            commerceObj[ef.items] = [nsItem];
+
+            window.dataLayer.push({
+              eventName: em.add_to_cart,
+              commerce: commerceObj
+            });
+          }
+          
+          if (mode === 'partial') {
+            var pItem = partialItem(product);
+            pItem.quantity = qty;
+            
+            window.dataLayer.push({ ecommerce: null });
+            window.dataLayer.push({
+              event: 'add_to_cart',
+              ecommerce: {
+                items: [pItem]
+              }
+            });
+          }
         
-        if (typeof updateInspectorViews === 'function') {
-          updateInspectorViews();
+          if (mode === 'ceddl') {
+            window.digitalData = window.digitalData || {};
+            window.digitalData.cart = window.digitalData.cart || { item: [] };
+            var itemIdx = window.digitalData.cart.item.findIndex(function(i) { return i.productInfo.productID === product.sku; });
+            if (itemIdx !== -1) {
+              window.digitalData.cart.item[itemIdx].quantity += qty;
+            } else {
+              window.digitalData.cart.item.push({
+                productInfo: ceddlProduct(product).productInfo,
+                quantity: qty,
+                price: ceddlProduct(product).price
+              });
+            }
+            window.dataLayer.push({ event: 'cart_add', page_type: 'product' });
+          }
+          
+          if (typeof updateInspectorViews === 'function') {
+            updateInspectorViews();
+          }
+        } catch (e) {
+          console.warn('Add to cart telemetry tracking failed:', e);
         }
       }
 
       function triggerPurchaseDataLayer(order) {
-        var mode = activeCfg.dataLayer;
-        if (mode === 'suppress') return;
-        
-        window.dataLayer = window.dataLayer || [];
-        
-        if (mode === 'ga4') {
-          window.dataLayer.push({ ecommerce: null });
-          window.dataLayer.push({
-            event: 'purchase',
-            ecommerce: {
-              transaction_id: order.orderId,
-              value: Number(order.total),
-              tax: Number(order.tax),
-              shipping: Number(order.shipping),
-              currency: 'EUR',
-              items: order.items.map(function(item, idx) {
-                return Object.assign(ga4Item(item, idx + 1), { quantity: item.quantity });
+        try {
+          var mode = activeCfg.dataLayer;
+          if (mode === 'suppress') return;
+          
+          window.dataLayer = window.dataLayer || [];
+          
+          if (mode === 'ga4') {
+            window.dataLayer.push({ ecommerce: null });
+            window.dataLayer.push({
+              event: 'purchase',
+              ecommerce: {
+                transaction_id: order.orderId,
+                value: Number(order.total),
+                tax: Number(order.tax),
+                shipping: Number(order.shipping),
+                currency: 'EUR',
+                items: order.items.map(function(item, idx) {
+                  var gItem = ga4Item(item, idx + 1);
+                  gItem.quantity = item.quantity;
+                  return gItem;
+                })
+              }
+            });
+          }
+          
+          if (mode === 'nonstandard') {
+            var em = NONSTANDARD_FIELD_MAP.events;
+            var ef = NONSTANDARD_FIELD_MAP.ecommerceFields;
+            var nonstandardItems = order.items.map(function(item, idx) {
+              var nsItem = nonstandardItem(item, idx + 1);
+              nsItem.qty = item.quantity;
+              return nsItem;
+            });
+            
+            var commerceObj = {};
+            commerceObj[ef.transaction_id] = order.orderId;
+            commerceObj[ef.value] = Number(order.total);
+            commerceObj[ef.currency] = 'EUR';
+            commerceObj[ef.items] = nonstandardItems;
+
+            window.dataLayer.push({
+              eventName: em.purchase,
+              commerce: commerceObj
+            });
+          }
+          
+          if (mode === 'partial') {
+            window.dataLayer.push({ ecommerce: null });
+            window.dataLayer.push({
+              event: 'purchase',
+              ecommerce: {
+                transaction_id: order.orderId,
+                items: order.items.map(function(item) {
+                  var pItem = partialItem(item);
+                  pItem.quantity = item.quantity;
+                  return pItem;
+                })
+              }
+            });
+          }
+          
+          if (mode === 'ceddl') {
+            window.digitalData = window.digitalData || {};
+            window.digitalData.transaction = {
+              transactionID: order.orderId,
+              profile: {},
+              total: {
+                revenue: Number(order.total),
+                tax: Number(order.tax),
+                shipping: Number(order.shipping),
+                currency: 'EUR'
+              },
+              item: order.items.map(function(item) {
+                return {
+                  productInfo: {
+                    productID: item.sku,
+                    productName: item.name,
+                    manufacturer: item.brand
+                  },
+                  quantity: item.quantity,
+                  price: {
+                    basePrice: Number(item.price),
+                    currency: 'EUR'
+                  }
+                };
               })
-            }
-          });
-        }
-        
-        if (mode === 'nonstandard') {
-          var em = NONSTANDARD_FIELD_MAP.events;
-          var ef = NONSTANDARD_FIELD_MAP.ecommerceFields;
-          window.dataLayer.push({
-            eventName: em.purchase,
-            commerce: {
-              [ef.transaction_id]: order.orderId,
-              [ef.value]: Number(order.total),
-              [ef.currency]: 'EUR',
-              [ef.items]: order.items.map(function(item, idx) {
-                return Object.assign(nonstandardItem(item, idx + 1), { qty: item.quantity });
-              })
-            }
-          });
-        }
-        
-        if (mode === 'partial') {
-          window.dataLayer.push({ ecommerce: null });
-          window.dataLayer.push({
-            event: 'purchase',
-            ecommerce: {
-              transaction_id: order.orderId,
-              items: order.items.map(function(item) {
-                return Object.assign(partialItem(item), { quantity: item.quantity });
-              })
-            }
-          });
-        }
-        
-        if (mode === 'ceddl') {
-          window.digitalData = window.digitalData || {};
-          window.digitalData.transaction = {
-            transactionID: order.orderId,
-            profile: {},
-            total: {
-              revenue: Number(order.total),
-              tax: Number(order.tax),
-              shipping: Number(order.shipping),
-              currency: 'EUR'
-            },
-            item: order.items.map(function(item) {
-              return {
-                productInfo: {
-                  productID: item.sku,
-                  productName: item.name,
-                  manufacturer: item.brand
-                },
-                quantity: item.quantity,
-                price: {
-                  basePrice: Number(item.price),
-                  currency: 'EUR'
-                }
-              };
-            })
-          };
-          window.dataLayer.push({ event: 'purchase_complete', page_type: 'thank-you' });
-        }
-        
-        if (typeof updateInspectorViews === 'function') {
-          updateInspectorViews();
+            };
+            window.dataLayer.push({ event: 'purchase_complete', page_type: 'thank-you' });
+          }
+          
+          if (typeof updateInspectorViews === 'function') {
+            updateInspectorViews();
+          }
+        } catch (e) {
+          console.warn('Purchase telemetry tracking failed:', e);
         }
       }
 
@@ -952,7 +991,11 @@
         };
         
         sessionStorage.setItem('sf_last_order', JSON.stringify(order));
-        triggerPurchaseDataLayer(order);
+        try {
+          triggerPurchaseDataLayer(order);
+        } catch (telemetryError) {
+          console.warn('Telemetry error on checkout purchase:', telemetryError);
+        }
         saveCart([]);
         
         var thankYouUrl = basePrefix + '/' + activeCfg.id + '/thank-you.html';
