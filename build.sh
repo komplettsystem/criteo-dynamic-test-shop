@@ -6,7 +6,7 @@ rm -rf dist
 mkdir -p dist
 
 # 2. Copy static site assets
-cp -r assets images catalog.csv robots.txt vite.svg dist/
+cp -r assets images catalog.csv robots.txt vite.svg TESTING_GUIDE.md dist/
 cp index.html dist/
 cp index.html dist/404.html
 
