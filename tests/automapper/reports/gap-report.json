@@ -1,8 +1,392 @@
 [
   {
+    "variant": "c1",
+    "pageType": "product",
+    "url": "http://127.0.0.1:8080/c1/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Classic Vintage Tee"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 29.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Apparel"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "Red / M"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "M"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890123"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.6"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "312"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ga4",
+      "jsonLd:full",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c1",
+    "pageType": "product",
+    "url": "http://127.0.0.1:8080/c1/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Urban Street Sneakers"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 89.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Footwear"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "White / 42"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "42"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890128"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.7"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "892"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "dataLayer:ga4",
+      "jsonLd:full",
+      "openGraph:full"
+    ]
+  },
+  {
+    "variant": "c2",
+    "pageType": "product",
+    "url": "http://127.0.0.1:8080/c2/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Classic Vintage Tee"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Adidas"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 29.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Apparel"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "Red / M"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      }
+    },
+    "missingFields": [
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:ga4"
+    ]
+  },
+  {
+    "variant": "c2",
+    "pageType": "product",
+    "url": "http://127.0.0.1:8080/c2/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "dataLayer",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "dataLayer",
+        "value": "Urban Street Sneakers"
+      },
+      "brand": {
+        "source": "dataLayer",
+        "value": "Nike"
+      },
+      "price": {
+        "source": "dataLayer",
+        "value": 89.99
+      },
+      "category": {
+        "source": "dataLayer",
+        "value": "Footwear"
+      },
+      "color": {
+        "source": "dataLayer",
+        "value": "White / 42"
+      },
+      "currency": {
+        "source": "dataLayer",
+        "value": "EUR"
+      }
+    },
+    "missingFields": [
+      "availability",
+      "image",
+      "description",
+      "gtin",
+      "size",
+      "gender",
+      "rating",
+      "ratingCount"
+    ],
+    "activeSources": [
+      "dataLayer:ga4"
+    ]
+  },
+  {
+    "variant": "c3",
+    "pageType": "product",
+    "url": "http://127.0.0.1:8080/c3/product/TSHIRT-001-RED-M.html",
+    "presentFields": {
+      "productId": {
+        "source": "jsonLd",
+        "value": "TSHIRT-001-RED-M"
+      },
+      "productName": {
+        "source": "jsonLd",
+        "value": "Classic Vintage Tee"
+      },
+      "brand": {
+        "source": "jsonLd",
+        "value": "Adidas"
+      },
+      "category": {
+        "source": "jsonLd",
+        "value": "Apparel > T-Shirts"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
+      },
+      "color": {
+        "source": "jsonLd",
+        "value": "Red"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "M"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890123"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.6"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "312"
+      },
+      "price": {
+        "source": "jsonLd",
+        "value": "29.99"
+      },
+      "currency": {
+        "source": "jsonLd",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "jsonLd:full"
+    ]
+  },
+  {
+    "variant": "c3",
+    "pageType": "product",
+    "url": "http://127.0.0.1:8080/c3/product/SHOE-003-WHT-42.html",
+    "presentFields": {
+      "productId": {
+        "source": "jsonLd",
+        "value": "SHOE-003-WHT-42"
+      },
+      "productName": {
+        "source": "jsonLd",
+        "value": "Urban Street Sneakers"
+      },
+      "brand": {
+        "source": "jsonLd",
+        "value": "Nike"
+      },
+      "category": {
+        "source": "jsonLd",
+        "value": "Footwear > Shoes"
+      },
+      "description": {
+        "source": "jsonLd",
+        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
+      },
+      "image": {
+        "source": "jsonLd",
+        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
+      },
+      "color": {
+        "source": "jsonLd",
+        "value": "White"
+      },
+      "size": {
+        "source": "jsonLd",
+        "value": "42"
+      },
+      "gender": {
+        "source": "jsonLd",
+        "value": "unisex"
+      },
+      "gtin": {
+        "source": "jsonLd",
+        "value": "01234567890128"
+      },
+      "rating": {
+        "source": "jsonLd",
+        "value": "4.7"
+      },
+      "ratingCount": {
+        "source": "jsonLd",
+        "value": "892"
+      },
+      "price": {
+        "source": "jsonLd",
+        "value": "89.99"
+      },
+      "currency": {
+        "source": "jsonLd",
+        "value": "EUR"
+      },
+      "availability": {
+        "source": "jsonLd",
+        "value": "https://schema.org/InStock"
+      }
+    },
+    "missingFields": [],
+    "activeSources": [
+      "jsonLd:full"
+    ]
+  },
+  {
     "variant": "c4",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c4/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c4/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "openGraph",
@@ -10,7 +394,7 @@
       },
       "productName": {
         "source": "openGraph",
-        "value": "Vintage Logo T-Shirt — Adidas"
+        "value": "Classic Vintage Tee — Adidas"
       },
       "brand": {
         "source": "openGraph",
@@ -30,11 +414,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
+        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
       },
       "description": {
         "source": "openGraph",
-        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
       },
       "color": {
         "source": "openGraph",
@@ -62,7 +446,7 @@
   {
     "variant": "c4",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c4/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c4/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "openGraph",
@@ -70,7 +454,7 @@
       },
       "productName": {
         "source": "openGraph",
-        "value": "Urban Sneakers — Nike"
+        "value": "Urban Street Sneakers — Nike"
       },
       "brand": {
         "source": "openGraph",
@@ -90,11 +474,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
+        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
       },
       "description": {
         "source": "openGraph",
-        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
       },
       "color": {
         "source": "openGraph",
@@ -122,7 +506,7 @@
   {
     "variant": "c5",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c5/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c5/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -130,7 +514,7 @@
       },
       "productName": {
         "source": "dataLayer",
-        "value": "Vintage Logo T-Shirt"
+        "value": "Classic Vintage Tee"
       },
       "brand": {
         "source": "dataLayer",
@@ -154,11 +538,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
+        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
       },
       "size": {
         "source": "jsonLd",
@@ -194,7 +578,7 @@
   {
     "variant": "c5",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c5/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c5/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -202,7 +586,7 @@
       },
       "productName": {
         "source": "dataLayer",
-        "value": "Urban Sneakers"
+        "value": "Urban Street Sneakers"
       },
       "brand": {
         "source": "dataLayer",
@@ -226,11 +610,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
+        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
       },
       "size": {
         "source": "jsonLd",
@@ -266,7 +650,7 @@
   {
     "variant": "c6",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c6/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c6/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -274,7 +658,7 @@
       },
       "productName": {
         "source": "dataLayer",
-        "value": "Vintage Logo T-Shirt"
+        "value": "Classic Vintage Tee"
       },
       "brand": {
         "source": "dataLayer",
@@ -302,11 +686,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
+        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
       },
       "description": {
         "source": "openGraph",
-        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
       },
       "size": {
         "source": "openGraph",
@@ -330,7 +714,7 @@
   {
     "variant": "c6",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c6/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c6/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -338,7 +722,7 @@
       },
       "productName": {
         "source": "dataLayer",
-        "value": "Urban Sneakers"
+        "value": "Urban Street Sneakers"
       },
       "brand": {
         "source": "dataLayer",
@@ -366,11 +750,11 @@
       },
       "image": {
         "source": "openGraph",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
+        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
       },
       "description": {
         "source": "openGraph",
-        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
       },
       "size": {
         "source": "openGraph",
@@ -394,7 +778,7 @@
   {
     "variant": "c7",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c7/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c7/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -402,7 +786,7 @@
       },
       "productName": {
         "source": "jsonLd",
-        "value": "Vintage Logo T-Shirt"
+        "value": "Classic Vintage Tee"
       },
       "brand": {
         "source": "jsonLd",
@@ -414,11 +798,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
+        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
       },
       "color": {
         "source": "jsonLd",
@@ -466,7 +850,7 @@
   {
     "variant": "c7",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c7/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c7/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -474,7 +858,7 @@
       },
       "productName": {
         "source": "jsonLd",
-        "value": "Urban Sneakers"
+        "value": "Urban Street Sneakers"
       },
       "brand": {
         "source": "jsonLd",
@@ -486,11 +870,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
+        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
       },
       "color": {
         "source": "jsonLd",
@@ -538,7 +922,7 @@
   {
     "variant": "c8",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c8/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c8/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer(nonstandard)",
@@ -546,7 +930,7 @@
       },
       "productName": {
         "source": "dataLayer(nonstandard)",
-        "value": "Vintage Logo T-Shirt"
+        "value": "Classic Vintage Tee"
       },
       "brand": {
         "source": "dataLayer(nonstandard)",
@@ -583,7 +967,7 @@
   {
     "variant": "c8",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c8/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c8/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer(nonstandard)",
@@ -591,7 +975,7 @@
       },
       "productName": {
         "source": "dataLayer(nonstandard)",
-        "value": "Urban Sneakers"
+        "value": "Urban Street Sneakers"
       },
       "brand": {
         "source": "dataLayer(nonstandard)",
@@ -628,7 +1012,7 @@
   {
     "variant": "c9",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c9/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c9/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -636,7 +1020,7 @@
       },
       "productName": {
         "source": "dataLayer",
-        "value": "Vintage Logo T-Shirt"
+        "value": "Classic Vintage Tee"
       },
       "price": {
         "source": "dataLayer",
@@ -676,7 +1060,7 @@
   {
     "variant": "c9",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c9/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c9/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -684,7 +1068,7 @@
       },
       "productName": {
         "source": "dataLayer",
-        "value": "Urban Sneakers"
+        "value": "Urban Street Sneakers"
       },
       "price": {
         "source": "dataLayer",
@@ -724,7 +1108,7 @@
   {
     "variant": "c10",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c10/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c10/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "ceddl",
@@ -732,7 +1116,7 @@
       },
       "productName": {
         "source": "ceddl",
-        "value": "Vintage Logo T-Shirt"
+        "value": "Classic Vintage Tee"
       },
       "brand": {
         "source": "ceddl",
@@ -764,11 +1148,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
+        "value": "Washed vintage crewneck t-shirt in premium heavy cotton. Relaxed fit with soft retro ribbing."
       },
       "image": {
         "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
+        "value": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=60"
       },
       "gtin": {
         "source": "jsonLd",
@@ -797,7 +1181,7 @@
   {
     "variant": "c10",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c10/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c10/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "ceddl",
@@ -805,7 +1189,7 @@
       },
       "productName": {
         "source": "ceddl",
-        "value": "Urban Sneakers"
+        "value": "Urban Street Sneakers"
       },
       "brand": {
         "source": "ceddl",
@@ -837,11 +1221,11 @@
       },
       "description": {
         "source": "jsonLd",
-        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
+        "value": "Minimalist urban street sneakers with low-profile design and dynamic traction outsole."
       },
       "image": {
         "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
+        "value": "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&auto=format&fit=crop&q=60"
       },
       "gtin": {
         "source": "jsonLd",
@@ -870,7 +1254,7 @@
   {
     "variant": "c11",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c11/product/TSHIRT-001-RED-M.html",
+    "url": "http://127.0.0.1:8080/c11/product/TSHIRT-001-RED-M.html",
     "presentFields": {},
     "missingFields": [
       "productId",
@@ -894,7 +1278,7 @@
   {
     "variant": "c11",
     "pageType": "product",
-    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c11/product/SHOE-003-WHT-42.html",
+    "url": "http://127.0.0.1:8080/c11/product/SHOE-003-WHT-42.html",
     "presentFields": {},
     "missingFields": [
       "productId",
