@@ -8,6 +8,7 @@ mkdir -p dist
 # 2. Copy static site assets
 cp -r assets images catalog.csv robots.txt vite.svg dist/
 cp index.html dist/
+cp index.html dist/404.html
 cp -r setup dist/
 
 # 3. Substitute GTM container ID in all HTML files (Option B single index.html)
