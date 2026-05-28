@@ -89,6 +89,24 @@
 
       // 2. Identify if this is a path-based variant request (e.g. /c1/, /c3/product/SKU.html)
       var rawPath = window.location.pathname || "/";
+      var basePrefix = "";
+      
+      // Look for a variant pattern (e.g. /c1/, /c11/, or ending with /c1) in the path
+      var matchVariantIndex = rawPath.search(/\/c\d+(?:\/|$)/);
+      if (matchVariantIndex !== -1) {
+        basePrefix = rawPath.substring(0, matchVariantIndex);
+        rawPath = rawPath.substring(matchVariantIndex);
+      } else {
+        // If no variant segment is found in the path, check if the first path segment
+        // is our repository name (subpath hosting fallback for SPA routes)
+        var segments = rawPath.split('/').filter(Boolean);
+        if (segments.length > 0 && segments[0] === "criteo-dynamic-test-shop") {
+          basePrefix = "/criteo-dynamic-test-shop";
+          rawPath = rawPath.substring(25) || "/";
+        }
+      }
+      window.__basePrefix = basePrefix;
+
       var pathClean = rawPath.replace(/\/+$/, "") || "/";
       var varMatch = pathClean.match(/^\/(c\d+)(?:\/|$)/);
       var isVariantPath = !!varMatch;
@@ -105,14 +123,14 @@
         var reactScript = document.createElement('script');
         reactScript.type = 'module';
         reactScript.crossOrigin = 'anonymous';
-        reactScript.src = '/assets/index-byuxcqkd.js';
+        reactScript.src = basePrefix + '/assets/index-byuxcqkd.js';
         reactScript.id = 'react-bundle-script';
         document.head.appendChild(reactScript);
 
         var reactStyle = document.createElement('link');
         reactStyle.rel = 'stylesheet';
         reactStyle.crossOrigin = 'anonymous';
-        reactStyle.href = '/assets/index-dqex2nto.css';
+        reactStyle.href = basePrefix + '/assets/index-dqex2nto.css';
         reactStyle.id = 'react-bundle-style';
         document.head.appendChild(reactStyle);
       }
@@ -197,7 +215,7 @@
         if (!catalogSyncData) {
           try {
             var xhr = new XMLHttpRequest();
-            xhr.open('GET', '/catalog.csv', false); // Sync call!
+            xhr.open('GET', basePrefix + '/catalog.csv', false); // Sync call!
             xhr.send(null);
             if (xhr.status === 200) {
               catalogSyncData = parseCSV(xhr.responseText);
@@ -214,7 +232,7 @@
       var catalogP = null;
       function fetchCatalog() {
         if (!catalogP) {
-          catalogP = fetch("/catalog.csv").then(function (r) { return r.text(); }).then(parseCSV).catch(function () { return []; });
+          catalogP = fetch(basePrefix + "/catalog.csv").then(function (r) { return r.text(); }).then(parseCSV).catch(function () { return []; });
         }
         return catalogP;
       }
@@ -734,7 +752,7 @@
           '</div>';
 
         var navHtml = '<header style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:.5rem;margin-bottom:1rem;font-family:system-ui,sans-serif;">' +
-          '<a href="/' + activeCfg.id + '/" style="color:#0066cc;text-decoration:none;font-weight:bold;">← ' + activeCfg.id.toUpperCase() + ' Home</a>' +
+          '<a href="' + basePrefix + '/' + activeCfg.id + '/" style="color:#0066cc;text-decoration:none;font-weight:bold;">← ' + activeCfg.id.toUpperCase() + ' Home</a>' +
           '<span style="background:#f0f0f0;border:1px solid #ccc;border-radius:4px;padding:.25rem .5rem;font-size:.75rem;font-family:monospace;">' + activeCfg.id.toUpperCase() + ': ' + activeCfg.label + '</span>' +
           '</header>';
 
@@ -773,7 +791,7 @@
             '</article>';
         } else {
           var itemsHtml = listProducts.slice(0, 12).map(function(p) {
-            var pUrl = "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html";
+            var pUrl = basePrefix + "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html";
             return '<li style="background:#fafafa;border:1px solid #eee;border-radius:8px;padding:1rem;list-style:none;text-align:center;">' +
               '<a href="' + pUrl + '" style="text-decoration:none;color:inherit;display:block;">' +
               '<img src="' + esc(abs(p.image)) + '" alt="' + esc(p.name) + '" width="150" style="max-width:100%;border-radius:4px;margin-bottom:8px;" />' +
@@ -857,7 +875,7 @@
         // 5. Defer body modifications & UI rendering until DOMContentLoaded
         document.addEventListener("DOMContentLoaded", function () {
           if (!product && pageType !== 'homepage') {
-            document.body.innerHTML = '<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h2>Page not found</h2><a href="/' + activeCfg.id + '/">Back to Variant Home</a></div>';
+            document.body.innerHTML = '<div style="padding:2rem;text-align:center;font-family:sans-serif;"><h2>Page not found</h2><a href="' + basePrefix + '/' + activeCfg.id + '/">Back to Variant Home</a></div>';
             return;
           }
 
