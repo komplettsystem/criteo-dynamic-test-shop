@@ -180,6 +180,12 @@
         return SITE.url + (p.charAt(0) === "/" ? p : "/" + p);
       }
 
+      function resolveImgUrl(img) {
+        if (!img) return '';
+        if (/^https?:\/\//i.test(img)) return img;
+        return basePrefix + (img.charAt(0) === '/' ? img : '/' + img);
+      }
+
       function parseLine(line) {
         var out = [], cur = "", q = false;
         for (var i = 0; i < line.length; i++) {
@@ -762,7 +768,7 @@
 
         if (pageType === 'product') {
           body = '<article class="product" itemscope itemtype="https://schema.org/Product" style="font-family:system-ui,sans-serif;color:#222;max-width:600px;">' +
-            '<img src="' + esc(abs(product.image)) + '" alt="' + esc(product.name) + '" width="300" height="300" style="border-radius:8px;max-width:300px;" />' +
+            '<img src="' + esc(resolveImgUrl(product.image)) + '" alt="' + esc(product.name) + '" width="300" height="300" style="border-radius:8px;max-width:300px;" />' +
             '<h1 itemprop="name" style="margin:.5rem 0;">' + esc(product.name) + '</h1>' +
             '<p class="brand" itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="color:#666;margin:0;">' +
             '<span itemprop="name">' + esc(product.brand) + '</span>' +
@@ -803,7 +809,7 @@
             var pUrl = basePrefix + "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html";
             return '<li style="background:#fafafa;border:1px solid #eee;border-radius:8px;padding:1rem;list-style:none;text-align:center;">' +
               '<a href="' + pUrl + '" style="text-decoration:none;color:inherit;display:block;">' +
-              '<img src="' + esc(abs(p.image)) + '" alt="' + esc(p.name) + '" width="150" style="max-width:100%;border-radius:4px;margin-bottom:8px;" />' +
+              '<img src="' + esc(resolveImgUrl(p.image)) + '" alt="' + esc(p.name) + '" width="150" style="max-width:100%;border-radius:4px;margin-bottom:8px;" />' +
               '<h3 style="font-size:13px;margin:4px 0;font-weight:700;text-transform:uppercase;">' + esc(p.name) + '</h3>' +
               '<p style="color:#666;font-size:11px;margin:2px 0;">' + esc(p.brand) + '</p>' +
               '<p style="font-weight:bold;font-size:14px;margin:4px 0;">€' + esc(p.price) + '</p>' +
