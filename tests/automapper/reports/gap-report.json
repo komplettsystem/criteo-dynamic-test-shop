@@ -1,392 +1,8 @@
 [
   {
-    "variant": "c1",
-    "pageType": "product",
-    "url": "http://localhost:8000/c1/product/TSHIRT-001-RED-M",
-    "presentFields": {
-      "productId": {
-        "source": "dataLayer",
-        "value": "TSHIRT-001-RED-M"
-      },
-      "productName": {
-        "source": "dataLayer",
-        "value": "Vintage Logo T-Shirt"
-      },
-      "brand": {
-        "source": "dataLayer",
-        "value": "Adidas"
-      },
-      "price": {
-        "source": "dataLayer",
-        "value": 29.99
-      },
-      "category": {
-        "source": "dataLayer",
-        "value": "Apparel"
-      },
-      "color": {
-        "source": "dataLayer",
-        "value": "Red / M"
-      },
-      "currency": {
-        "source": "dataLayer",
-        "value": "EUR"
-      },
-      "description": {
-        "source": "jsonLd",
-        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
-      },
-      "image": {
-        "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
-      },
-      "size": {
-        "source": "jsonLd",
-        "value": "M"
-      },
-      "gender": {
-        "source": "jsonLd",
-        "value": "unisex"
-      },
-      "gtin": {
-        "source": "jsonLd",
-        "value": "01234567890123"
-      },
-      "rating": {
-        "source": "jsonLd",
-        "value": "4.6"
-      },
-      "ratingCount": {
-        "source": "jsonLd",
-        "value": "312"
-      },
-      "availability": {
-        "source": "jsonLd",
-        "value": "https://schema.org/InStock"
-      }
-    },
-    "missingFields": [],
-    "activeSources": [
-      "dataLayer:ga4",
-      "jsonLd:full",
-      "openGraph:full"
-    ]
-  },
-  {
-    "variant": "c1",
-    "pageType": "product",
-    "url": "http://localhost:8000/c1/product/SHOE-003-WHT-42",
-    "presentFields": {
-      "productId": {
-        "source": "dataLayer",
-        "value": "SHOE-003-WHT-42"
-      },
-      "productName": {
-        "source": "dataLayer",
-        "value": "Urban Sneakers"
-      },
-      "brand": {
-        "source": "dataLayer",
-        "value": "Nike"
-      },
-      "price": {
-        "source": "dataLayer",
-        "value": 89.99
-      },
-      "category": {
-        "source": "dataLayer",
-        "value": "Footwear"
-      },
-      "color": {
-        "source": "dataLayer",
-        "value": "White / 42"
-      },
-      "currency": {
-        "source": "dataLayer",
-        "value": "EUR"
-      },
-      "description": {
-        "source": "jsonLd",
-        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
-      },
-      "image": {
-        "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
-      },
-      "size": {
-        "source": "jsonLd",
-        "value": "42"
-      },
-      "gender": {
-        "source": "jsonLd",
-        "value": "unisex"
-      },
-      "gtin": {
-        "source": "jsonLd",
-        "value": "01234567890128"
-      },
-      "rating": {
-        "source": "jsonLd",
-        "value": "4.7"
-      },
-      "ratingCount": {
-        "source": "jsonLd",
-        "value": "892"
-      },
-      "availability": {
-        "source": "jsonLd",
-        "value": "https://schema.org/InStock"
-      }
-    },
-    "missingFields": [],
-    "activeSources": [
-      "dataLayer:ga4",
-      "jsonLd:full",
-      "openGraph:full"
-    ]
-  },
-  {
-    "variant": "c2",
-    "pageType": "product",
-    "url": "http://localhost:8000/c2/product/TSHIRT-001-RED-M",
-    "presentFields": {
-      "productId": {
-        "source": "dataLayer",
-        "value": "TSHIRT-001-RED-M"
-      },
-      "productName": {
-        "source": "dataLayer",
-        "value": "Vintage Logo T-Shirt"
-      },
-      "brand": {
-        "source": "dataLayer",
-        "value": "Adidas"
-      },
-      "price": {
-        "source": "dataLayer",
-        "value": 29.99
-      },
-      "category": {
-        "source": "dataLayer",
-        "value": "Apparel"
-      },
-      "color": {
-        "source": "dataLayer",
-        "value": "Red / M"
-      },
-      "currency": {
-        "source": "dataLayer",
-        "value": "EUR"
-      }
-    },
-    "missingFields": [
-      "availability",
-      "image",
-      "description",
-      "gtin",
-      "size",
-      "gender",
-      "rating",
-      "ratingCount"
-    ],
-    "activeSources": [
-      "dataLayer:ga4"
-    ]
-  },
-  {
-    "variant": "c2",
-    "pageType": "product",
-    "url": "http://localhost:8000/c2/product/SHOE-003-WHT-42",
-    "presentFields": {
-      "productId": {
-        "source": "dataLayer",
-        "value": "SHOE-003-WHT-42"
-      },
-      "productName": {
-        "source": "dataLayer",
-        "value": "Urban Sneakers"
-      },
-      "brand": {
-        "source": "dataLayer",
-        "value": "Nike"
-      },
-      "price": {
-        "source": "dataLayer",
-        "value": 89.99
-      },
-      "category": {
-        "source": "dataLayer",
-        "value": "Footwear"
-      },
-      "color": {
-        "source": "dataLayer",
-        "value": "White / 42"
-      },
-      "currency": {
-        "source": "dataLayer",
-        "value": "EUR"
-      }
-    },
-    "missingFields": [
-      "availability",
-      "image",
-      "description",
-      "gtin",
-      "size",
-      "gender",
-      "rating",
-      "ratingCount"
-    ],
-    "activeSources": [
-      "dataLayer:ga4"
-    ]
-  },
-  {
-    "variant": "c3",
-    "pageType": "product",
-    "url": "http://localhost:8000/c3/product/TSHIRT-001-RED-M",
-    "presentFields": {
-      "productId": {
-        "source": "jsonLd",
-        "value": "TSHIRT-001-RED-M"
-      },
-      "productName": {
-        "source": "jsonLd",
-        "value": "Vintage Logo T-Shirt"
-      },
-      "brand": {
-        "source": "jsonLd",
-        "value": "Adidas"
-      },
-      "category": {
-        "source": "jsonLd",
-        "value": "Apparel > T-Shirts"
-      },
-      "description": {
-        "source": "jsonLd",
-        "value": "Classic logo tee with retro graphics. Soft cotton fabric for everyday comfort."
-      },
-      "image": {
-        "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/tshirt-vintage.png"
-      },
-      "color": {
-        "source": "jsonLd",
-        "value": "Red"
-      },
-      "size": {
-        "source": "jsonLd",
-        "value": "M"
-      },
-      "gender": {
-        "source": "jsonLd",
-        "value": "unisex"
-      },
-      "gtin": {
-        "source": "jsonLd",
-        "value": "01234567890123"
-      },
-      "rating": {
-        "source": "jsonLd",
-        "value": "4.6"
-      },
-      "ratingCount": {
-        "source": "jsonLd",
-        "value": "312"
-      },
-      "price": {
-        "source": "jsonLd",
-        "value": "29.99"
-      },
-      "currency": {
-        "source": "jsonLd",
-        "value": "EUR"
-      },
-      "availability": {
-        "source": "jsonLd",
-        "value": "https://schema.org/InStock"
-      }
-    },
-    "missingFields": [],
-    "activeSources": [
-      "jsonLd:full"
-    ]
-  },
-  {
-    "variant": "c3",
-    "pageType": "product",
-    "url": "http://localhost:8000/c3/product/SHOE-003-WHT-42",
-    "presentFields": {
-      "productId": {
-        "source": "jsonLd",
-        "value": "SHOE-003-WHT-42"
-      },
-      "productName": {
-        "source": "jsonLd",
-        "value": "Urban Sneakers"
-      },
-      "brand": {
-        "source": "jsonLd",
-        "value": "Nike"
-      },
-      "category": {
-        "source": "jsonLd",
-        "value": "Footwear > Shoes"
-      },
-      "description": {
-        "source": "jsonLd",
-        "value": "Urban sneakers with cushioned sole and breathable upper. Versatile street style."
-      },
-      "image": {
-        "source": "jsonLd",
-        "value": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/images/sneakers-urban.png"
-      },
-      "color": {
-        "source": "jsonLd",
-        "value": "White"
-      },
-      "size": {
-        "source": "jsonLd",
-        "value": "42"
-      },
-      "gender": {
-        "source": "jsonLd",
-        "value": "unisex"
-      },
-      "gtin": {
-        "source": "jsonLd",
-        "value": "01234567890128"
-      },
-      "rating": {
-        "source": "jsonLd",
-        "value": "4.7"
-      },
-      "ratingCount": {
-        "source": "jsonLd",
-        "value": "892"
-      },
-      "price": {
-        "source": "jsonLd",
-        "value": "89.99"
-      },
-      "currency": {
-        "source": "jsonLd",
-        "value": "EUR"
-      },
-      "availability": {
-        "source": "jsonLd",
-        "value": "https://schema.org/InStock"
-      }
-    },
-    "missingFields": [],
-    "activeSources": [
-      "jsonLd:full"
-    ]
-  },
-  {
     "variant": "c4",
     "pageType": "product",
-    "url": "http://localhost:8000/c4/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c4/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "openGraph",
@@ -446,7 +62,7 @@
   {
     "variant": "c4",
     "pageType": "product",
-    "url": "http://localhost:8000/c4/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c4/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "openGraph",
@@ -506,7 +122,7 @@
   {
     "variant": "c5",
     "pageType": "product",
-    "url": "http://localhost:8000/c5/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c5/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -578,7 +194,7 @@
   {
     "variant": "c5",
     "pageType": "product",
-    "url": "http://localhost:8000/c5/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c5/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -650,7 +266,7 @@
   {
     "variant": "c6",
     "pageType": "product",
-    "url": "http://localhost:8000/c6/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c6/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -714,7 +330,7 @@
   {
     "variant": "c6",
     "pageType": "product",
-    "url": "http://localhost:8000/c6/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c6/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -778,7 +394,7 @@
   {
     "variant": "c7",
     "pageType": "product",
-    "url": "http://localhost:8000/c7/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c7/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -850,7 +466,7 @@
   {
     "variant": "c7",
     "pageType": "product",
-    "url": "http://localhost:8000/c7/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c7/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "jsonLd",
@@ -922,7 +538,7 @@
   {
     "variant": "c8",
     "pageType": "product",
-    "url": "http://localhost:8000/c8/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c8/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer(nonstandard)",
@@ -967,7 +583,7 @@
   {
     "variant": "c8",
     "pageType": "product",
-    "url": "http://localhost:8000/c8/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c8/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer(nonstandard)",
@@ -1012,7 +628,7 @@
   {
     "variant": "c9",
     "pageType": "product",
-    "url": "http://localhost:8000/c9/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c9/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -1060,7 +676,7 @@
   {
     "variant": "c9",
     "pageType": "product",
-    "url": "http://localhost:8000/c9/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c9/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "dataLayer",
@@ -1108,7 +724,7 @@
   {
     "variant": "c10",
     "pageType": "product",
-    "url": "http://localhost:8000/c10/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c10/product/TSHIRT-001-RED-M.html",
     "presentFields": {
       "productId": {
         "source": "ceddl",
@@ -1181,7 +797,7 @@
   {
     "variant": "c10",
     "pageType": "product",
-    "url": "http://localhost:8000/c10/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c10/product/SHOE-003-WHT-42.html",
     "presentFields": {
       "productId": {
         "source": "ceddl",
@@ -1254,7 +870,7 @@
   {
     "variant": "c11",
     "pageType": "product",
-    "url": "http://localhost:8000/c11/product/TSHIRT-001-RED-M",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c11/product/TSHIRT-001-RED-M.html",
     "presentFields": {},
     "missingFields": [
       "productId",
@@ -1278,7 +894,7 @@
   {
     "variant": "c11",
     "pageType": "product",
-    "url": "http://localhost:8000/c11/product/SHOE-003-WHT-42",
+    "url": "http://criteo-dynamic-test-shop.s3-website-us-east-1.amazonaws.com/c11/product/SHOE-003-WHT-42.html",
     "presentFields": {},
     "missingFields": [
       "productId",
