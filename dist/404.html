@@ -751,83 +751,147 @@
       // Interceptor DOM generator
       function compileStorefrontHtml(pageType, product, listProducts) {
         var body = '';
-        var warnStyle = "background: linear-gradient(90deg, #d4af37, #b5952f); color: #111; text-align: center; padding: 10px 20px; font-size: 13px; font-weight: 700; border-bottom: 2px solid #997c23; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); display: flex; align-items: center; justify-content: center; gap: 8px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;";
         
-        var disclaimer = '<div style="' + warnStyle + '">' +
-          '<span>⚠️</span> <strong>TESTING PLATFORM:</strong> This is a synthetic, mock e-commerce sandbox for automated tag and schema verification. No real products, payments, or deliveries are offered or processed.' +
-          '</div>';
+        // Inject Google Font Outfit and custom styles
+        var fontStyleId = 'sf-outfit-font';
+        if (!document.getElementById(fontStyleId)) {
+          var fontLink = document.createElement('link');
+          fontLink.id = fontStyleId;
+          fontLink.rel = 'stylesheet';
+          fontLink.href = 'https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap';
+          document.head.appendChild(fontLink);
+        }
 
-        var navHtml = '<header style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ddd;padding-bottom:.5rem;margin-bottom:1rem;font-family:system-ui,sans-serif;">' +
-          '<a href="' + basePrefix + '/' + activeCfg.id + '/" style="color:#0066cc;text-decoration:none;font-weight:bold;">← ' + activeCfg.id.toUpperCase() + ' Home</a>' +
-          '<span style="background:#f0f0f0;border:1px solid #ccc;border-radius:4px;padding:.25rem .5rem;font-size:.75rem;font-family:monospace;">' + activeCfg.id.toUpperCase() + ': ' + activeCfg.label + '</span>' +
+        var sfStyleId = 'storefront-custom-styles';
+        if (!document.getElementById(sfStyleId)) {
+          var style = document.createElement('style');
+          style.id = sfStyleId;
+          style.textContent = 'body{font-family:\'Outfit\',-apple-system,BlinkMacSystemFont,sans-serif!important;margin:0;padding:0;background-color:#fff;color:#111}.sf-disclaimer{background:linear-gradient(90deg,#d4af37,#b5952f);color:#111;text-align:center;padding:12px 24px;font-size:13px;font-weight:700;border-bottom:2px solid #997c23;letter-spacing:.5px;box-shadow:0 2px 8px rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;gap:8px}.sf-wrapper{max-width:1200px;margin:0 auto;padding:2rem 1.5rem;box-sizing:border-box}.sf-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #f0f0f0;padding-bottom:1.5rem;margin-bottom:2.5rem}.sf-logo{font-size:2.2rem;font-weight:900;text-decoration:none;color:#111;letter-spacing:-1.5px}.sf-logo span{color:#d4af37}.sf-nav{display:flex;gap:2.5rem;align-items:center}.sf-nav-link{font-size:.8rem;font-weight:800;text-transform:uppercase;text-decoration:none;color:#666;letter-spacing:1.5px;transition:color .2s}.sf-nav-link:hover{color:#000}.sf-badge{background:rgba(212,175,55,.08);border:1.5px solid rgba(212,175,55,.25);border-radius:6px;padding:6px 12px;font-size:.7rem;font-family:monospace;font-weight:700;color:#997c23;letter-spacing:.5px}.sf-hero{background:linear-gradient(135deg,#181818 0%,#080808 100%);padding:80px 40px;border-radius:20px;margin-bottom:3.5rem;text-align:center;color:#fff;position:relative;overflow:hidden;box-shadow:0 15px 45px rgba(0,0,0,.2);border:1px solid rgba(212,175,55,.15)}.sf-hero-tag{font-size:.75rem;font-weight:800;color:#d4af37;text-transform:uppercase;letter-spacing:4px;margin-bottom:1.25rem;display:block}.sf-hero-title{font-size:4rem;font-weight:900;margin:0 0 1.25rem 0;letter-spacing:-2.5px;line-height:.95;text-transform:uppercase}.sf-hero-title span{font-style:italic;font-family:Georgia,serif;text-transform:lowercase;font-weight:400}.sf-hero-desc{font-size:1.05rem;color:#aaa;max-width:520px;margin:0 auto 2.25rem auto;font-weight:300;line-height:1.6}.sf-hero-btn{display:inline-block;background:#fff;color:#000;padding:16px 36px;font-weight:800;text-transform:uppercase;text-decoration:none;font-size:.75rem;letter-spacing:2px;border-radius:4px;transition:all .25s cubic-bezier(.4,0,.2,1);box-shadow:0 4px 15px rgba(255,255,255,.08)}.sf-hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(255,255,255,.15);background:#f0f0f0}.sf-cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:4.5rem}.sf-cat-card{position:relative;height:360px;border-radius:16px;overflow:hidden;display:block;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.04)}.sf-cat-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.4,0,.2,1)}.sf-cat-card:hover img{transform:scale(1.05)}.sf-cat-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,0) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:2rem;box-sizing:border-box}.sf-cat-name{font-size:1.6rem;font-weight:800;color:#fff;text-transform:uppercase;letter-spacing:1px;margin:0}.sf-cat-link{font-size:.8rem;color:#d4af37;font-weight:700;margin-top:6px;display:flex;align-items:center;gap:4px}.sf-title-wrapper{text-align:center;margin-bottom:3rem}.sf-sec-title{font-size:2rem;font-weight:900;margin:0 0 10px 0;letter-spacing:-.5px;text-transform:uppercase}.sf-sec-desc{font-size:.95rem;color:#666;margin:0}.sf-prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-bottom:4.5rem}.sf-prod-card{text-decoration:none;color:inherit;display:block}.sf-prod-img-box{background:#fafafa;border-radius:20px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:2rem;margin-bottom:1.25rem;overflow:hidden;box-sizing:border-box;transition:transform .3s cubic-bezier(.4,0,.2,1)}.sf-prod-card:hover .sf-prod-img-box{transform:translateY(-6px)}.sf-prod-card img{max-width:100%;max-height:100%;object-fit:contain;transition:transform .5s cubic-bezier(.4,0,.2,1)}.sf-prod-card:hover img{transform:scale(1.05)}.sf-prod-brand{font-size:.75rem;text-transform:uppercase;color:#888;letter-spacing:1.5px;margin-bottom:6px;font-weight:600}.sf-prod-name{font-size:.95rem;font-weight:800;margin:0 0 8px 0;text-transform:uppercase;line-height:1.25}.sf-prod-price{font-size:1.15rem;font-weight:700;margin:0}.sf-pdp{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;margin-top:1rem}.sf-pdp-img-box{background:#fafafa;border-radius:24px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:3rem;box-sizing:border-box}.sf-pdp-img-box img{max-width:100%;max-height:100%;object-fit:contain}.sf-pdp-brand{font-size:.85rem;font-weight:800;text-transform:uppercase;letter-spacing:2px;color:#888;margin-bottom:8px}.sf-pdp-title{font-size:2.8rem;font-weight:900;line-height:1.05;margin:0 0 15px 0;text-transform:uppercase;letter-spacing:-1px}.sf-pdp-price{font-size:2rem;font-weight:700;margin:0 0 25px 0}.sf-pdp-btn{background:#111;color:#fff;padding:16px 36px;border:none;font-weight:800;text-transform:uppercase;border-radius:4px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-size:.85rem;letter-spacing:2.5px;transition:all .2s;width:100%;justify-content:center;box-shadow:0 4px 15px rgba(0,0,0,.1)}.sf-pdp-btn:hover{background:#333;transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.15)}.sf-pdp-desc{font-size:1.05rem;color:#555;line-height:1.6;margin-bottom:2rem}.sf-pdp-table{width:100%;border-collapse:collapse;margin-top:2rem}.sf-pdp-table tr{border-bottom:1px solid #eee}.sf-pdp-table td{padding:10px 0;font-size:.9rem}.sf-pdp-table td.label{font-weight:700;color:#666;width:120px;text-transform:uppercase;font-size:.75rem;letter-spacing:1px}.sf-news{background:linear-gradient(135deg,#111 0%,#000 100%);color:#fff;padding:70px 40px;border-radius:20px;text-align:center;margin-top:5rem;border:1px solid rgba(255,255,255,.05)}.sf-news-title{font-size:2.5rem;font-weight:900;margin:0 0 10px 0;letter-spacing:-1px;text-transform:uppercase}.sf-news-desc{font-size:1.05rem;color:#888;max-width:500px;margin:0 auto 2rem auto;line-height:1.6}.sf-news-btn{display:inline-block;background:#d4af37;color:#111;padding:16px 40px;font-weight:800;text-transform:uppercase;text-decoration:none;font-size:.75rem;letter-spacing:2px;border-radius:4px;transition:all .2s}.sf-news-btn:hover{background:#fff;transform:translateY(-1px)}.sf-footer{margin-top:6rem;padding-top:2rem;border-top:1px solid #f0f0f0;font-size:.8rem;color:#888}';
+          document.head.appendChild(style);
+        }
+
+        var navHtml = '<header class="sf-header">' +
+          '<a href="' + basePrefix + '/' + activeCfg.id + '/" class="sf-logo">FASHION<span>.</span></a>' +
+          '<nav class="sf-nav">' +
+          '<a href="' + basePrefix + '/' + activeCfg.id + '/category/Apparel.html" class="sf-nav-link">Apparel</a>' +
+          '<a href="' + basePrefix + '/' + activeCfg.id + '/category/Footwear.html" class="sf-nav-link">Footwear</a>' +
+          '<a href="' + basePrefix + '/' + activeCfg.id + '/category/Accessories.html" class="sf-nav-link">Accessories</a>' +
+          '</nav>' +
+          '<span class="sf-badge">' + activeCfg.id.toUpperCase() + ': ' + activeCfg.label + '</span>' +
           '</header>';
 
-        var footerHtml = '<footer style="margin-top:2rem;padding-top:1rem;border-top:1px solid #ddd;font-size:.75rem;color:#777;font-family:system-ui,sans-serif;">' +
-          '<p><strong>Active Test Variant:</strong> ' + activeCfg.description + '</p>' +
+        var footerHtml = '<footer class="sf-footer">' +
+          '<p><strong>Active Test Variant Configuration:</strong> ' + activeCfg.description + '</p>' +
+          '<p>© 2026 Fashion eCommerce Platform. All rights reserved.</p>' +
           '</footer>';
 
         if (pageType === 'product') {
-          body = '<article class="product" itemscope itemtype="https://schema.org/Product" style="font-family:system-ui,sans-serif;color:#222;max-width:600px;">' +
-            '<img src="' + esc(resolveImgUrl(product.image)) + '" alt="' + esc(product.name) + '" width="300" height="300" style="border-radius:8px;max-width:300px;" />' +
-            '<h1 itemprop="name" style="margin:.5rem 0;">' + esc(product.name) + '</h1>' +
-            '<p class="brand" itemprop="brand" itemscope itemtype="https://schema.org/Brand" style="color:#666;margin:0;">' +
-            '<span itemprop="name">' + esc(product.brand) + '</span>' +
-            '</p>' +
-            '<p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer" style="font-size:1.5rem;font-weight:bold;margin:.5rem 0;">' +
+          var availabilityText = Number(product.quantity) > 0 ? 'In Stock' : 'Out of Stock';
+          body = '<div class="sf-pdp" itemscope itemtype="https://schema.org/Product">' +
+            '<div class="sf-pdp-img-box">' +
+            '<img src="' + esc(resolveImgUrl(product.image)) + '" alt="' + esc(product.name) + '" />' +
+            '</div>' +
+            '<div>' +
+            '<p class="sf-pdp-brand" itemprop="brand" itemscope itemtype="https://schema.org/Brand"><span itemprop="name">' + esc(product.brand) + '</span></p>' +
+            '<h1 class="sf-pdp-title" itemprop="name">' + esc(product.name) + '</h1>' +
+            '<p class="sf-pdp-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">' +
             '<span itemprop="priceCurrency" content="EUR">€</span><span itemprop="price" content="' + esc(product.price) + '">' + esc(product.price) + '</span>' +
             '</p>' +
-            '<div style="margin:18px 0;">' +
-            '<button id="pdp-add-to-cart" class="btn" style="background:#111;color:#fff;padding:12px 24px;border:none;font-weight:bold;border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px;font-size:14px;transition:background 0.2s;" onmouseover="this.style.background=\'#333\'" onmouseout="this.style.background=\'#111\'" onclick="handleAddToCartClick()">' +
+            '<div style="margin:20px 0;">' +
+            '<button id="pdp-add-to-cart" class="sf-pdp-btn" onclick="handleAddToCartClick()">' +
             '🛒 Add to Cart' +
             '</button>' +
             '</div>' +
-            '<p style="color:#555;">' + esc(product.category_1) + ' / ' + esc(product.category_2) + '</p>' +
-            '<p itemprop="description" style="line-height:1.5;margin-bottom:1.5rem;">' + esc(product.description) + '</p>' +
-            '<dl style="display:grid;grid-template-columns:auto 1fr;gap:.25rem .75rem;font-size:.875rem;">' +
-            '<dt style="font-weight:600;color:#555;">SKU</dt><dd itemprop="sku">' + esc(product.sku) + '</dd>' +
-            '<dt style="font-weight:600;color:#555;">Color</dt><dd>' + esc(product.color) + '</dd>' +
-            '<dt style="font-weight:600;color:#555;">Size</dt><dd>' + esc(product.size) + '</dd>' +
-            '<dt style="font-weight:600;color:#555;">Material</dt><dd>' + esc(product.material) + '</dd>' +
-            '<dt style="font-weight:600;color:#555;">Gender</dt><dd>' + esc(product.gender) + '</dd>' +
-            '<dt style="font-weight:600;color:#555;">Rating</dt><dd itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">' +
-            '<span itemprop="ratingValue">' + esc(product.rating_value) + '</span> / 5 (' + esc(product.rating_count) + ' reviews)</dd>' +
-            '<dt style="font-weight:600;color:#555;">GTIN</dt><dd>' + esc(product.gtin) + '</dd>' +
-            '<dt style="font-weight:600;color:#555;">MPN</dt><dd>' + esc(product.mpn) + '</dd>' +
-            '</dl>' +
-            '</article>';
+            '<p class="sf-pdp-desc" itemprop="description">' + esc(product.description || ('Elevate your style with this premium ' + product.category_2.toLowerCase() + '. Designed by ' + product.brand + ', it features high-quality materials and a timeless aesthetic.')) + '</p>' +
+            '<table class="sf-pdp-table">' +
+            '<tr><td class="label">SKU</td><td itemprop="sku">' + esc(product.sku) + '</td></tr>' +
+            '<tr><td class="label">Category</td><td>' + esc(product.category_1) + ' / ' + esc(product.category_2) + '</td></tr>' +
+            '<tr><td class="label">Color</td><td>' + esc(product.color) + '</td></tr>' +
+            '<tr><td class="label">Size</td><td>' + esc(product.size) + '</td></tr>' +
+            '<tr><td class="label">Material</td><td>' + esc(product.material) + '</td></tr>' +
+            '<tr><td class="label">Gender</td><td>' + esc(product.gender) + '</td></tr>' +
+            '<tr><td class="label">Availability</td><td>' + availabilityText + '</td></tr>' +
+            '<tr><td class="label">Rating</td><td itemprop="aggregateRating" itemscope itemtype="https://schema.org/AggregateRating">' +
+            '<span itemprop="ratingValue">' + esc(product.rating_value) + '</span> / 5 (' + esc(product.rating_count) + ' reviews)</td></tr>' +
+            '<tr><td class="label">GTIN</td><td>' + esc(product.gtin) + '</td></tr>' +
+            '<tr><td class="label">MPN</td><td>' + esc(product.mpn) + '</td></tr>' +
+            '</table>' +
+            '</div>' +
+            '</div>';
         } else {
           var heroHtml = '';
+          var categoriesHtml = '';
+          
           if (pageType === 'homepage') {
-            heroHtml = '<div style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); padding: 40px 30px; border-radius: 12px; margin-bottom: 30px; text-align: center; color: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.25); border: 1.5px solid rgba(212,175,55,0.2);">' +
-              '<h2 style="font-size: 2.2rem; font-weight: 900; margin: 0 0 10px 0; color: #d4af37; letter-spacing: 2px; text-transform: uppercase; font-family: system-ui, -apple-system, sans-serif;">FASHION<span style="color:#fff;">.</span></h2>' +
-              '<p style="font-size: 1rem; color: #aaa; margin: 0 auto; max-width: 500px; font-weight: 300; line-height: 1.5;">' + esc(SITE.tagline) + '</p>' +
-              '<span style="display:inline-block; margin-top: 18px; background: rgba(212,175,55,0.1); border: 1px solid #d4af37; color: #d4af37; padding: 4px 14px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Variant Mode: ' + activeCfg.id.toUpperCase() + '</span>' +
+            heroHtml = '<div class="sf-hero">' +
+              '<span class="sf-hero-tag">New Arrivals</span>' +
+              '<h1 class="sf-hero-title">Elevate your<br><span>everyday.</span></h1>' +
+              '<p class="sf-hero-desc">' + esc(SITE.tagline) + '</p>' +
+              '<a href="' + basePrefix + '/' + activeCfg.id + '/category/Apparel.html" class="sf-hero-btn">Shop Collection</a>' +
+              '</div>';
+
+            categoriesHtml = '<div class="sf-title-wrapper">' +
+              '<h2 class="sf-sec-title">Curated Collections</h2>' +
+              '<p class="sf-sec-desc">Explore our premium categories designed for modern living.</p>' +
+              '</div>' +
+              '<div class="sf-cat-grid">' +
+              '<a href="' + basePrefix + '/' + activeCfg.id + '/category/Apparel.html" class="sf-cat-card">' +
+              '<img src="' + esc(resolveImgUrl('/images/hero-banner.png')) + '" alt="Apparel" />' +
+              '<div class="sf-cat-overlay"><h3 class="sf-cat-name">Apparel</h3><span class="sf-cat-link">Explore Collection →</span></div>' +
+              '</a>' +
+              '<a href="' + basePrefix + '/' + activeCfg.id + '/category/Footwear.html" class="sf-cat-card">' +
+              '<img src="' + esc(resolveImgUrl('/images/sneakers-urban.png')) + '" alt="Footwear" />' +
+              '<div class="sf-cat-overlay"><h3 class="sf-cat-name">Footwear</h3><span class="sf-cat-link">Explore Collection →</span></div>' +
+              '</a>' +
+              '<a href="' + basePrefix + '/' + activeCfg.id + '/category/Accessories.html" class="sf-cat-card">' +
+              '<img src="' + esc(resolveImgUrl('/images/watch-gold.png')) + '" alt="Accessories" />' +
+              '<div class="sf-cat-overlay"><h3 class="sf-cat-name">Accessories</h3><span class="sf-cat-link">Explore Collection →</span></div>' +
+              '</a>' +
               '</div>';
           }
 
-          var itemsHtml = listProducts.slice(0, 12).map(function(p) {
+          var sliceLimit = pageType === 'homepage' ? 4 : 20;
+          var itemsHtml = listProducts.slice(0, sliceLimit).map(function(p) {
             var pUrl = basePrefix + "/" + activeCfg.id + "/product/" + encodeURIComponent(p.sku) + ".html";
-            return '<li style="background:#fafafa;border:1px solid #eee;border-radius:8px;padding:1rem;list-style:none;text-align:center;">' +
-              '<a href="' + pUrl + '" style="text-decoration:none;color:inherit;display:block;">' +
-              '<img src="' + esc(resolveImgUrl(p.image)) + '" alt="' + esc(p.name) + '" width="150" style="max-width:100%;border-radius:4px;margin-bottom:8px;" />' +
-              '<h3 style="font-size:13px;margin:4px 0;font-weight:700;text-transform:uppercase;">' + esc(p.name) + '</h3>' +
-              '<p style="color:#666;font-size:11px;margin:2px 0;">' + esc(p.brand) + '</p>' +
-              '<p style="font-weight:bold;font-size:14px;margin:4px 0;">€' + esc(p.price) + '</p>' +
-              '</a>' +
-              '</li>';
+            return '<a href="' + pUrl + '" class="sf-prod-card">' +
+              '<div class="sf-prod-img-box">' +
+              '<img src="' + esc(resolveImgUrl(p.image)) + '" alt="' + esc(p.name) + '" />' +
+              '</div>' +
+              '<p class="sf-prod-brand">' + esc(p.brand) + '</p>' +
+              '<h3 class="sf-prod-name">' + esc(p.name) + '</h3>' +
+              '<p class="sf-prod-price">€' + esc(p.price) + '</p>' +
+              '</a>';
           }).join('');
-          
-          body = '<div style="font-family:system-ui,sans-serif;color:#222;">' +
+
+          var titleText = pageType === 'category' ? product.category_1 : 'Featured Products';
+          var descText = pageType === 'category' 
+            ? ('Shop our ' + product.category_1 + ' collection — curated items from leading brands.')
+            : 'Discover the latest trends and essential pieces for your wardrobe.';
+
+          var newsletterHtml = pageType === 'homepage'
+            ? ('<div class="sf-news">' +
+               '<h2 class="sf-news-title">Stay in the know</h2>' +
+               '<p class="sf-news-desc">Subscribe to our newsletter to receive early access to drops, exclusive style advice, and private sales.</p>' +
+               '<a href="#" class="sf-news-btn" onclick="alert(\'Thank you for subscribing!\'); return false;">Subscribe Now</a>' +
+               '</div>')
+            : '';
+
+          body = '<div>' +
             heroHtml +
-            '<h1 style="font-size:1.6rem;margin-bottom:1.5rem;font-weight:700;">' + esc(pageType === 'category' ? product.category_1 : 'Featured Products') + '</h1>' +
-            '<ul style="padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;">' +
+            categoriesHtml +
+            '<div class="sf-title-wrapper" style="margin-top:3rem;">' +
+            '<h2 class="sf-sec-title">' + esc(titleText) + '</h2>' +
+            '<p class="sf-sec-desc">' + esc(descText) + '</p>' +
+            '</div>' +
+            '<div class="sf-prod-grid">' +
             itemsHtml +
-            '</ul>' +
+            '</div>' +
+            newsletterHtml +
             '</div>';
         }
 
         var fullHtml = disclaimer +
-          '<div style="max-width:1000px;margin:0 auto;padding:1rem;font-family:system-ui,sans-serif;">' +
+          '<div class="sf-wrapper">' +
           navHtml +
           '<main>' + body + '</main>' +
           footerHtml +
