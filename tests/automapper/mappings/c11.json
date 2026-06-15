@@ -1,0 +1,68 @@
+{
+  "variant": "c11",
+  "generatedAt": "2026-06-15T05:55:29.618Z",
+  "activeSources": [],
+  "mappings": [],
+  "unmappableFields": [
+    {
+      "field": "productId",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "productName",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "brand",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "price",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "currency",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "category",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "availability",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "image",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "description",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "gtin",
+      "reason": "Only available via JSON-LD gtin* fields — add JSON-LD Product schema to include this field"
+    },
+    {
+      "field": "color",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "size",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "gender",
+      "reason": "Field not present in any active source () for this variant"
+    },
+    {
+      "field": "rating",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    },
+    {
+      "field": "ratingCount",
+      "reason": "Only available via JSON-LD aggregateRating — add JSON-LD with aggregateRating to include this field"
+    }
+  ]
+}
