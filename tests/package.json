@@ -5,9 +5,7 @@
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "automap": "ts-node automapper/run.ts",
-    "drift": "ts-node automapper/run.ts --drift",
-    "orchestrate": "ts-node orchestrator.ts",
-    "orchestrate:prod": "ts-node orchestrator.ts --prod"
+    "drift": "ts-node automapper/run.ts --drift"
   },
   "devDependencies": {
     "@playwright/test": "^1.44.0",
