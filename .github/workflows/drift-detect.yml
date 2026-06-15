@@ -11,6 +11,10 @@ on:
         required: false
         default: ''
 
+permissions:
+  contents: write
+  issues: write
+
 jobs:
   drift:
     name: Extract signals & detect drift
