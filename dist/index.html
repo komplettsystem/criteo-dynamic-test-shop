@@ -1324,7 +1324,7 @@
       
       var pageType = 'homepage';
       var product = null;
-      
+
       if (pathClean.indexOf('/product/') !== -1) {
         pageType = 'product';
         var sku = decodeURIComponent(pathClean.substring(pathClean.indexOf('/product/') + 9).replace('.html', ''));
@@ -1339,6 +1339,19 @@
         pageType = 'thank-you';
       } else if (pathClean.indexOf('/newsletter') !== -1) {
         pageType = 'newsletter';
+      } else {
+        // Query-param routing: ?page=product&sku=TSHIRT-001-RED-M or ?page=category&cat=Apparel
+        // Allows visiting the root URL (200 OK) with a simulated page context.
+        var qPage = getQueryParam('page');
+        if (qPage === 'product') {
+          pageType = 'product';
+          var qSku = getQueryParam('sku') || '';
+          product = products.find(function(p) { return p.sku === qSku; });
+        } else if (qPage === 'category') {
+          pageType = 'category';
+          var qCat = getQueryParam('cat') || '';
+          product = products.find(function(p) { return p.category_1.toLowerCase() === qCat.toLowerCase(); });
+        }
       }
       
       var listProducts = pageType === 'category' && product
@@ -1387,7 +1400,7 @@
         
         var pageType = 'homepage';
         var product = null;
-        
+
         if (cleanPath.indexOf('/product/') !== -1) {
           pageType = 'product';
           var sku = decodeURIComponent(cleanPath.substring(cleanPath.indexOf('/product/') + 9).replace('.html', ''));
@@ -1402,6 +1415,17 @@
           pageType = 'thank-you';
         } else if (cleanPath.indexOf('/newsletter') !== -1) {
           pageType = 'newsletter';
+        } else {
+          var qPage = getQueryParam('page');
+          if (qPage === 'product') {
+            pageType = 'product';
+            var qSku = getQueryParam('sku') || '';
+            product = products.find(function(p) { return p.sku === qSku; });
+          } else if (qPage === 'category') {
+            pageType = 'category';
+            var qCat = getQueryParam('cat') || '';
+            product = products.find(function(p) { return p.category_1.toLowerCase() === qCat.toLowerCase(); });
+          }
         }
         
         var listProducts = pageType === 'category' && product
